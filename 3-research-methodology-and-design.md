@@ -3,14 +3,12 @@
 ## Research Objectives
 >I want to prove that there is a better way of looking for a travel destination than what the tourism industry currently offers. Today people search by destination, by price or by dates. I want to prove that better results can emerge from desire, feeling, atmostphere wanted and envy. Granted, these are not easily quantifiable
 
+* Prove that Machine Learning can drastically imporve HCI
+* Prove that better HCI drives higher sales
 
-* Find a way to categorise travel options given a set of critierias
-* Confirm that computers can handle more parameters than humans
-* Confirm that using machine learning to find a tour opens a lot more possible choices and narrows it down to a few choices that fit best
-* Overall confirm that Machine Learning in Tourism could drastically improve customer experience
 
 ## Research Strategy
-Compare the results obtained by existing solutions (i.e. travel guides) and the model found
+>Compare the results obtained by existing solutions (i.e. travel guides) and the model found
 
 The scenario: a couple is looking for a holiday destination next August. They have preferences and budget restrictions.
 
