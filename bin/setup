@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# TODO install packages in both server and client if
+# node_modules dir missing, check versions of node and npm
+
+set -e
+
+function main {
+    if ( which npm >/dev/null ); then
+        echo "Installing NPM Packages..."
+        npm install
+    else
+        echo "Need to install NPM!"
+        exit 1;
+    fi
+}
+
+main

@@ -1,0 +1,30 @@
+{
+  "resultId": "e010b493-2d0c-4672-a1a5-7b4a3a87c4e4",
+  "searchId": "cf5bde73-d0d9-4dc5-ba27-089d562f8af7",
+  "idInSource": "home-house-london-2",
+  "sourceName": "Yelp",
+  "imageUrl": "https://s3-media4.fl.yelpcdn.com/bphoto/YbbEJxvWvCOMMPsYLtYCEg/o.jpg",
+  "name": "Home House",
+  "price": "£££",
+  "rating": 4.5,
+  "coordinates": null,
+  "categories": [
+    {
+      "alias": "hotels",
+      "title": "Hotels"
+    },
+    {
+      "alias": "danceclubs",
+      "title": "Dance Clubs"
+    },
+    {
+      "alias": "british",
+      "title": "British"
+    }
+  ],
+  "images": null,
+  "reviews": null,
+  "addressLine": "20 Portman Square",
+  "addressDisplay": "20 Portman Square, London, GB",
+  "creationTimestamp": 1488451396332
+}

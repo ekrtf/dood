@@ -1,0 +1,24 @@
+.headerbar {
+    position: fixed;
+    z-index: 10;
+    width: $content-width;
+    height: $headerbar-height;
+    background: $dark;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 5%;
+}
+
+.headerbar__logo {
+    font-family: 'proxima-nova';
+    font-size: 34px;
+    color: $darkish-pink;
+    font-weight: light;
+}
+
+.headerbar__beta {
+    color: $darkish-pink;
+    margin-left: 15px;
+    margin-top: 9px;
+}

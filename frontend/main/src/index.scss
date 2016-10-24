@@ -1,0 +1,180 @@
+/**
+ *
+ * Variables
+ */
+
+$headerbar-height: 75px;
+$footer-height: 150px;
+$content-padding: 106px;
+$content-width: 100%;
+
+$text-color: #7f888f;
+$h1-color: #3d4449;
+$main-color: #f56a6a;
+
+$small-space: 13px;
+$medium-space: 26px;
+$large-space: 52px;
+
+$dark: #311d3f;
+$darkish-pink: #e23e57;
+$light-burgundy: #88304e;
+$black: #333333;
+$grape-purple: #401936;
+$white: #ffffff;
+
+/**
+ *
+ * Global CSS
+ */
+
+html {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+a, a:hover, a:visited, a:active, a:focus {
+    text-decoration: none;
+    color: inherit;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+#root {
+    height: 100%;
+    width: 100%;
+}
+
+button {
+    cursor: pointer;
+    padding: 3px 24px;
+    border-radius: 50px;
+    background-color: $light-burgundy;
+    color: $white;
+    border: 1px solid $light-burgundy;
+    min-width: 150px;
+    padding: 12px 0;
+
+    &:hover {
+        color: $light-burgundy;
+        background-color: $white;
+    }
+
+    &:active {
+        background-color: $light-burgundy;
+        color: $white;
+    }
+
+    &:focus {
+        outline: 0;
+    }
+
+    i {
+        margin-left: 5px;
+    }
+}
+
+input, textarea {
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    border: none;
+    border: 1px solid $light-burgundy;
+    padding: 10px;
+    background-color: $white;
+    border-radius: 4px;
+    outline: 0;
+
+    &:focus {
+        border-color: $light-burgundy;
+        box-shadow: 0 0 0 1px $light-burgundy;
+    }
+}
+
+// carousel
+.container_a31snl button {
+    box-shadow: none;
+}
+
+.react-spinner {
+    position: relative;
+    width: 25px;
+    height: 25px;
+    top: 50%;
+    left: 50%;
+}
+
+.react-spinner_bar {
+    -webkit-animation: react-spinner_spin 1.2s linear infinite;
+    -moz-animation: react-spinner_spin 1.2s linear infinite;
+    animation: react-spinner_spin 1.2s linear infinite;
+    border-radius: 5px;
+    background-color: $light-burgundy;
+    position: absolute;
+    width: 20%;
+    height: 7.8%;
+    top: -3.9%;
+    left: -10%;
+}
+
+@keyframes react-spinner_spin {
+    0% { opacity: 1; }
+    100% { opacity: 0.15; }
+}
+
+@-moz-keyframes react-spinner_spin {
+    0% { opacity: 1; }
+    100% { opacity: 0.15; }
+}
+
+@-webkit-keyframes react-spinner_spin {
+    0% { opacity: 1; }
+    100% { opacity: 0.15; }
+}
+
+
+/**
+ *
+ * Mixins
+ */
+
+@mixin no-select {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/**
+ *
+ * Imports
+ */
+
+@import 'resources/styles/normalize';
+@import 'containers/App/App';
+@import 'containers/Smart/Smart';
+@import 'containers/About/About';
+@import 'containers/Product/Product';
+@import 'containers/Results/Results';
+@import 'containers/Clone/Clone';
+@import 'containers/Finish/Finish';
+@import 'containers/Home/Home';
+@import 'containers/Feedback/Feedback';
+@import 'components/HeaderBar/HeaderBar';
+@import 'components/ResultItem/ResultItem';
+@import 'components/Footer/Footer';
+@import 'components/Map/Map';
+@import 'components/LocationInput/LocationInput';

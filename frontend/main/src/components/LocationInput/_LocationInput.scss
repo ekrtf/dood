@@ -1,0 +1,41 @@
+.li {
+    background: #ffffff;
+    position: relative;
+    z-index: 10;
+    .typeahead-selector {
+        position: absolute;
+        width: 100%;
+        border: 1px solid;
+        border-top-style: hidden;
+        background: #ffffff;
+        box-shadow: 0 3px 8px 0 rgba(0,0,0,0.2), 0 0 0 1px rgba(0,0,0,0.08);
+
+        li {
+            height: $large-space;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            margin-left: -40px;
+            border-bottom: 1px solid;
+            &:hover {
+                cursor: pointer;
+                background: rgba(0,0,0,0.1);
+            }
+
+            a {
+                padding-left: 20px;
+                width: 100%;
+                height: $large-space;
+                display: flex;
+                align-items: center
+            }
+        }
+
+        // react-typeahead uses that class when user uses arrow keys
+        .hover {
+            cursor: pointer;
+            background: rgba(0,0,0,0.1);
+        }
+    }
+}
+

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="71px" height="102px" viewBox="0 0 71 102" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>3D9CD422-484A-4136-8331-5B21C6AAD36C</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <path d="M8.52651283e-14,28.5523313 C8.52651283e-14,20.5670849 6.46385955,14.0937637 14.4545373,14.0937637 L36.5823698,14.0937637 C44.5653903,14.0937637 51.0369071,20.5611656 51.0369071,28.5523313 L51.0369071,76.265359 C51.0369071,84.2506054 44.5730475,90.7239266 36.5823698,90.7239266 L14.4545373,90.7239266 C6.47151678,90.7239266 8.52651283e-14,84.2565247 8.52651283e-14,76.265359 L8.52651283e-14,28.5523313 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="51.0369071" height="76.6301629" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <rect id="path-3" x="-1.42108547e-13" y="36.6437856" width="37.4802286" height="57.4726222" rx="6.42514979"></rect>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="37.4802286" height="57.4726222" fill="white">
+            <use xlink:href="#path-3"></use>
+        </mask>
+    </defs>
+    <g id="Website" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.05">
+        <g id="Desktop-/-First-Page" transform="translate(-182.000000, -466.000000)">
+            <g id="Icons" transform="translate(-630.000000, 46.000000)">
+                <g transform="translate(761.000000, 0.000000)" id="Milk">
+                    <g transform="translate(91.862407, 471.205462) rotate(-27.000000) translate(-91.862407, -471.205462) translate(57.862407, 423.705462)">
+                        <use id="Rectangle-26-Copy" stroke="#FC5314" mask="url(#mask-2)" stroke-width="6" fill="#FFFFFF" xlink:href="#path-1"></use>
+                        <use id="Rectangle-26" stroke="#FC5314" mask="url(#mask-4)" stroke-width="6" stroke-dasharray="1,16.68000030517578,79.55999755859375" xlink:href="#path-3"></use>
+                        <path d="M46.777577,25.688067 L37.8461182,34.6282527" id="Path-60" stroke="#FC5314" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"></path>
+                        <path d="M47.4812623,0.524419426 C48.1071156,-0.103364096 49.1272647,-0.103738478 49.7499046,0.51374104 L67.0263109,17.646963 C67.6533941,18.268849 67.6525939,19.277919 67.0177869,19.9074648 L65.7520526,21.1627089 C65.1202617,21.7892636 64.0957321,21.7890709 63.4687419,21.1672771 L50.0804432,7.88993877 C49.4511964,7.26590706 48.43577,7.2611624 47.8000479,7.89161578 L30.4383026,25.1094693 C29.8081219,25.7344272 28.6484719,26.5626083 27.8450448,26.9194767 C27.8450448,26.9194767 26.7512035,27.5978978 25.3177102,27.5978978 C23.8842168,27.5978978 23.2414644,27.0146004 23.2414644,27.0146004 C22.469497,26.5873837 22.3545707,25.7286037 22.9769015,25.1043535 L47.4812623,0.524419426 Z" id="Path-61" stroke="#709AE2" stroke-width="3" fill="#FFFFFF"></path>
+                        <path d="M32.460974,57.314639 C32.460974,57.314639 26.3773487,65.3885142 19.9764608,69.9676756 C13.5755729,74.546837 3.75271376,74.875718 3.75271376,74.875718" id="Path-62" stroke="#709AE2" stroke-width="3" stroke-linecap="round" stroke-dasharray="0.8031437132093641,0.8031437132093641,9.637724982367621"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

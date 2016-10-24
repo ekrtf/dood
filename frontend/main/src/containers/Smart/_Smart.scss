@@ -1,0 +1,85 @@
+.smart {
+    margin-top: $medium-space;
+}
+
+.smart__input {
+
+}
+
+.smart__input__header {
+    color: $grape-purple;
+    margin-bottom: $medium-space;
+}
+
+.smart__input__form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.smart__input__form__textarea {
+    height: $headerbar-height;
+}
+
+.smart__input__form__location {
+    display: flex;
+    align-items: center;
+    height: $large-space;
+    margin: $small-space 0;
+    color: $light-burgundy;
+}
+
+.smart__input__form__location--wide {
+    display: flex;
+    align-items: center;
+    height: $large-space;
+    margin: $small-space 0;
+    justify-content: space-between;
+    color: $light-burgundy;
+}
+
+.smart__input__form__location__spin {
+    margin-left: $small-space;
+    align-self: flex-end;
+}
+
+.smart__input__form__location__loc {
+    margin-left: $small-space;
+    font-weight: bold;
+}
+
+.smart__input__form__location__change {
+    margin-left: $small-space;
+    color: $light-burgundy;
+    &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+}
+
+.smart__input__form__location__input {
+    min-width: 240px;
+    input {
+        width: 100%;
+    }
+}
+
+.smart__input__form__button {
+    width: 250px;
+    margin-bottom: $medium-space;
+}
+
+.smart__input__form__button--disabled {
+    width: 250px;
+    margin-bottom: $medium-space;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.smart__output {
+    margin-top: $medium-space;
+}
+
+.smart__output__title {
+    color: $grape-purple;
+}

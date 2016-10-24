@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="74px" height="80px" viewBox="0 0 74 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>01842B7B-9A1F-4B2C-9856-DE41CF70A401</title>
+    <desc>Created with sketchtool.</desc>
+    <defs>
+        <rect id="path-1" x="19.6496262" y="63.1087418" width="10.1635998" height="34.6080197" rx="5.08179988"></rect>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="10.1635998" height="34.6080197" fill="white">
+            <use xlink:href="#path-1"></use>
+        </mask>
+        <path d="M14.2290397,0.539833014 C13.1631511,0.189565283 12.0242946,-2.20268248e-13 10.8411731,-2.20268248e-13 C4.85244205,-2.20268248e-13 -3.94351218e-13,4.8459847 -3.94351218e-13,10.8238098 L-3.94351218e-13,65.8567045 C-3.94351218e-13,71.8256319 4.85375851,76.6805143 10.8411731,76.6805143 C13.4062074,76.6805143 15.76279,75.7915204 17.6189303,74.3053652 C19.474625,75.7910056 21.8297783,76.6805143 24.3926394,76.6805143 C26.9576737,76.6805143 29.3142563,75.7915204 31.1703967,74.3053652 C33.0260913,75.7910056 35.3812446,76.6805143 37.9441057,76.6805143 C43.9328368,76.6805143 48.7852788,71.8345296 48.7852788,65.8567045 L48.7852788,26.6037119 C45.5726476,25.5479907 43.0228893,23.0323778 41.921913,19.8471625 C40.881376,20.1787078 39.7725078,20.3576587 38.6216791,20.3576587 C33.8725811,20.3576587 29.8367054,17.303284 28.3704467,13.0612763 C27.3299096,13.3928216 26.2210414,13.5717724 25.0702127,13.5717724 C19.0827982,13.5717724 14.2290397,8.71689005 14.2290397,2.74796267 L14.2290397,0.539833014 Z" id="path-3"></path>
+        <mask id="mask-4" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="0" y="0" width="48.7852788" height="76.6805143" fill="white">
+            <use xlink:href="#path-3"></use>
+        </mask>
+    </defs>
+    <g id="Website" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.05">
+        <g id="Desktop-/-First-Page" transform="translate(-777.000000, -478.000000)">
+            <g id="Icons" transform="translate(-630.000000, 46.000000)">
+                <g transform="translate(761.000000, 0.000000)" id="Popsicle">
+                    <g transform="translate(688.391892, 469.200175) rotate(-30.000000) translate(-688.391892, -469.200175) translate(663.891892, 420.200175)">
+                        <use id="Rectangle-10-Copy-3" stroke="#709AE2" mask="url(#mask-2)" stroke-width="6" fill="#FFFFFF" xlink:href="#path-1"></use>
+                        <use id="Rectangle-10-Copy-2" stroke="#FC5314" mask="url(#mask-4)" stroke-width="6" fill="#FFFFFF" xlink:href="#path-3"></use>
+                        <path d="M18.2944796,67.2678304 L18.2944796,36.6530692" id="Path-32" stroke="#709AE2" stroke-width="3" stroke-linecap="round"></path>
+                        <path d="M30.4907993,67.2585469 L30.4907993,36.6437856" id="Path-32-Copy" stroke="#709AE2" stroke-width="3" stroke-linecap="round"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

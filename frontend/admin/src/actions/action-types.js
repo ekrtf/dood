@@ -1,0 +1,14 @@
+/** Main actions */
+
+export const SET_VERSION = 'SET_VERSION';
+
+export const FETCH_FEEDBACK_REQUEST = 'FETCH_FEEDBACK_REQUEST';
+export const FETCH_FEEDBACK_SUCCESS = 'FETCH_FEEDBACK_SUCCESS';
+export const FETCH_FEEDBACK_FAILURE = 'FETCH_FEEDBACK_FAILURE';
+
+export const SET_USERNAME = 'SET_USERNAME';
+export const SET_PW = 'SET_PW';
+
+export const LOGIN_REQUEST = 'LOGIN_REQUEST';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+export const LOGIN_FAILURE = 'LOGIN_FAILURE';

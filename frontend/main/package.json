@@ -1,0 +1,16 @@
+{
+  "name": "dood-frontend-main",
+  "version": "0.1.0",
+  "private": true,
+  "description": "react app for dissertation project",
+  "engines": {
+    "node": "=5.0.0",
+    "npm": "=3.6.0"
+  },
+  "scripts": {
+    "clean": "rm -rf node_modules dist",
+    "prebuild": "rm -rf dist",
+    "build": "../node_modules/.bin/webpack --progress && cp ./src/resources/favicon.ico ./dist/favicon.ico",
+    "dev": "node ./devserver.js"
+  }
+}

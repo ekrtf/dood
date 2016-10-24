@@ -1,0 +1,32 @@
+[
+  {
+    "rating": 5,
+    "url": "https://www.yelp.com/biz/magic-castle-hotel-los-angeles?hrid=ob61blfriPRDZI6BRnm1Eg&adjust_creative=eJEgUTjJxSJZcG1GwnivDg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_reviews&utm_source=eJEgUTjJxSJZcG1GwnivDg",
+    "time_created": "2017-01-17 10:34:19",
+    "text": "First and foremost-This Hotel was very clever. It is a converted apartment complex. They kept with the minimal non high updated aesthetics. They kept it...",
+    "user": {
+      "name": "Mariah S.",
+      "image_url": "https://s3-media4.fl.yelpcdn.com/photo/SRNJdx8XxLz7VJpFRN3H6g/o.jpg"
+    }
+  },
+  {
+    "rating": 4,
+    "url": "https://www.yelp.com/biz/magic-castle-hotel-los-angeles?hrid=bDyzigdWYOHoWucXnCU9Mw&adjust_creative=eJEgUTjJxSJZcG1GwnivDg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_reviews&utm_source=eJEgUTjJxSJZcG1GwnivDg",
+    "time_created": "2016-12-24 18:20:40",
+    "text": "I came here with the bf for our anniversary. We booked this place only so that we could gain access to the Magic Castle. \n\nThe hotel overall is quaint & has...",
+    "user": {
+      "name": "Michelle H.",
+      "image_url": "https://s3-media4.fl.yelpcdn.com/photo/Yddb56HookOtn-sH16Ybog/o.jpg"
+    }
+  },
+  {
+    "rating": 5,
+    "url": "https://www.yelp.com/biz/magic-castle-hotel-los-angeles?hrid=Y2ftqlLCOLOwHGlUKPdJYw&adjust_creative=eJEgUTjJxSJZcG1GwnivDg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_reviews&utm_source=eJEgUTjJxSJZcG1GwnivDg",
+    "time_created": "2016-11-27 16:25:48",
+    "text": "100% will be staying again!\nWe decided to stay here to save ourselves the drive after dinner at The Magic Castle. From the moment we arrived the staff was...",
+    "user": {
+      "name": "Briana B.",
+      "image_url": "https://s3-media4.fl.yelpcdn.com/photo/p8cYGbyEucuwZPcFpL3Mgg/o.jpg"
+    }
+  }
+]

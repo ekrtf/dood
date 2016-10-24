@@ -1,0 +1,43 @@
+{
+  "location": {
+    "address1": "7025 Franklin Ave",
+    "address2": "",
+    "country": "US",
+    "address3": "",
+    "cross_streets": "",
+    "state": "CA",
+    "display_address": [
+      "7025 Franklin Ave",
+      "Los Angeles, CA 90028"
+    ],
+    "zip_code": "90028",
+    "city": "Los Angeles"
+  },
+  "id": "magic-castle-hotel-los-angeles",
+  "name": "Magic Castle Hotel",
+  "is_closed": false,
+  "image_url": "https://s3-media3.fl.yelpcdn.com/bphoto/FqF5vPiYkc5rl8rnw5ZbnA/o.jpg",
+  "price": "$$",
+  "rating": 4.5,
+  "coordinates": {
+    "latitude": 34.10447,
+    "longitude": -118.34252
+  },
+  "display_phone": "(323) 851-0800",
+  "review_count": 179,
+  "is_claimed": true,
+  "transactions": [],
+  "url": "https://www.yelp.com/biz/magic-castle-hotel-los-angeles?adjust_creative=eJEgUTjJxSJZcG1GwnivDg&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_lookup&utm_source=eJEgUTjJxSJZcG1GwnivDg",
+  "categories": [
+    {
+      "title": "Hotels",
+      "alias": "hotels"
+    }
+  ],
+  "photos": [
+    "https://s3-media4.fl.yelpcdn.com/bphoto/FqF5vPiYkc5rl8rnw5ZbnA/o.jpg",
+    "https://s3-media4.fl.yelpcdn.com/bphoto/K29KGJ2je59BXsKx1RlUdw/o.jpg",
+    "https://s3-media3.fl.yelpcdn.com/bphoto/s1C3xRMwGHL81mvH8t5Q1g/o.jpg"
+  ],
+  "phone": "+13238510800"
+}

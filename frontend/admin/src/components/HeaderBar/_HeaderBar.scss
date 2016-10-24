@@ -1,0 +1,30 @@
+.headerbar {
+    position: fixed;
+    z-index: 10;
+    width: $content-width;
+    height: $headerbar-height;
+    background: $dark;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+    color: $darkish-pink;
+    font-family: 'proxima-nova';
+}
+
+.headerbar__tab {
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    font-size: 22px;
+    height: 100%;
+    &:hover {
+        background: darken($darkish-pink, 10%);
+        cursor: pointer;
+    }
+}
+
+.headerbar__tab--selected {
+    @extend .headerbar__tab;
+    background: darken($darkish-pink, 10%);
+    color: $dark;
+}

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64px" height="92px" viewBox="0 0 64 92" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 42 (36781) - http://www.bohemiancoding.com/sketch -->
+    <title>87BF5E78-EE28-4D78-BD5A-49C87B52254B</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="Website" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.05">
+        <g id="Desktop-/-First-Page" transform="translate(-787.000000, -327.000000)" stroke-width="3">
+            <g id="Icons" transform="translate(-630.000000, 46.000000)">
+                <g transform="translate(761.000000, 0.000000)" id="Ice-cream">
+                    <g transform="translate(684.830277, 328.179819) rotate(-330.000000) translate(-684.830277, -328.179819) translate(665.330277, 278.179819)">
+                        <path d="M1.31849947,48.4118745 C-2.0169974,36.723358 5.12780495,27.2479431 17.2802371,27.2479431 L21.5149755,27.2479431 C33.6658967,27.2479431 40.8138411,36.7176421 37.4767131,48.4118745 L25.4370576,90.6022041 C22.1015608,102.290721 16.6952829,102.296436 13.358155,90.6022041 L1.31849947,48.4118745 Z" id="Triangle-5" stroke="#FC5314" fill="#FFFFFF"></path>
+                        <polyline id="Path-52" stroke="#709AE2" stroke-linecap="round" points="14.0171014 58.3213992 25.0615964 58.3213994 25.0615965 47.757906"></polyline>
+                        <polyline id="Path-52-Copy-4" stroke="#709AE2" stroke-linecap="round" points="24.3370642 69.5964101 35.3815593 69.5964103 35.3815593 59.0329169"></polyline>
+                        <polyline id="Path-52-Copy-5" stroke="#709AE2" stroke-linecap="round" points="14.0171014 80.8714211 25.0615964 80.8714213 25.0615965 70.3079279"></polyline>
+                        <ellipse id="Oval-40" stroke="#FC5314" fill="#FFFFFF" cx="19.5232006" cy="32.1893086" rx="17.6769034" ry="19.0351292"></ellipse>
+                        <ellipse id="Oval-40-Copy" stroke="#FC5314" fill="#FFFFFF" cx="19.9264822" cy="17.4488684" rx="16.2038281" ry="17.4488684"></ellipse>
+                        <path d="M22.3870601,8.67296053 C22.3870601,8.67296053 26.0165581,10.6034953 26.8910479,13.4638221" id="Path-35-Copy-3" stroke="#709AE2" stroke-linecap="round"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

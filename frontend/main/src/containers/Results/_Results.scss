@@ -1,0 +1,42 @@
+.results {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.results--small {
+	display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+}
+
+.results__item {
+    flex: 1 1 25%;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.results__spinner {
+    margin-top: $large-space;
+    margin-bottom: $large-space;
+    width: 100%;
+    text-align: center;
+}
+
+.results__spinner__container {
+    .react-spinner {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+.result__spinner__text {
+    padding-top: 152px;
+}
+
+.results__empty {
+    margin-left: auto;
+    margin-right: auto;
+}

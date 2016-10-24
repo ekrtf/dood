@@ -1,0 +1,33 @@
+{
+  "name": "dood-server",
+  "version": "0.1.0",
+  "description": "backend for dissertation project",
+  "main": "./index.js",
+  "private": true,
+  "engine": {
+    "node": "5.0.0"
+  },
+  "dependencies": {
+    "co": "~4.6.0",
+    "faker": "~3.0.1",
+    "fast-levenshtein": "~1.1.3",
+    "forecast.io-bluebird": "~0.0.1",
+    "fs": "0.0.2",
+    "googlemaps": "~1.1.3",
+    "googleplaces": "~0.6.0",
+    "helmet": "^3.4.1",
+    "https": "^1.0.0",
+    "hyper.io": "~0.6.5",
+    "knex": "~0.12.6",
+    "lodash": "~3.10.1",
+    "moment": "~2.11.1",
+    "moment-timezone": "~0.5.0",
+    "node-geocoder": "~3.15.2",
+    "path": "~0.12.7",
+    "pg": "^6.1.4",
+    "request-promise": "~4.1.1",
+    "sqlite3": "~3.1.8",
+    "uuid": "~3.0.0",
+    "watson-developer-cloud": "~2.15.2"
+  }
+}

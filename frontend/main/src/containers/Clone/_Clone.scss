@@ -1,0 +1,44 @@
+.clone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 35px 0;
+}
+
+.clone__form {
+    margin-bottom: $small-space;
+    width: 100%;
+}
+
+.clone__form__item {
+    height: $headerbar-height;
+    input {
+        width: 100%;
+        height: 42px;
+    }
+}
+
+.clone__form__item--submit {
+    height: $headerbar-height;
+    display: flex;
+    button {
+        height: 42px;
+        margin-left: auto;
+    }
+}
+
+.clone__form__item--submit--disabled {
+    height: $headerbar-height;
+    display: flex;
+    button {
+        height: 42px;
+        margin-left: auto;
+        opacity: 0.5;
+        pointer-events: none;
+    }
+}
+
+.clone__output {
+    width: 100%;
+}

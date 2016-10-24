@@ -1,0 +1,44 @@
+.about {
+	margin-top: $medium-space;
+	color: $grape-purple;
+}
+
+.about__content__section {
+	font-weight: lighter;
+   	margin-bottom: $medium-space;
+}
+
+.about__content__section--title {
+   	margin-bottom: $medium-space;
+	text-align: center;
+}
+
+.about__content__section--important {
+	// color: $darkish-pink;
+	font-weight: bold;
+	tr {
+		border-style: hidden;
+	}
+}
+
+.about__content__heading {
+	font-weight: normal;
+}
+
+.about__tldr {
+	margin: $large-space 0;
+}
+
+.about__start {
+	width: 100%;
+	margin-bottom: $large-space;
+}
+
+.about__content__table__num {
+	width: 15%;
+	text-align: right;
+}
+
+.about__content__table__rule {
+	padding-left: 10px;
+}

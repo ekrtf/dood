@@ -1,0 +1,60 @@
+{
+    "outdoors": {
+        "id": "outdoors",
+        "description": "Outdoor acitivites in a city",
+        "tags": [
+            "free",
+            "outside"
+        ],
+        "examples": [
+            "football in regents park",
+            "walk along the Thames"
+        ]
+    },
+    "movie": {
+        "id": "movie",
+        "description": "either a link to an online video or a cinema"
+    },
+    "bar": {
+        "id": "bar",
+        "description": "involves alcohol and only alcohol",
+        "tags": [
+            "alcohol",
+            "party",
+            "friends"
+        ]
+    },
+    "restaurant": {
+        "id": "restaurant",
+        "description": "restaurants...",
+        "tags": [
+            "food"
+        ]
+    },
+    "club": {
+        "id": "club",
+        "description": "night club disco dance",
+        "requires": [
+            "closes after 1:30"
+        ]
+    },
+    "escape": {
+        "id": "escape",
+        "description": "at least one afternoon outside of the city",
+        "examples": [
+            "have lunch in Deauville",
+            "wine tasting in Nappa"
+        ]
+    },
+    "events": {
+        "id": "events",
+        "description": "temporary event",
+        "requires": [
+            "date or time period"
+        ]
+    },
+    "must": {
+        "id": "must",
+        "description": "most famous attraction of the city, often touristy"
+    }
+}
