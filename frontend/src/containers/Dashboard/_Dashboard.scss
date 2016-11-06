@@ -1,0 +1,42 @@
+.dashboard {
+    @include main-content;
+}
+
+.dashboard__header {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .dropdown-menu {
+        min-width: 80px; // overrid bootstrap
+    }
+    .timestamp {
+        display: flex;
+        align-items: center;
+        &:before {
+            content: "last import on:\00a0"
+        }
+    }
+}
+
+.dashboard__kpis {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 180px;
+    border: 1px solid $main-color;
+    border-radius: 4px;
+    box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.2);
+
+    margin-bottom: 30px; // HACK
+}
+
+.dashboard__month {
+    margin-top: 100px;
+    .dm__month {
+        font-size: 25px;
+    }
+    .dm__budget {
+
+    }
+}

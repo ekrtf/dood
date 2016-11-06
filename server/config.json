@@ -1,0 +1,46 @@
+{
+    "ports": {
+        "server": 4000
+    },
+    "env": "dev",
+    "apis": {
+        "forecast": {
+            "key": "95f0d13da1b7180723bb9c87d6c185b8"
+        },
+        "yelp": {
+            "consumer_key": "x0FUWl3mq7KcMHB9R_9wiQ",
+            "consumer_secret": "azqkABKOazfrPcAtn_mM2XmBSo4",
+            "token": "w8e_46Nr-Y_9FeruI2PufNn4Yrf2NNlw",
+            "token_secret": "hUtgYWhlBakDZ4KHr8N8A4UIP_M"
+        },
+        "watson": {
+            "credentials": {
+                "services": [
+                    {
+                        "conceptexpansion": {
+                            "params": [
+                                {
+                                    "type": "json_list",
+                                    "name": "seed"
+                                },
+                                {
+                                    "type": "string",
+                                    "name": "label"
+                                },
+                                {
+                                    "type": "string",
+                                    "name": "dataset"
+                                }
+                            ],
+                            "name": "conceptexpansion"
+                        }
+                    }
+                ],
+                "url": "https://gateway.watsonplatform.net/concept-expansion-beta/api",
+                "username": "df4ebe50-08e4-4108-9f1c-46d7cfa223ac",
+                "password": "yKzzzjocLnAy",
+                "apiKey": "ad928a3256912c856f159ed2d5ac55409db1d3c1"
+            }
+        }
+    }
+}

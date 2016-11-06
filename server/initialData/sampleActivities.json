@@ -1,0 +1,99 @@
+{
+    "activity-1": {
+        "id": "activity-0",
+        "name": "Walk along the Golden Gate Bridge",
+        "location": {
+            "city": "San Francisco",
+            "lat": 37.819929,
+            "lng": -122.478255
+        },
+        "types": [
+            "outdoor",
+            "must"
+        ],
+        "openingHours": {
+            "forever": true,
+            "daily": true,
+            "okAtNight": false,
+            "recommended": {
+                "timeframe-1": {
+                    "from": 600,
+                    "to": 900
+                },
+                "timeframe-2": {
+                    "from": 1700,
+                    "to": 2000
+                }
+            }
+        },
+        "pricePerHead": 0,
+        "tags": [
+            "San Francisco",
+            "tourist",
+            "monument",
+            "worldwide known"
+        ]
+    },
+    "activity-2": {
+        "id": "activity-2",
+        "name": "Delfina",
+        "location": {
+            "city": "San Francisco",
+            "lat": 37.761357,
+            "lng": -122.424377
+        },
+        "types": [
+            "restaurant"
+        ],
+        "openingHours": {
+            "forever": false,
+            "daily": true,
+            "okAtNight": false,
+            "week": {
+                "mon": {
+                    "from": 530,
+                    "to": 2200
+                },
+                "tue": {
+                    "from": 530,
+                    "to": 2200
+                },
+                "wed": {
+                    "from": 530,
+                    "to": 2200
+                },
+                "thu": {
+                    "from": 530,
+                    "to": 2200
+                },
+                "fri": {
+                    "from": 530,
+                    "to": 2300
+                },
+                "sat": {
+                    "from": 530,
+                    "to": 2300
+                },
+                "sun": {
+                    "from": 500,
+                    "to": 2200
+                }
+            }
+        },
+        "pricePerHead": 40,
+        "contact": {
+            "phone": {
+                "area": 1,
+                "number": 4155524055
+            },
+            "website": "delfinasf.com"
+        },
+        "tags": [
+            "foodie",
+            "Mission District",
+            "good food",
+            "friends",
+            "date"
+        ]
+    }
+}

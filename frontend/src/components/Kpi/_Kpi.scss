@@ -1,0 +1,19 @@
+.kpi {
+    height: 150px;
+    width: 150px;
+    // border: 1px solid #ccc;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.kpi__value {
+    font-size: 25px;
+
+}
+
+.kpi__label {
+    margin-top: 15px;
+}
