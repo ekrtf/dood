@@ -1,6 +1,7 @@
 {
   "name": "ml-in-tourism-frontend",
   "version": "0.0.1",
+  "private": true,
   "description": "react app for dissertation project",
   "engines": {
     "node": "=5.0.0",
