@@ -1,16 +1,10 @@
 'use strict';
 
-var Server = require('./server.main.js');
-var app = new Server();
-
-app.init();
-
-return app.load([
+const Server = require('./server.app.js');
+const app = new Server();
+app.load([
     'sSearch',
     'sContext',
-    'sYelpAdapter',
+    'sYelp',
     'sWatson',
-    'sApp'
-]).then(function(hyper) {
-    return hyper.start();
-});
+]).then((hyper) => hyper.start());

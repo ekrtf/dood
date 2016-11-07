@@ -4,11 +4,11 @@
  * @description entry point of yelp API calls
  */
 
-var Yelp = require('yelp');
-var config = require('../config.json');
+const Yelp = require('yelp');
+const config = require('../config.json');
 
-var yelp = null;
-var logger = null;
+let yelp = null;
+let logger = null;
 
 module.exports = YelpAdapterService;
 
@@ -35,11 +35,11 @@ function YelpAdapterService($logger) {
  * * * * * * * * * */
 
 YelpAdapterService.prototype.searchYelp = function(query) {
-    var terms;
-    var categories;
-    var location;
+    let terms;
+    let categories;
+    let location;
 
-    var search = {
+    let search = {
         term: terms,
         cll: location.lat.toString() + ',' + location.lng.toString()
     };

@@ -1,13 +1,15 @@
+'use strict';
+
 /**
  * @module LocationUtility
  * @type utility
  * @description utility to handle location related logic
  */
 
-var googlemaps = require('googlemaps');
-var config = require('../config.json');
+const googlemaps = require('googlemaps');
+const config = require('../config.json');
 
-var GoogleMapsAPI = new GoogleMapsAPI({
+const GoogleMapsAPI = new GoogleMapsAPI({
     key: config.sPlaces.apiKey.key,
     stagger_time: 1000,
     encode_polylines: false,
@@ -50,9 +52,9 @@ function getAddress(location) {
         throw new Error('Location object empty or invalid');
     }
 
-    var coordinates = new String(location.lat.toSting() + ',' + location.lng.toString());
+    const coordinates = new String(location.lat.toSting() + ',' + location.lng.toString());
 
-    var params = {
+    const params = {
         latlng: coordinates,
         result_type: 'formatted_address',
         language: 'en',
@@ -60,7 +62,7 @@ function getAddress(location) {
     };
 
     GoogleMapsAPI.reverseGeocode(params, function(error, result) {
-        if (error) throw new Error('Unable to reverse geocode:' + location + '. Error: ' + error);
+        if (error) throw new Error(`Unable to reverse geocode:${ location }. Error: ${ error }`);
         return result;
     });
 }

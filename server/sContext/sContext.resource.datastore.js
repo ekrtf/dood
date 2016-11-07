@@ -1,13 +1,14 @@
-var _        = require('lodash');
-var co       = require('co');
-var moment   = require('moment-timezone');
-var Forecast = require('forecast.io-bluebird');
-var faker    = require('faker');
+'use strict';
 
-var config = require('../config.json');
+const _        = require('lodash');
+const co       = require('co');
+const moment   = require('moment-timezone');
+const Forecast = require('forecast.io-bluebird');
+const faker    = require('faker');
+const config = require('../config.json');
 
-var logger   = null;
-var forecast = null;
+let logger   = null;
+let forecast = null;
 
 module.exports = ContextStore;
 
@@ -47,21 +48,19 @@ ContextStore.prototype.$init = function() {
  * Get user context
  * @return {Object} context
  */
-ContextStore.prototype.getContext = function(location) {
-    var self = this;
+ContextStore.prototype.getContext = function*(location) {
+    const self = this;
 
-    var context = {
+    const context = {
         time: null,
         location: location,
         disableOutdoors: null
     };
 
-    return co(function*() {
-        context.time = moment().format('HH:mm'); // TODO timezoned from location
-        context.disableOutdoors = yield self.disableOutdoors(location);
+    context.time = moment().format('HH:mm'); // TODO timezoned from location
+    context.disableOutdoors = yield self.disableOutdoors(location);
 
-        return context;
-    });
+    return context;
 };
 
 /**
@@ -71,7 +70,7 @@ ContextStore.prototype.getContext = function(location) {
  */
 ContextStore.prototype.disableOutdoors = function(location) {
     return co(function*() {
-        var weather = yield getWeather(location);
+        const weather = yield getWeather(location);
         return _.includes(_.snakeCase(weather.currently.summary), 'rain');
     });
 };
@@ -89,10 +88,8 @@ ContextStore.prototype.disableOutdoors = function(location) {
  */
 function getWeather(location) {
     return forecast.fetch(location.lat, location.lng)
-        .then(function(weather) {
-            return weather;
-        })
-        .catch(function(error) {
+        .then((weather) => weather)
+        .catch((error) => {
             throw new Error('Unable to find weather forecasts. Error: "' + error + '"');
         });
 }

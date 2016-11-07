@@ -1,9 +1,11 @@
-var _ = require('lodash');
-var co = require('co');
-var levenshtein = require('fast-levenshtein');
+'use strict';
 
-var config = require('../config.json');
-var logger = null;
+const _ = require('lodash');
+const co = require('co');
+const levenshtein = require('fast-levenshtein');
+
+let config = require('../config.json');
+let logger = null;
 
 module.exports = SearchStore;
 
@@ -43,25 +45,25 @@ SearchStore.prototype.$init = function() {
  * @return {Object} result  user results
  */
 SearchStore.prototype.doSearch = function(search, location, filters) {
-    var self = this;
+    let self = this;
 
     return co(function*() {
         self.translateUserToWeb(search, location);
 
-        // var context = self.getContext(location);
+        // let context = self.getContext(location);
 
-        // var query = {
+        // let query = {
         //     location: location,
         //     radius: filters.radius || self._default.raduis,
         //     keywords: yield translateUserToWeb(search, location)
         // };
         //
-        // var webResults = {
+        // let webResults = {
         //     yelp: yield self.searchYelp(query),
         //     places: yield self.searchPlaces(query)
         // };
         //
-        // var rawResults = yield removeDuplicates(webResults);
+        // let rawResults = yield removeDuplicates(webResults);
         //
         // return yield doodifyResults(rawResults, context, filters);
     });
@@ -104,24 +106,25 @@ SearchStore.prototype.translateUserToWeb = function(search, location) {
 };
 
 /**
+ * TODO: refactor this to use recursion
  * Remove duplicates form web searches
  * @return {Object} results
  */
 function removeDuplicates(webResults) {
-    var all = [];
+    let all = [];
 
-    for (var source in webResults) {
-        var item = webResults[source];
+    for (let source in webResults) {
+        let item = webResults[source];
         all.push(item);
     }
 
-    var results = _.cloneDeep(all);
+    let results = _.cloneDeep(all);
 
-    for (var i = 0; i < all.length; i++) {
-        var item = all[i];
-        var rest = all.splice(i, 1);
+    for (let i = 0; i < all.length; i++) {
+        let item = all[i];
+        let rest = all.splice(i, 1);
 
-        for (var j = 0; j < rest.length; j++) {
+        for (let j = 0; j < rest.length; j++) {
             levenshtein.getAsync(item.name, rest[j].name, function (error, distance) {
                 if (error) {
                     throw new Error('Unable to calculate levenshtein distance');
@@ -165,26 +168,18 @@ function doodifyResults(rawResults, context, filters) {
  * * * * * * * * * */
 
 SearchStore.prototype.getContext = function(location) {
-    var lat = _.toString(location.lat);
-    var lng = _.toString(location.lng);
-
+    const lat = _.toString(location.lat);
+    const lng = _.toString(location.lng);
     return this._services.find('sContext').get('/api/v1/context?lat=' + lat + '?lng=' + lng);
 };
 
 SearchStore.prototype.expandConcept = function(search, label) {
-    var query = {
-        search: search,
-        label: label || null
-    };
-
+    const query = { label, search };
     return this._services.find('sWatson').post('/api/v1/watson/conceptExpansion', query);
 };
 
 SearchStore.prototype.languageAlchemy = function(search) {
-    var query = {
-        search: search
-    };
-
+    let query = { search };
     return this._services.find('sWatson').post('/api/v1/watson/languageAlchemy', query);
 };
 

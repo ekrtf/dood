@@ -1,7 +1,5 @@
 'use strict';
 
-var prettyjson = require('prettyjson');
-
 module.exports = ContextCtrl;
 
 function ContextCtrl() {}
@@ -15,8 +13,8 @@ function ContextCtrl() {}
 /**
  * GET /api/v1/context
  */
-ContextCtrl.prototype.getContext = function($done, $error, contextStore) {
-    var location = {
+ContextCtrl.prototype.getContext = function($done, $error, $logger, contextStore) {
+    const location = {
         lat: _.parseInt($input.query.lat),
         lng: _.parseInt($input.query.lng)
     };
@@ -27,14 +25,14 @@ ContextCtrl.prototype.getContext = function($done, $error, contextStore) {
 
     contextStore.getContext(location)
         .then($done)
-        .catch(catchHelper($error));
+        .catch($logger.error($error));
 };
 
 /**
  * GET /api/v1/context/outdoors
  */
-ContextCtrl.prototype.disableOutdoors = function($input, $done, $error, contextStore) {
-    var location = {
+ContextCtrl.prototype.disableOutdoors = function($input, $done, $error, $logger, contextStore) {
+    const location = {
         lat: _.parseInt($input.query.lat),
         lng: _.parseInt($input.query.lng)
     };
@@ -45,18 +43,5 @@ ContextCtrl.prototype.disableOutdoors = function($input, $done, $error, contextS
 
     contextStore.disableOutdoors(location)
         .then($done)
-        .catch(catchHelper($error));
+        .catch($logger.error($error));
 };
-
-/* * * * * * * * * *
- *
- * Helper functions
- *
- * * * * * * * * * */
-
-function catchHelper($done) {
-    return function(err) {
-        console.error(prettyjson.render(err));
-        $done(err.message);
-    }
-}

@@ -1,7 +1,6 @@
 'use strict';
 
-var _          = require('lodash');
-var prettyjson = require('prettyjson');
+const _ = require('lodash');
 
 module.exports = SearchCtrl;
 
@@ -13,15 +12,15 @@ function SearchCtrl() {}
  *
  * * * * * * * * * */
 
-SearchCtrl.prototype.doSearch = function($input, $error, $done, searchStore) {
-    // var userInput = normalizeUserInput($input.body.userQuery);
-    var userInput = $input.body.userQuery;
-    var location = $input.body.location;
-    var filters = $input.body.filters;
+SearchCtrl.prototype.doSearch = function($input, $error, $done, $logger, searchStore) {
+    // const userInput = normalizeUserInput($input.body.userQuery);
+    const userInput = $input.body.userQuery;
+    const location = $input.body.location;
+    const filters = $input.body.filters;
 
     searchStore.doSearch(userInput, location, filters)
         .then($done)
-        .catch(catchHelper($error));
+        .catch($logger.error($error));
 };
 
 /* * * * * * * * * *
@@ -32,18 +31,7 @@ SearchCtrl.prototype.doSearch = function($input, $error, $done, searchStore) {
 
 function normalizeUserInput(input) {
     if (_.isArray(input)) {
-        return _.map(input, function(keyword) {
-            return _.snakeCase(keyword);
-        });
+        return _.map(input, keyword => _.snakeCase(keyword));
     }
-    else {
-        return _.snakeCase(input);
-    }
-}
-
-function catchHelper($done) {
-    return function(err) {
-        console.error(prettyjson.render(err));
-        $done(err.message);
-    }
+    return _.snakeCase(input);
 }
