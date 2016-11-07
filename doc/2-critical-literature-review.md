@@ -42,3 +42,18 @@ Yan LeCun lecture: https://www.youtube.com/watch?v=_1Cyyt-4-n8
 ### Automobile - self driving cars
 Tesla recently anounced that all vehicles produced as of october 19th 2016 will come as standard with all the necessary hardware for autonomous driving.
 https://www.tesla.com/en_GB/blog/all-tesla-cars-being-produced-now-have-full-self-driving-hardware
+
+## Open Data
+
+A big trend nowadays is Open Data. It as become increasingly popular among companies to provide a public API (Application Programming Interface) for developers to access their data.
+
+Travel/tourism companies are no exeption. In fact they are quite pioneers in the field. Leaders like TripAdvisor and Yelp have published an API.
+
+
+
+
+
+
+
+
+
