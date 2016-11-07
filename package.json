@@ -4,7 +4,8 @@
   "description": "dissertation project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "convert": "cd bin && node convert"
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,8 @@
     "webpack": "^1.13.3",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-hot-middleware": "^2.13.1"
+  },
+  "dependencies": {
+    "shelljs": "^0.7.5"
   }
 }
