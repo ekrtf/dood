@@ -13,6 +13,8 @@ This critical literature review will be used to identify:
 
 ## The rise of ML
 
+Machine learning defers from traditional computer based problem solving. The traditional approach consists in having an input and an algorithm that would transform the input into a desired output. In most machine learning frameworks, we need to know a set of outputs - the training set. We use the training set to make the machine *learn* an algorithm by itself. That way we can later transform an input into an output - withtout having explicitely programmed the algorithm.
+
 ### It's happening
 Every iOS user, checkbook holder or ... have been benefiting from ML for years.
 
