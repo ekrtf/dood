@@ -6,6 +6,12 @@
 TITLE: Machine Learnin in Tourism 
 
 ## Step-in
+// TODO: talk about customer centricity and how it has become a priority for business, shift to UX on digital products.
+https://www.entrepreneur.com/article/247555
+http://www.forbes.com/sites/danielnewman/2016/07/19/organizational-success-starts-with-an-integrated-customer-experience-model/#99d4c6c73462
+
+// TODO: talk about milenials and the fact that they prioritize experience over else. https://www2.deloitte.com/global/en/pages/about-deloitte/articles/millennialsurvey.html
+
 It’s a magical world we’re living in. Systems around us are getting smarter everyday. Our pictures can recognise us and our taxis drive themselves. These outstanding breakthrough have been made possible thanks to Machine Learning. It is the process of training a computer to react to situations without being explicitly programmed to.
 
 Humanity is becoming proficient in specialized AI.
