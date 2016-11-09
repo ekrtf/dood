@@ -16,7 +16,7 @@ http://www.forbes.com/sites/danielnewman/2016/07/19/organizational-success-start
 
 // TODO: machine learning is already being used to boost sales. e.g. https://medium.com/xeneta/boosting-sales-with-machine-learning-fbcf2e618be3#.bwxjc2rpi
 
-// TODO: use the content classifier: 
+// TODO: use the content classifier: https://github.com/groveco/content-engine
 
 It’s a magical world we’re living in. Systems around us are getting smarter everyday. Our pictures can recognise us and our taxis drive themselves. These outstanding breakthrough have been made possible thanks to Machine Learning. It is the process of training a computer to react to situations without being explicitly programmed to.
 
