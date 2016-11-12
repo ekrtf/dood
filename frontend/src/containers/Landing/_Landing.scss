@@ -1,0 +1,12 @@
+.landing {
+	width: 100%;
+    top: 75px;
+    height: calc(100% - $headerbar-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.landing__content {
+	width: 60%;
+}
