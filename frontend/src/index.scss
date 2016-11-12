@@ -107,12 +107,7 @@ $main-color: #00802b;
  */
 
 @import 'resources/styles/normalize';
-@import 'containers/Accounts/Accounts';
 @import 'containers/App/App';
-@import 'containers/Budget/Budget';
-@import 'containers/Dashboard/Dashboard';
-@import 'components/AddAccountForm/AddAccountForm';
-@import 'components/AccountsSummary/AccountsSummary';
-@import 'components/Kpi/Kpi';
-@import 'components/TransactionsTable/TransactionsTable';
+@import 'containers/Search/Search';
 @import 'components/HeaderBar/HeaderBar';
+@import 'components/SearchForm/SearchForm';

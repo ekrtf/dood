@@ -29,7 +29,7 @@ class App extends Component {
         return (
             <MuiThemeProvider muiTheme={getMuiTheme()}>
                 <div className="main">
-                    <HeaderBar menuItems={menuItems} currentPath={location.pathname} />
+                    <HeaderBar />
                     <div className="main__content">
                         {children}
                     </div>

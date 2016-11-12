@@ -8,27 +8,20 @@ class HeaderBar extends Component {
             <div className="headerbar">
                 <div className="headerbar__logo">
                     <div className="headerbar__logo__text">
-                        <IndexLink to='/'>ML in Tourism</IndexLink>
+                        <IndexLink to="/">ML in Tourism</IndexLink>
+                    </div>
+                </div>
+                <div className="headerbar__menu">
+                    <div className="headerbar__menu__item">
+                        <IndexLink to="/">Landing</IndexLink>
+                    </div>
+                    <div className="headerbar__menu__item">
+                        <IndexLink to="/search">Search</IndexLink>
                     </div>
                 </div>
             </div>
         );
     }
-
-    _renderItem(item) {
-        return (
-            <IndexLink to={item.route} key={item.id}>
-                <div className={this.props.currentPath === item.route ? 'mi--selected' : 'mi'}>
-                    <div className="mi__name">{item.label}</div>
-                </div>
-            </IndexLink>
-        );
-    }
 }
-
-HeaderBar.propTypes = {
-    currentPath: PropTypes.string.isRequired,
-    menuItems: PropTypes.array.isRequired
-};
 
 export default HeaderBar;

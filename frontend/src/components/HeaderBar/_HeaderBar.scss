@@ -6,6 +6,7 @@ $headerbar-height: 55px;
     height: $headerbar-height;
     background-color: $main-color;
     box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.2);
+    display: flex;
 }
 
 .headerbar__logo {
@@ -22,32 +23,13 @@ $headerbar-height: 55px;
 }
 
 .headerbar__menu {
-    margin-left: 20px;
-    .mi {
-        color: #ffffff;
-        padding-left: 10px;
-        display: flex;
-        align-items: center;
-        &:hover {
-            color: #eeeeee;
-            background-color: darken($main-color, 3%);
-            cursor: pointer;
-        }
-    }
+    width: 300px;
+    display: flex;
+    height: 100%;
+    justify-content: space-around;
+    align-items: center;
+}
 
-    .mi--selected {
-        @extend .mi;
-        background-color: darken($main-color, 3%);
-        color: #eeeeee;
-        &:hover {
-            cursor: default;
-        }
-    }
-
-    .mi__name {
-        @include no-select;
-        text-transform: uppercase;
-        font-size: 20px;
-        padding: 5px;
-    }
+.headerbar__menu__item {
+    color: #fff;
 }
