@@ -4,9 +4,9 @@ import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
 import { App, Dashboard, Accounts, Budget } from './containers';
 import configureStore from './utils/configure-store';
-import injectTapEventPlugin from 'react-tap-event-plugin';
+// import injectTapEventPlugin from 'react-tap-event-plugin';
 
-injectTapEventPlugin();
+// injectTapEventPlugin();
 import './index.scss';
 import './index.html';
 

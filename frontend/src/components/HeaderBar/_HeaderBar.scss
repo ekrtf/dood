@@ -1,32 +1,30 @@
-$sidebar-width: 250px;
+$headerbar-height: 55px;
 
-.sidebar {
+.headerbar {
     position: relative;
-    display: inline-block;
-    width: $sidebar-width;
-    height: 100%;
+    width: 100%;
+    height: $headerbar-height;
     background-color: $main-color;
     box-shadow: 0px 1px 9px 0px rgba(0, 0, 0, 0.2);
 }
 
-.sidebar__logo {
+.headerbar__logo {
     padding-left: 10px;
     display: flex;
     align-items: center;
     height: 60px;
 }
 
-.sidebar__logo__text {
+.headerbar__logo__text {
     font-size: 34px;
     font-family: 'Patua One', serif;
     color: #ffffff;
 }
 
-.sidebar__menu {
-    margin-top: 20px;
+.headerbar__menu {
+    margin-left: 20px;
     .mi {
         color: #ffffff;
-        height: 50px;
         padding-left: 10px;
         display: flex;
         align-items: center;
@@ -51,21 +49,5 @@ $sidebar-width: 250px;
         text-transform: uppercase;
         font-size: 20px;
         padding: 5px;
-    }
-}
-
-.sidebar__footer {
-    position: absolute;
-    bottom: 0;
-    height: 60px;
-    width: $sidebar-width;
-    i {
-        margin-left: 10px;
-        margin-top: 25px;
-        font-size: 25px;
-        &:hover {
-            cursor: pointer;
-            color: lighten(#333, 3%);
-        }
     }
 }

@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { SideBar } from '../../components';
+import { HeaderBar } from '../../components';
 
 const menuItems = [
     {
@@ -29,7 +29,7 @@ class App extends Component {
         return (
             <MuiThemeProvider muiTheme={getMuiTheme()}>
                 <div className="main">
-                    <SideBar menuItems={menuItems} currentPath={location.pathname} />
+                    <HeaderBar menuItems={menuItems} currentPath={location.pathname} />
                     <div className="main__content">
                         {children}
                     </div>
