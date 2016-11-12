@@ -1,11 +1,18 @@
 .searchform {
-	height: 100%;
-}
-
-.searchform__form {
-	height: 100%;
+	margin-top: 20px;
+	height: 300px;
+    width: 100%;
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	justify-content: space-around;
+}
+
+.searchform__dates {
+	position: relative;
+	display: inherit;
+}
+
+.searchform__dates__first {
+	margin-right: 40px;
+
 }

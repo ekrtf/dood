@@ -9,23 +9,13 @@ let value2 = new Date().toISOString();
 class SearchForm extends Component {
     constructor(props) {
         super(props);
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleSubmit() {
-        const { onSubmit } = this.props;
-        if (name !== '' && currency) {
-            onSubmit({ name, currency });
-            name = null;
-            currency = null;
-        }
     }
 
     handleChangeData() {
 
     }
 
-    nameChange(e) {
+    destinationChange(e) {
         name = e.target.value;
     }
 
@@ -42,19 +32,19 @@ class SearchForm extends Component {
 
         return (
             <div className="searchform">
-                <form className="searchform__form">
-                    <FormControl type="text" placeholder="Destination" value={name} onChange={this.nameChange} />
-                    <FormControl type="text" placeholder="Account name" value={name} onChange={this.nameChange} />
-                    
-                    <DatePicker value={value1} onChange={this.handleChangeData} />
-                    <DatePicker value={value2} onChange={this.handleChangeData} />
+                <FormControl type="text" placeholder="Destination" value={name} onChange={this.destinationChange} />
+                <div className="searchform__dates">
+                    <div className="searchform__dates__first">
+                        From
+                        <DatePicker value={value1} onChange={this.handleChangeData} />
+                    </div>
+                    <div>
+                        To
+                        <DatePicker value={value1} onChange={this.handleChangeData} />
+                    </div>
+                </div>
 
-                    <FormGroup className="currency" value={currency} onChange={this.currencyChange}>
-                        <Radio inline value="gbp">£</Radio>
-                        <Radio inline value="eur">€</Radio>
-                        <Radio inline value="usd">$</Radio>
-                    </FormGroup>
-                </form>
+                <Button className="button big">Search</Button>
             </div>
         );
     }

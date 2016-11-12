@@ -8,7 +8,7 @@ var webpackHotMiddleware = require('webpack-hot-middleware');
 var express = require('../server/node_modules/express');
 var webpackConfig = require('../frontend/webpack.config.js');
 
-var PORT = 5001;
+var PORT = 4001;
 var OPTIONS = {
     contentBase: '../frontend/src',
     hot: true,

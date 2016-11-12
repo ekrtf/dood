@@ -2,12 +2,13 @@
     width: 100%;
     height: 100%;
     position: relative;
+    display: flex;
+    justify-content: center;
 }
 
 .main__content {
     position: absolute;
-    display: inline-block;
-    width: 100%;
-    height: 100%;
-    overflow-y: scroll;
+    top: $headerbar-height;
+    width: $content-width;
+    height: calc(100% - $headerbar-height);
 }

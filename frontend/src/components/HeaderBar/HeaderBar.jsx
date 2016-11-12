@@ -7,14 +7,11 @@ class HeaderBar extends Component {
         return (
             <div className="headerbar">
                 <div className="headerbar__logo">
-                    <div className="headerbar__logo__text">
-                        <IndexLink to="/">ML in Tourism</IndexLink>
-                    </div>
+                    <h1 className="headerbar__logo__text">
+                        <IndexLink to="/">Dood</IndexLink>
+                    </h1>
                 </div>
                 <div className="headerbar__menu">
-                    <div className="headerbar__menu__item">
-                        <IndexLink to="/">Landing</IndexLink>
-                    </div>
                     <div className="headerbar__menu__item">
                         <IndexLink to="/search">Search</IndexLink>
                     </div>
