@@ -3,15 +3,13 @@
         "server": 4000
     },
     "env": "dev",
+    "sYelp": {
+        "appId": "eJEgUTjJxSJZcG1GwnivDg",
+        "appSecret": "QqZh3Xw2wYrpiXsOY4iiHXkiPxL7k7J6zWFsdiHOaMX1uDXd4CiEWfHovrrMggqb"
+    },
     "apis": {
         "forecast": {
             "key": "95f0d13da1b7180723bb9c87d6c185b8"
-        },
-        "yelp": {
-            "consumer_key": "x0FUWl3mq7KcMHB9R_9wiQ",
-            "consumer_secret": "azqkABKOazfrPcAtn_mM2XmBSo4",
-            "token": "w8e_46Nr-Y_9FeruI2PufNn4Yrf2NNlw",
-            "token_secret": "hUtgYWhlBakDZ4KHr8N8A4UIP_M"
         },
         "watson": {
             "credentials": {
