@@ -14,9 +14,8 @@ function YelpCtrl() {}
  * GET /api/v1/yelp/query
  */
 YelpCtrl.prototype.searchYelp = function($input, $error, $done, $service, $logger) {
-    const query = $input.query;
-
-    $service.searchYelp(query)
+    const { location, term } = $input.body;
+    $service.searchYelp(location, term)
         .then($done)
-        .catch($logger.error($error));
+        .catch($error);
 };

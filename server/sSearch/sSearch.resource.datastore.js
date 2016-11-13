@@ -44,32 +44,30 @@ SearchStore.prototype.$init = function() {
  * @param  {Object} search  user input search
  * @return {Object} result  user results
  */
-SearchStore.prototype.doSearch = function(search, location, filters) {
-    let self = this;
-
-    return Promise.resolve([ 'you', 'win' ]);
-
-    // return co(function*() {
-    //     self.translateUserToWeb(search, location);
-
-    //     let context = self.getContext(location);
-
-    //     let query = {
-    //         location: location,
-    //         radius: filters.radius || self._default.raduis,
-    //         keywords: yield translateUserToWeb(search, location)
-    //     };
-        
-    //     let webResults = {
-    //         yelp: yield self.searchYelp(query),
-    //         places: yield self.searchPlaces(query)
-    //     };
-        
-    //     let rawResults = yield removeDuplicates(webResults);
-        
-    //     return yield doodifyResults(rawResults, context, filters);
-    // });
+SearchStore.prototype.doSearch = function(destination, fromDate, toDate) {
+    return this.searchYelp(destination);
 };
+
+ // return co(function*() {
+//     self.translateUserToWeb(search, location);
+
+//     let context = self.getContext(location);
+
+//     let query = {
+//         location: location,
+//         radius: filters.radius || self._default.raduis,
+//         keywords: yield translateUserToWeb(search, location)
+//     };
+    
+//     let webResults = {
+//         yelp: yield self.searchYelp(query),
+//         places: yield self.searchPlaces(query)
+//     };
+    
+//     let rawResults = yield removeDuplicates(webResults);
+    
+//     return yield doodifyResults(rawResults, context, filters);
+// });
 
 /* * * * * * * * * *
  *
@@ -185,10 +183,11 @@ SearchStore.prototype.languageAlchemy = function(search) {
     return this._services.find('sWatson').post('/api/v1/watson/languageAlchemy', query);
 };
 
-SearchStore.prototype.searchYelp = function(query) {
-    return this._services.find('sYelpAdapter').post('/api/v1/yelp/query', query);
+SearchStore.prototype.searchYelp = function(location) {
+    const query = { location };
+    return this._services.find('sYelp').post('/api/v1/yelp/query', query);
 };
 
 SearchStore.prototype.searchPlaces = function(query) {
-    return this._services.find('sPlacesAdapter').post('/api/v1/places/query', query);
+    return this._services.find('sPlaces').post('/api/v1/places/query', query);
 };

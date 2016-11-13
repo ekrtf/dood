@@ -27,8 +27,12 @@ function YelpService($config) {
  * * * * * * * * * */
 
 YelpService.prototype.$init = co.wrap(function*() {
-    this.auth = yield this._getAccessToken();
-    this.accessToken = this.auth.access_token;
+    // TODO: account for when the access token is expired
+    const auth = yield this._getAccessToken();
+    this.baseHeader = {
+        'Authorization': `Bearer ${ auth.access_token }`,
+        'User-Agent': 'DissertationProject'
+    };
 });
 
 /* * * * * * * * * *
@@ -37,19 +41,27 @@ YelpService.prototype.$init = co.wrap(function*() {
  *
  * * * * * * * * * */
 
-YelpService.prototype.searchYelp = function(query) {
-    let terms;
-    let categories;
-    let location;
+YelpService.prototype.searchYelp = function(location, term) {
+    // HACK
+    if (!location) {
+        location = 'Paris';
+    }
 
-    let search = {
-        term: terms,
-        cll: location.lat.toString() + ',' + location.lng.toString()
+    const options = {
+        uri: 'https://api.yelp.com/v3/businesses/search',
+        qs: {
+            location,
+            term: 'hotel'
+        },
+        headers: this.baseHeader,
+        json: true
     };
 
-    yelp.search(search).then(function(data) {
-        return data;
-    });
+    return rp(options)
+        .then(function(results) {
+            return results.businesses;
+        })
+        .catch(console.log);
 };
 
 /* * * * * * * * * *
@@ -69,7 +81,8 @@ YelpService.prototype._getAccessToken = function() {
             'grant_type': 'client_credentials',
             'client_id': this.config.appId,
             'client_secret': this.config.appSecret
-        }
+        },
+        json: true
     };
 
     return rp(options).catch(console.log);

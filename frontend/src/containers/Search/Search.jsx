@@ -9,9 +9,9 @@ class Search extends Component {
         this._renderResult = this._renderResult.bind(this);
     }
 
-    _renderResult(result) {
+    _renderResult(result, index) {
         return (
-            <div>{result}</div>
+            <div key={index}>{result.name}</div>
         );
     }
 
@@ -30,7 +30,7 @@ class Search extends Component {
                         <div>LOADING</div>
                     }
 
-                    {results.map(this._renderResult)}
+                    {Array.isArray(results) && results.map(this._renderResult)}
                 </div>
             </div>
         );

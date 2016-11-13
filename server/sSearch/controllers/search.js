@@ -21,7 +21,7 @@ SearchCtrl.prototype.doSearch = function($input, $error, $done, $logger, searchS
 
     searchStore.doSearch(destination, fromDate, toDate)
         .then($done)
-        .catch($logger.error($error));
+        .catch($error);
 };
 
 /* * * * * * * * * *

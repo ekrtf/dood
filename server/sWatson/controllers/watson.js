@@ -19,7 +19,7 @@ WatsonCtrl.prototype.conceptExpansion = function($input, $error, $done, $service
 
     $service.conceptExpansion(search, label)
         .then($done)
-        .catch($logger.error($error));
+        .catch($error);
 };
 
 WatsonCtrl.prototype.languageAlchemy = function($input, $error, $done, $service, $logger) {
@@ -27,6 +27,6 @@ WatsonCtrl.prototype.languageAlchemy = function($input, $error, $done, $service,
 
     $service.languageAlchemy(search)
         .then($done)
-        .catch($logger.error($error));
+        .catch($error);
 };
 

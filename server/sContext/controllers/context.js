@@ -25,7 +25,7 @@ ContextCtrl.prototype.getContext = function($done, $error, $logger, contextStore
 
     contextStore.getContext(location)
         .then($done)
-        .catch($logger.error($error));
+        .catch($error);
 };
 
 /**
@@ -43,5 +43,5 @@ ContextCtrl.prototype.disableOutdoors = function($input, $done, $error, $logger,
 
     contextStore.disableOutdoors(location)
         .then($done)
-        .catch($logger.error($error));
+        .catch($error);
 };
