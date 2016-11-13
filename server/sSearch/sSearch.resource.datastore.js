@@ -47,26 +47,28 @@ SearchStore.prototype.$init = function() {
 SearchStore.prototype.doSearch = function(search, location, filters) {
     let self = this;
 
-    return co(function*() {
-        self.translateUserToWeb(search, location);
+    return Promise.resolve([ 'you', 'win' ]);
 
-        // let context = self.getContext(location);
+    // return co(function*() {
+    //     self.translateUserToWeb(search, location);
 
-        // let query = {
-        //     location: location,
-        //     radius: filters.radius || self._default.raduis,
-        //     keywords: yield translateUserToWeb(search, location)
-        // };
-        //
-        // let webResults = {
-        //     yelp: yield self.searchYelp(query),
-        //     places: yield self.searchPlaces(query)
-        // };
-        //
-        // let rawResults = yield removeDuplicates(webResults);
-        //
-        // return yield doodifyResults(rawResults, context, filters);
-    });
+    //     let context = self.getContext(location);
+
+    //     let query = {
+    //         location: location,
+    //         radius: filters.radius || self._default.raduis,
+    //         keywords: yield translateUserToWeb(search, location)
+    //     };
+        
+    //     let webResults = {
+    //         yelp: yield self.searchYelp(query),
+    //         places: yield self.searchPlaces(query)
+    //     };
+        
+    //     let rawResults = yield removeDuplicates(webResults);
+        
+    //     return yield doodifyResults(rawResults, context, filters);
+    // });
 };
 
 /* * * * * * * * * *

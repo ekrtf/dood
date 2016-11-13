@@ -3,6 +3,7 @@
 	top: $headerbar-height;
 	height: calc(100% - $headerbar-height);
 	display: flex;
+	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 }
