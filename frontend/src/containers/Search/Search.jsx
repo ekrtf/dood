@@ -6,13 +6,6 @@ import { submitSearch } from '../../actions/search.actions';
 class Search extends Component {
     constructor(props) {
         super(props);
-        this._renderResult = this._renderResult.bind(this);
-    }
-
-    _renderResult(result, index) {
-        return (
-            <div key={index}>{result.name}</div>
-        );
     }
 
     render() {
@@ -23,14 +16,6 @@ class Search extends Component {
 
                 <div className="search__form">
                     <SearchForm onSubmit={onSearchSubmit} />
-                </div>
-
-                <div className="search__results">
-                    { isPosting &&
-                        <div>LOADING</div>
-                    }
-
-                    {Array.isArray(results) && results.map(this._renderResult)}
                 </div>
             </div>
         );

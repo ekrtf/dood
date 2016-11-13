@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SearchForm } from '../../components';
+import { ResultItem } from '../../components';
 import { submitSearch } from '../../actions/search.actions';
 
 class Results extends Component {
@@ -11,13 +11,14 @@ class Results extends Component {
 
     _renderResult(result, index) {
         return (
-            <div key={index}>{result.name}</div>
+            <div key={index}>
+                <ResultItem index={index} result={result} />
+            </div>
         );
     }
 
     render() {
         const { results } = this.props;
-
         return (
             <div className="search">
                 { Array.isArray(results) && results.map(this._renderResult) }
