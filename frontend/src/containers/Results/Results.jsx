@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { SearchForm } from '../../components';
 import { submitSearch } from '../../actions/search.actions';
 
-class Search extends Component {
+class Results extends Component {
     constructor(props) {
         super(props);
         this._renderResult = this._renderResult.bind(this);
@@ -16,22 +16,11 @@ class Search extends Component {
     }
 
     render() {
-        const { onSearchSubmit, destination, isPosting, results } = this.props;
+        const { results } = this.props;
 
         return (
             <div className="search">
-
-                <div className="search__form">
-                    <SearchForm onSubmit={onSearchSubmit} />
-                </div>
-
-                <div className="search__results">
-                    { isPosting &&
-                        <div>LOADING</div>
-                    }
-
-                    {Array.isArray(results) && results.map(this._renderResult)}
-                </div>
+                { Array.isArray(results) && results.map(this._renderResult) }
             </div>
         );
     }
@@ -55,4 +44,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default connect(mapStateToProps, mapDispatchToProps)(Results);

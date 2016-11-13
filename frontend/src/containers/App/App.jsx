@@ -1,48 +1,21 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { HeaderBar } from '../../components';
-
-const menuItems = [
-    {
-        id: 1,
-        label: 'dashboard',
-        route: '/'
-    },
-    {
-        id: 2,
-        label: 'accounts',
-        route: '/accounts'
-    },
-    {
-        id: 3,
-        label: 'budgets',
-        route: '/budget'
-    }
-];
 
 class App extends Component {
     render() {
         const { location, children } = this.props;
 
         return (
-            <MuiThemeProvider muiTheme={getMuiTheme()}>
-                <div className="main">
-                    <HeaderBar />
-                    <div className="main__content">
-                        {children}
-                    </div>
+            <div className="main">
+                <HeaderBar />
+                <div className="main__content">
+                    {children}
                 </div>
-            </MuiThemeProvider>
+            </div>
         );
     }
 }
-
-App.propTypes = {
-    location: PropTypes.object.isRequired,
-    children: PropTypes.node.isRequired
-};
 
 function mapStateToProps() {
     return {};

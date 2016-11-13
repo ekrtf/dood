@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { IndexLink } from 'react-router';
 import { Button } from 'react-bootstrap';
 
@@ -7,13 +7,13 @@ class HeaderBar extends Component {
         return (
             <div className="headerbar">
                 <div className="headerbar__logo">
-                    <h1 className="headerbar__logo__text">
-                        <IndexLink to="/">Dood</IndexLink>
-                    </h1>
+                    <div className="headerbar__logo__text">
+                        <IndexLink to="/">Dissertation</IndexLink>
+                    </div>
                 </div>
                 <div className="headerbar__menu">
                     <div className="headerbar__menu__item">
-                        <IndexLink to="/search">Search</IndexLink>
+                        <IndexLink to="landing">About</IndexLink>
                     </div>
                 </div>
             </div>

@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import DatePicker from 'react-bootstrap-date-picker';
 import { Button, FormControl, FormGroup, Radio } from 'react-bootstrap';
 
@@ -59,9 +59,5 @@ class SearchForm extends Component {
     }
 
 }
-
-SearchForm.propTypes = {
-    onSubmit: PropTypes.func
-};
 
 export default SearchForm;

@@ -1,4 +1,4 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 class Landing extends Component {
@@ -31,10 +31,6 @@ class Landing extends Component {
         </div>);
     }
 }
-
-Landing.propTypes = {
-    
-};
 
 function mapStateToProps(state) {
     return {};
