@@ -20,7 +20,7 @@ class Results extends Component {
     render() {
         const { results } = this.props;
         return (
-            <div className="search">
+            <div className="results">
                 { Array.isArray(results) && results.map(this._renderResult) }
             </div>
         );
