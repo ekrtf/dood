@@ -10,6 +10,8 @@ TITLE: Machine Learnin in Tourism
 https://www.entrepreneur.com/article/247555
 http://www.forbes.com/sites/danielnewman/2016/07/19/organizational-success-starts-with-an-integrated-customer-experience-model/#99d4c6c73462
 
+// TODO Meyer saying "personalisation is the future of search" http://www.bloomberg.com/news/videos/b/5c3bf0c9-2f8e-4c23-8c5f-05aafa3f26db
+
 // TODO: talk about milenials and the fact that they prioritize experience over else. https://www2.deloitte.com/global/en/pages/about-deloitte/articles/millennialsurvey.html
 
 // TODO: to back up the asumption that the current search process is lame, emphisis on the fact that most commerce information systems give product recommendations on top of the search results. This is redundant. I say, if the system has things to recommand then display it first hand. Reference for seach (Dellaert and Haubl, 2012).
