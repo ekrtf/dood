@@ -18,10 +18,11 @@ class Results extends Component {
     }
 
     render() {
-        const { results } = this.props;
+        const { isPosting, results } = this.props;
         return (
             <div className="results">
-                { Array.isArray(results) && results.map(this._renderResult) }
+                { isPosting && (<div>Loading...</div>) }
+                { !isPosting && Array.isArray(results) && results.map(this._renderResult) }
             </div>
         );
     }

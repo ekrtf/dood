@@ -3,4 +3,14 @@
     height: 200px;
     border: 1px solid $main-color;
     border-radius: 6px;
+
+    &:hover {
+        background: darken(#fff, 5%);
+        cursor: pointer;
+    }
+}
+
+.ritem__img {
+    width: 70px;
+    height: 70px;
 }
