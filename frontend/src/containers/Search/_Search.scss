@@ -1,14 +1,14 @@
 .search {
 	width: 100%;
-	top: $headerbar-height;
-	height: calc(100% - $headerbar-height);
+	height: calc(3.65em + 70px);
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	padding: 35px 0;
 }
 
 .search__form {
 	height: 100%;
-	width: 60%;
+	width: 100%;
 }

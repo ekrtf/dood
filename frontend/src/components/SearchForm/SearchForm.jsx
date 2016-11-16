@@ -41,19 +41,18 @@ class SearchForm extends Component {
     render() {
         return (
             <div className="searchform">
-                <FormControl type="text" placeholder="Destination" value={destination} onChange={this.destinationChange} />
-                <div className="searchform__dates">
-                    <div className="searchform__dates__first">
-                        From
-                        <DatePicker value={fromDate} onChange={this.onFromDateChange} />
-                    </div>
-                    <div>
-                        To
-                        <DatePicker value={toDate} onChange={this.onToDateChange} />
-                    </div>
+                <div className="searchform__item--destination">
+                    <FormControl type="text" placeholder="Destination" value={destination} onChange={this.destinationChange} />
                 </div>
-
-                <Button onClick={this.handleSubmit} className="button big">Search</Button>
+                <div className="searchform__item--datepicker">
+                    <DatePicker value={fromDate} onChange={this.onFromDateChange} />
+                </div>
+                <div className="searchform__item--datepicker">
+                    <DatePicker value={toDate} onChange={this.onToDateChange} />
+                </div>
+                <div className="searchform__item">
+                    <Button onClick={this.handleSubmit} className="button big">Search</Button>
+                </div>
             </div>
         );
     }

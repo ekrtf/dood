@@ -9,7 +9,7 @@ class Main extends Component {
 
     render() {
         return (
-            <div className="search">
+            <div>
                 <Search />
                 <Results />
             </div>

@@ -11,7 +11,7 @@ class Results extends Component {
 
     _renderResult(result, index) {
         return (
-            <div key={index}>
+            <div key={index} className="results__item">
                 <ResultItem index={index} result={result} />
             </div>
         );

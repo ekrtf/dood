@@ -1,18 +1,35 @@
+$item-height: 3.65em;
+$item-radius: 0.375em;
+
 .searchform {
-	margin-top: 20px;
 	height: 300px;
     width: 100%;
 	display: flex;
-	flex-direction: column;
-	justify-content: space-around;
+	justify-content: space-between;
 }
 
-.searchform__dates {
-	position: relative;
-	display: inherit;
+.searchform__item {
+	height: $item-height;
 }
 
-.searchform__dates__first {
-	margin-right: 40px;
+.searchform__item--destination {
+	@extend .searchform__item;
+	width: 40%;
+	input {
+		height: 100%;
+	}
+}
 
+.searchform__item--datepicker {
+	@extend .searchform__item;
+	width: 20%;
+	span {
+		height: 100%;
+		border-radius: $item-radius;
+	}
+	input {
+		border-top-left-radius: $item-radius !important;
+		border-bottom-left-radius: $item-radius !important;
+		height: 103%;
+	}
 }
