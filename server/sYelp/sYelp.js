@@ -64,6 +64,16 @@ YelpService.prototype.searchYelp = function(location, term) {
         .catch(console.log);
 };
 
+YelpService.prototype.getItemDetails = function(yelpItemId) {
+    const options = {
+        uri: `https://api.yelp.com/v3/businesses/${ yelpItemId }`,
+        headers: this.baseHeader,
+        json: true
+    };
+
+    return rp(options).catch(console.log);
+};
+
 /* * * * * * * * * *
  *
  * Private Functions

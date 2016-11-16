@@ -19,3 +19,13 @@ YelpCtrl.prototype.searchYelp = function($input, $error, $done, $service, $logge
         .then($done)
         .catch($error);
 };
+
+/**
+ * GET /api/v1/yelp/details/:yelpItemId
+ */
+YelpCtrl.prototype.getItemDetails = function($input, $error, $done, $service, $logger) {
+    const yelpItemId = $input.params.yelpItemId;
+    $service.getItemDetails(yelpItemId)
+        .then($done)
+        .catch($error);
+};
