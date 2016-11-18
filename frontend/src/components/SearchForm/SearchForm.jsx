@@ -24,17 +24,17 @@ class SearchForm extends Component {
     }
 
     destinationChange(e) {
-        e.stopPropagation();
-        name = e.target.value;
+        // e.stopPropagation();
+        destination = e.target.value;
     }
 
     onFromDateChange(e) {
-        e.stopPropagation();
+        // e.stopPropagation();
         fromDate = e.target.value;
     }
 
     onToDateChange(e) {
-        e.stopPropagation();
+        // e.stopPropagation();
         toDate = e.target.value;
     }
 

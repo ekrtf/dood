@@ -8,6 +8,8 @@ class ResultItem extends Component {
 
     selectItem(e) {
         e.stopPropagation();
+        const itemId = this.props.result.id;
+        this.props.onSelect(itemId);
         // TODO navigate to product page
     }
 

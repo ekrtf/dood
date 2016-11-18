@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Results, Search } from '../.';
+import { Product, Results, Search } from '../.';
 
 class Main extends Component {
     constructor(props) {
@@ -8,17 +8,29 @@ class Main extends Component {
     }
 
     render() {
+        const { selectedItem } = this.props;
+        const isItemSelected = Object.keys(selectedItem).length !== 0;
         return (
             <div>
-                <Search />
-                <Results />
+                { !isItemSelected &&
+                    <div>
+                        <Search />
+                        <Results />
+                    </div>
+                }
+                {
+                    isItemSelected &&
+                    <Product />
+                }
             </div>
         );
     }
 }
 
 function mapStateToProps(state) {
-    return {};
+    return {
+        selectedItem: state.results.selectedItem || {}
+    };
 }
 
 function mapDispatchToProps(dispatch) {

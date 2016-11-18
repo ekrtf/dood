@@ -12,14 +12,20 @@ function SearchCtrl() {}
  *
  * * * * * * * * * */
 
-SearchCtrl.prototype.doSearch = function($input, $error, $done, $logger, searchStore) {
+SearchCtrl.prototype.doSearch = function($input, $error, $done, searchStore) {
     // const userInput = normalizeUserInput($input.body.userQuery);
     // const userInput = $input.body.userQuery;
     // const location = $input.body.location;
     // const filters = $input.body.filters;
     const { destination, fromDate, toDate } = $input.body;
-
     searchStore.doSearch(destination, fromDate, toDate)
+        .then($done)
+        .catch($error);
+};
+
+SearchCtrl.prototype.getItemDetails = function($input, $error, $done, searchStore) {
+    const itemId = $input.params.itemId;
+    searchStore.getItemDetails(itemId)
         .then($done)
         .catch($error);
 };

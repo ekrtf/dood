@@ -23,9 +23,9 @@ YelpCtrl.prototype.searchYelp = function($input, $error, $done, $service, $logge
 /**
  * GET /api/v1/yelp/details/:yelpItemId
  */
-YelpCtrl.prototype.getItemDetails = function($input, $error, $done, $service, $logger) {
-    const yelpItemId = $input.params.yelpItemId;
-    $service.getItemDetails(yelpItemId)
+YelpCtrl.prototype.getYelpBusinessDetails = function($input, $error, $done, $service, $logger) {
+    const yelpBusinessId = $input.params.yelpBusinessId;
+    $service.getYelpBusinessDetails(yelpBusinessId)
         .then($done)
         .catch($error);
 };

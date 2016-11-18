@@ -64,9 +64,9 @@ YelpService.prototype.searchYelp = function(location, term) {
         .catch(console.log);
 };
 
-YelpService.prototype.getItemDetails = function(yelpItemId) {
+YelpService.prototype.getYelpBusinessDetails = function(yelpBusinessId) {
     const options = {
-        uri: `https://api.yelp.com/v3/businesses/${ yelpItemId }`,
+        uri: `https://api.yelp.com/v3/businesses/${ yelpBusinessId }`,
         headers: this.baseHeader,
         json: true
     };

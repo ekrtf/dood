@@ -46,28 +46,31 @@ SearchStore.prototype.$init = function() {
  */
 SearchStore.prototype.doSearch = function(destination, fromDate, toDate) {
     return this.searchYelp(destination);
+    // return co(function*() {
+    //     self.translateUserToWeb(search, location);
+
+    //     let context = self.getContext(location);
+
+    //     let query = {
+    //         location: location,
+    //         radius: filters.radius || self._default.raduis,
+    //         keywords: yield translateUserToWeb(search, location)
+    //     };
+
+    //     let webResults = {
+    //         yelp: yield self.searchYelp(query),
+    //         places: yield self.searchPlaces(query)
+    //     };
+
+    //     let rawResults = yield removeDuplicates(webResults);
+
+    //     return yield doodifyResults(rawResults, context, filters);
+    // });
 };
 
- // return co(function*() {
-//     self.translateUserToWeb(search, location);
-
-//     let context = self.getContext(location);
-
-//     let query = {
-//         location: location,
-//         radius: filters.radius || self._default.raduis,
-//         keywords: yield translateUserToWeb(search, location)
-//     };
-    
-//     let webResults = {
-//         yelp: yield self.searchYelp(query),
-//         places: yield self.searchPlaces(query)
-//     };
-    
-//     let rawResults = yield removeDuplicates(webResults);
-    
-//     return yield doodifyResults(rawResults, context, filters);
-// });
+SearchStore.prototype.getItemDetails = function(itemId) {
+    return this.getYelpBusinessDetails(itemId);
+};
 
 /* * * * * * * * * *
  *
@@ -188,6 +191,6 @@ SearchStore.prototype.searchYelp = function(location) {
     return this._services.find('sYelp').post('/api/v1/yelp/query', query);
 };
 
-SearchStore.prototype.searchPlaces = function(query) {
-    return this._services.find('sPlaces').post('/api/v1/places/query', query);
+SearchStore.prototype.getYelpBusinessDetails = function(yelpBusinessId) {
+    return this._services.find('sYelp').get('/api/v1/yelp/details/' + yelpBusinessId);
 };

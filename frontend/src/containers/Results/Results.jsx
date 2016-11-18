@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ResultItem } from '../../components';
 import { submitSearch } from '../../actions/search.actions';
+import { selectItem } from '../../actions/results.actions';
 
 class Results extends Component {
     constructor(props) {
@@ -10,15 +11,16 @@ class Results extends Component {
     }
 
     _renderResult(result, index) {
+        const { doSelectItem } = this.props;
         return (
             <div key={index} className="results__item">
-                <ResultItem index={index} result={result} />
+                <ResultItem index={index} result={result} onSelect={doSelectItem}/>
             </div>
         );
     }
 
     render() {
-        const { isPosting, results } = this.props;
+        const { isPosting, results, selectedItem } = this.props;
         return (
             <div className="results">
                 { isPosting && (<div>Loading...</div>) }
@@ -42,6 +44,9 @@ function mapDispatchToProps(dispatch) {
     return {
         onSearchSubmit: (search) => {
             dispatch(submitSearch(search));
+        },
+        doSelectItem: (itemId) => {
+            dispatch(selectItem(itemId))
         }
     };
 }

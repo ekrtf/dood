@@ -7,10 +7,10 @@ module.exports = [
         }
     },
     {
-        api: '/api/v1/yelp/details/:yelpItemId',
+        api: '/api/v1/yelp/details/:yelpBusinessId',
         controller: 'yelp',
         method: {
-            get: 'getItemDetails'
+            get: 'getYelpBusinessDetails'
         }
     }
 ];
