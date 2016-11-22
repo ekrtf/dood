@@ -5,6 +5,7 @@
  */
 
 const co = require('co');
+const uuid = require('uuid');
 const rp = require('request-promise');
 
 module.exports = YelpService;
@@ -71,7 +72,11 @@ YelpService.prototype.getYelpBusinessDetails = function(yelpBusinessId) {
         json: true
     };
 
-    return rp(options).catch(console.log);
+    return rp(options)
+        .then(function(business) {
+            return _normalizeYelpResult(business);
+        })
+        .catch(console.log);
 };
 
 /* * * * * * * * * *
@@ -97,3 +102,9 @@ YelpService.prototype._getAccessToken = function() {
 
     return rp(options).catch(console.log);
 };
+
+function _normalizeYelpResult(item) {
+    item.resultId = uuid.v4();
+    item.images = item.photos.map((src) => ({ src }));
+    return item;
+}
