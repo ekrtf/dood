@@ -7,6 +7,14 @@
         "appId": "eJEgUTjJxSJZcG1GwnivDg",
         "appSecret": "QqZh3Xw2wYrpiXsOY4iiHXkiPxL7k7J6zWFsdiHOaMX1uDXd4CiEWfHovrrMggqb"
     },
+    "sSearch": {
+        "database": {
+            "client": "sqlite",
+            "connection": {
+                "filename": "sSearch.sqlite"
+            }
+        }
+    },
     "apis": {
         "forecast": {
             "key": "95f0d13da1b7180723bb9c87d6c185b8"

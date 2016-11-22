@@ -6,5 +6,5 @@
 module.exports = SearchService;
 
 function SearchService($resource) {
-    $resource.add('searchStore', require('./sSearch.resource.datastore.js'));
+    $resource.add('searchModel', require('./sSearch.resource.model.js'));
 }

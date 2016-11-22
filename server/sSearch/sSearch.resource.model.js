@@ -3,11 +3,12 @@
 const _ = require('lodash');
 const co = require('co');
 const levenshtein = require('fast-levenshtein');
+const uuid = require('uuid');
 
-let config = require('../config.json');
 let logger = null;
+let config = null;
 
-module.exports = SearchStore;
+module.exports = SearchModel;
 
 /* * * * * * * * * *
  *
@@ -15,12 +16,12 @@ module.exports = SearchStore;
  *
  * * * * * * * * * */
 
-function SearchStore($services, $logger) {
+function SearchModel($services, $logger, $config) {
+    this.db = null;
+    this.$services = $services;
+
+    config = $config;
     logger = $logger;
-    this._services = $services;
-    this._default = {
-        radius: 5000 // meters
-    };
 }
 
 /* * * * * * * * * *
@@ -29,9 +30,9 @@ function SearchStore($services, $logger) {
  *
  * * * * * * * * * */
 
-SearchStore.prototype.$init = function() {
-    logger.log('search API init');
-};
+SearchModel.prototype.$init = co.wrap(function*() {
+    this.db = yield require('./sSearch.database.js')(config.database);
+});
 
 /* * * * * * * * * *
  *
@@ -44,31 +45,39 @@ SearchStore.prototype.$init = function() {
  * @param  {Object} search  user input search
  * @return {Object} result  user results
  */
-SearchStore.prototype.doSearch = function(destination, fromDate, toDate) {
-    return this.searchYelp(destination);
-    // return co(function*() {
-    //     self.translateUserToWeb(search, location);
+SearchModel.prototype.doSearch = function(destination, fromDate, toDate) {
+    const self = this;
+    return co(function*() {
+        const searchId = uuid.v4();
 
-    //     let context = self.getContext(location);
+        // fetch results from the web
+        const yelpResults = yield self.searchYelp(destination);
 
-    //     let query = {
-    //         location: location,
-    //         radius: filters.radius || self._default.raduis,
-    //         keywords: yield translateUserToWeb(search, location)
-    //     };
+        // save results to Results table
+        const resultsPromises = yelpResults.map((item, index) => {
+            return self.db('Results').insert({
+                resultId: item.resultId,
+                searchId: searchId,
+                source: 'Yelp',
+                model: item,
+                createdAt: Date.now()
+            });
+        });
+        yield Promise.all(resultsPromises);
 
-    //     let webResults = {
-    //         yelp: yield self.searchYelp(query),
-    //         places: yield self.searchPlaces(query)
-    //     };
+        // save search to Search table
+        yield self.db('Searches').insert({
+            searchId: searchId,
+            params: { destination, fromDate, toDate },
+            results: yelpResults.map(r => r.resultId),
+            createdAt: Date.now()
+        });
 
-    //     let rawResults = yield removeDuplicates(webResults);
-
-    //     return yield doodifyResults(rawResults, context, filters);
-    // });
+        return yelpResults;
+    });
 };
 
-SearchStore.prototype.getItemDetails = function(itemId) {
+SearchModel.prototype.getItemDetails = function(itemId) {
     return this.getYelpBusinessDetails(itemId);
 };
 
@@ -87,7 +96,7 @@ SearchStore.prototype.getItemDetails = function(itemId) {
  * @param  {Array}  search  Words typed by the user
  * @return {Object} query   API payload
  */
-SearchStore.prototype.translateUserToWeb = function(search, location) {
+SearchModel.prototype.translateUserToWeb = function(search, location) {
     // this.expandConcept(search);
     this.languageAlchemy(search);
 
@@ -170,27 +179,27 @@ function doodifyResults(rawResults, context, filters) {
  *
  * * * * * * * * * */
 
-SearchStore.prototype.getContext = function(location) {
+SearchModel.prototype.getContext = function(location) {
     const lat = _.toString(location.lat);
     const lng = _.toString(location.lng);
-    return this._services.find('sContext').get('/api/v1/context?lat=' + lat + '?lng=' + lng);
+    return this.$services.find('sContext').get('/api/v1/context?lat=' + lat + '?lng=' + lng);
 };
 
-SearchStore.prototype.expandConcept = function(search, label) {
+SearchModel.prototype.expandConcept = function(search, label) {
     const query = { label, search };
-    return this._services.find('sWatson').post('/api/v1/watson/conceptExpansion', query);
+    return this.$services.find('sWatson').post('/api/v1/watson/conceptExpansion', query);
 };
 
-SearchStore.prototype.languageAlchemy = function(search) {
+SearchModel.prototype.languageAlchemy = function(search) {
     let query = { search };
-    return this._services.find('sWatson').post('/api/v1/watson/languageAlchemy', query);
+    return this.$services.find('sWatson').post('/api/v1/watson/languageAlchemy', query);
 };
 
-SearchStore.prototype.searchYelp = function(location) {
+SearchModel.prototype.searchYelp = function(location) {
     const query = { location };
-    return this._services.find('sYelp').post('/api/v1/yelp/query', query);
+    return this.$services.find('sYelp').post('/api/v1/yelp/query', query);
 };
 
-SearchStore.prototype.getYelpBusinessDetails = function(yelpBusinessId) {
-    return this._services.find('sYelp').get('/api/v1/yelp/details/' + yelpBusinessId);
+SearchModel.prototype.getYelpBusinessDetails = function(yelpBusinessId) {
+    return this.$services.find('sYelp').get('/api/v1/yelp/details/' + yelpBusinessId);
 };
