@@ -11,4 +11,15 @@
 .product__gallery__image {
     width: 100px;
     height: 100px;
+    margin: 4px;
+}
+
+.product__categories {
+    display: flex;
+}
+
+.product__buttonbox {
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
 }
