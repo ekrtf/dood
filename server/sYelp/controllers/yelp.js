@@ -17,7 +17,10 @@ YelpCtrl.prototype.searchYelp = function($input, $error, $done, $service, $logge
     const { location, term } = $input.body;
     $service.searchYelp(location, term)
         .then($done)
-        .catch($error);
+        .catch(function(e) {
+            console.error(e);
+            $error();
+        });
 };
 
 /**
@@ -27,5 +30,8 @@ YelpCtrl.prototype.getYelpBusinessDetails = function($input, $error, $done, $ser
     const yelpBusinessId = $input.params.yelpBusinessId;
     $service.getYelpBusinessDetails(yelpBusinessId)
         .then($done)
-        .catch($error);
+        .catch(function(e) {
+            console.error(e);
+            $error();
+        });
 };

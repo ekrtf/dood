@@ -65,16 +65,32 @@ YelpService.prototype.searchYelp = function(location, term) {
         .catch(console.log);
 };
 
-YelpService.prototype.getYelpBusinessDetails = function(yelpBusinessId) {
+YelpService.prototype.getYelpBusinessDetails = co.wrap(function*(yelpBusinessId) {
     const options = {
         uri: `https://api.yelp.com/v3/businesses/${ yelpBusinessId }`,
         headers: this.baseHeader,
         json: true
     };
 
+    const calls = yield Promise.all([
+        rp(options),
+        this.getYelpBusinessReviews(yelpBusinessId)
+    ]);
+
+    let result = _normalizeYelpResult(calls[0]);
+    result.reviews = calls[1];
+    return result;
+});
+
+YelpService.prototype.getYelpBusinessReviews = function(yelpBusinessId) {
+    const options = {
+        uri: `https://api.yelp.com/v3/businesses/${ yelpBusinessId }/reviews`,
+        headers: this.baseHeader,
+        json: true
+    };
     return rp(options)
-        .then(function(business) {
-            return _normalizeYelpResult(business);
+        .then(function(response) {
+            return response.reviews;
         })
         .catch(console.log);
 };

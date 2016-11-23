@@ -11,10 +11,10 @@ class Product extends Component {
         this.doSelectProduct = this.doSelectProduct.bind(this);
         this.doAddProductToList = this.doAddProductToList.bind(this);
 
-        this._openLightbox = this._openLightbox.bind(this);
-        this._goToPrevious = this._goToPrevious.bind(this);
-        this._goToNext = this._goToNext.bind(this);
-        this._onClose = this._onClose.bind(this);
+        this.openLightbox = this.openLightbox.bind(this);
+        this.goToPrevious = this.goToPrevious.bind(this);
+        this.goToNext = this.goToNext.bind(this);
+        this.onClose = this.onClose.bind(this);
     }
 
     doSelectProduct() {
@@ -25,24 +25,41 @@ class Product extends Component {
         // TODO
     }
 
-    _goToPrevious() {
+    goToPrevious() {
         const newIndex = this.props.currentImage - 1;
         this.props.doSelectImage(newIndex);
     }
 
-    _goToNext() {
+    goToNext() {
         const newIndex = this.props.currentImage + 1;
         this.props.doSelectImage(newIndex);
     }
 
-    _onClose() {
+    onClose() {
         this.props.doToggleImages();
     }
 
-    _openLightbox(index, e) {
+    openLightbox(index, e) {
         e.preventDefault();
         this.props.doToggleImages();
         this.props.doSelectImage(index);
+    }
+
+    _renderCategories() {
+        const categories = this.props.product.categories.map(c => c.title);
+        const tags = categories.map((item, index) => {
+            return (<div key={index}>{item}</div>);
+        });
+        return (<div className="product__categories">{ tags }</div>);
+    }
+
+    _renderReviews() {
+        const reviews = this.props.product.reviews;
+        const conversation = reviews.map((item, index) => {
+            return (<div key={index}>{item.text}</div>);
+        });
+        console.log(conversation);
+        return (<div className="product__reviews">{ conversation }</div>);
     }
 
     _renderGallery() {
@@ -51,7 +68,7 @@ class Product extends Component {
 
 		const gallery = images.map((item, index) => {
 			return (
-				<a key={index} onClick={(e) => this._openLightbox(index, e)}>
+				<a key={index} onClick={(e) => this.openLightbox(index, e)}>
 					<img className="product__gallery__image" src={item.src} />
 				</a>
 			);
@@ -64,22 +81,14 @@ class Product extends Component {
                     images={this.props.product.images}
                     currentImage={this.props.currentImage}
                     isOpen={this.props.showImages}
-                    onClickPrev={this._goToPrevious}
-                    onClickNext={this._goToNext}
-                    onClose={this._onClose}
+                    onClickPrev={this.goToPrevious}
+                    onClickNext={this.goToNext}
+                    onClose={this.onClose}
                     enableKeyboardInput={true}
                     showThumbnails={true}
                 />
             </div>
 		);
-    }
-
-    _renderCategories() {
-        const categories = this.props.product.categories.map(c => c.title);
-        const tags = categories.map((item, index) => {
-            return (<div key={index}>{item}</div>);
-        });
-        return (<div className="product__categories">{ tags }</div>);
     }
 
     render() {
@@ -111,6 +120,7 @@ class Product extends Component {
                     />
                     <div>{ price }</div>
                 </div>
+                { this._renderReviews() }
                 { this._renderGallery() }
             </div>
         );
