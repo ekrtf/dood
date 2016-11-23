@@ -1,6 +1,22 @@
 import * as types from './action-types';
 import http from '../utils/http';
 
+// "user types in term input"
+export function termChange(term) {
+    return {
+        type: types.TERM_CHANGE,
+        term
+    };
+}
+
+// "user types in destination input"
+export function destinationChange(destination) {
+    return {
+        type: types.DESTINATION_CHANGE,
+        destination
+    };
+}
+
 // "user submits seach"
 export function submitSearch(searchParams) {
     return (dispatch) => {
@@ -15,8 +31,7 @@ function postSearchRequest(searchParams) {
     return {
         type: types.POST_SEARCH_REQUEST,
         destination: searchParams.destination,
-        fromDate: searchParams.fromDate,
-        toDate: searchParams.toDate
+        term: searchParams.term
     };
 }
 

@@ -45,13 +45,13 @@ SearchModel.prototype.$init = co.wrap(function*() {
  * @param  {Object} search  user input search
  * @return {Object} result  user results
  */
-SearchModel.prototype.doSearch = function(destination, fromDate, toDate) {
+SearchModel.prototype.doSearch = function(destination, term) {
     const self = this;
     return co(function*() {
         const searchId = uuid.v4();
 
         // fetch results from the web
-        const yelpResults = yield self.searchYelp(destination);
+        const yelpResults = yield self.searchYelp(destination, term);
 
         // save results to Results table
         const resultsPromises = yelpResults.map((item, index) => {
@@ -68,7 +68,7 @@ SearchModel.prototype.doSearch = function(destination, fromDate, toDate) {
         // save search to Search table
         yield self.db('Searches').insert({
             searchId: searchId,
-            params: { destination, fromDate, toDate },
+            params: { destination, term },
             results: yelpResults.map(r => r.resultId),
             createdAt: Date.now()
         });
@@ -159,8 +159,8 @@ SearchModel.prototype.languageAlchemy = function(search) {
     return this.$services.find('sWatson').post('/api/v1/watson/languageAlchemy', query);
 };
 
-SearchModel.prototype.searchYelp = function(location) {
-    const query = { location };
+SearchModel.prototype.searchYelp = function(location, term) {
+    const query = { location, term };
     return this.$services.find('sYelp').post('/api/v1/yelp/query', query);
 };
 

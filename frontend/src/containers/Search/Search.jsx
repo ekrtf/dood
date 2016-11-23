@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SearchForm } from '../../components';
-import { submitSearch } from '../../actions/search.actions';
+import { submitSearch, termChange, destinationChange } from '../../actions/search.actions';
 
 class Search extends Component {
     constructor(props) {
@@ -9,13 +9,24 @@ class Search extends Component {
     }
 
     render() {
-        const { onSearchSubmit, destination, isPosting, results } = this.props;
+        const {
+            onSearchSubmit,
+            onSearchTermChange,
+            onSearchDestinationChange,
+            destination,
+            term
+        } = this.props;
 
         return (
             <div className="search">
-
                 <div className="search__form">
-                    <SearchForm onSubmit={onSearchSubmit} />
+                    <SearchForm
+                        onSubmit={onSearchSubmit}
+                        onTermChange={onSearchTermChange}
+                        onDestinationChange={onSearchDestinationChange}
+                        destination={destination}
+                        term={term}
+                    />
                 </div>
             </div>
         );
@@ -24,11 +35,8 @@ class Search extends Component {
 
 function mapStateToProps(state) {
     return {
-        isPosting: state.search.isPosting,
         destination: state.search.destination,
-        fromDate: state.search.fromDate,
-        toDate: state.search.toDate,
-        results: state.search.results
+        term: state.search.fromDate,
     };
 }
 
@@ -36,6 +44,12 @@ function mapDispatchToProps(dispatch) {
     return {
         onSearchSubmit: (search) => {
             dispatch(submitSearch(search));
+        },
+        onSearchTermChange: (term) => {
+            dispatch(termChange(term));
+        },
+        onSearchDestinationChange: (destination) => {
+            dispatch(destinationChange(destination));
         }
     };
 }

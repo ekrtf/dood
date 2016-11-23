@@ -43,17 +43,9 @@ YelpService.prototype.$init = co.wrap(function*() {
  * * * * * * * * * */
 
 YelpService.prototype.searchYelp = function(location, term) {
-    // HACK
-    if (!location) {
-        location = 'Paris';
-    }
-
     const options = {
         uri: 'https://api.yelp.com/v3/businesses/search',
-        qs: {
-            location,
-            term: 'hotel'
-        },
+        qs: { location, term },
         headers: this.baseHeader,
         json: true
     };

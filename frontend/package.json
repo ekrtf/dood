@@ -20,7 +20,6 @@
     "moment": "^2.13.0",
     "react": "^15.0.1",
     "react-bootstrap": "^0.29.3",
-    "react-bootstrap-date-picker": "^3.7.0",
     "react-dom": "^15.0.1",
     "react-images": "^0.5.2",
     "react-leaflet": "^1.0.0",

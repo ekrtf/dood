@@ -20,7 +20,7 @@ class Results extends Component {
     }
 
     render() {
-        const { isPosting, results, selectedItem } = this.props;
+        const { isPosting, results } = this.props;
         return (
             <div className="results">
                 { isPosting && (<div>Loading...</div>) }
@@ -33,9 +33,6 @@ class Results extends Component {
 function mapStateToProps(state) {
     return {
         isPosting: state.search.isPosting,
-        destination: state.search.destination,
-        fromDate: state.search.fromDate,
-        toDate: state.search.toDate,
         results: state.search.results
     };
 }

@@ -13,9 +13,16 @@ function SearchCtrl() {}
  * * * * * * * * * */
 
 SearchCtrl.prototype.doSearch = function($input, $error, $done, searchModel) {
-    // const userInput = normalizeUserInput($input.body.userQuery);
-    const { destination, fromDate, toDate } = $input.body;
-    searchModel.doSearch(destination, fromDate, toDate)
+    let parsedBody = null;
+    try {
+        parsedBody = JSON.parse(Object.keys($input.body)[0]);
+    } catch(e) {
+        console.error(e);
+        $error();
+    }
+
+    const { destination, term } = parsedBody;
+    searchModel.doSearch(destination, term)
         .then($done)
         .catch(function(e) {
             console.log(e);

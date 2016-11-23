@@ -3,8 +3,7 @@ import * as types from '../actions/action-types';
 
 const initialState = {
     destination: '',
-    fromDate: '',
-    toDate: '',
+    term: '',
     isPosting: false,
     results: []
 };
@@ -20,8 +19,7 @@ const search = function(state, action) {
             return _.assign({}, state, {
                 isPosting: true,
                 destination: action.destination,
-                fromDate: action.fromDate,
-                toDate: action.toDate
+                term: action.term
             });
 
         case types.POST_SEARCH_SUCCESS:

@@ -1,8 +1,12 @@
 'use strict';
 
+let log = null;
+
 module.exports = YelpCtrl;
 
-function YelpCtrl() {}
+function YelpCtrl($logger) {
+    log = $logger;
+}
 
 /* * * * * * * * * *
  *
@@ -14,7 +18,16 @@ function YelpCtrl() {}
  * GET /api/v1/yelp/query
  */
 YelpCtrl.prototype.searchYelp = function($input, $error, $done, $service, $logger) {
-    const { location, term } = $input.body;
+    let { location, term } = $input.body;
+    if (!location) {
+        log.warn('No location provided to Yelp. Default to "London"');
+        location = 'London';
+    }
+    if (!term) {
+        log.warn('No term provided to Yelp. Default to "hotel"');
+        term = 'hotel';
+    }
+
     $service.searchYelp(location, term)
         .then($done)
         .catch(function(e) {
