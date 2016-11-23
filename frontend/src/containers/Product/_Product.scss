@@ -60,3 +60,12 @@
     height: 300px;
     margin: 4px;
 }
+
+.product__map {
+    width: 100%;
+    height: 400px;
+    .leaflet-container {
+        height: 400px;
+        width: 100%;
+    }
+}

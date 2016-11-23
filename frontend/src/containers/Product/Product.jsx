@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Lightbox from 'react-images';
 import { toggleImages, selectImage } from '../../actions/product.actions';
+import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import Rating from 'react-rating';
 
 class Product extends Component {
@@ -93,7 +94,7 @@ class Product extends Component {
 
     render() {
         const { name, price, rating } = this.props.product;
-        console.log(this.props.product)
+        const position = [ this.props.product.coordinates.latitude, this.props.product.coordinates.longitude ];
 
         return (
             <div className="product">
@@ -122,6 +123,19 @@ class Product extends Component {
                 </div>
                 { this._renderReviews() }
                 { this._renderGallery() }
+                <div className="product__map">
+                    <Map center={position} zoom={13}>
+                        <TileLayer
+                            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                            url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
+                        />
+                        <Marker position={position}>
+                            <Popup>
+                                <span>A pretty CSS3 popup.<br/>Easily customizable.</span>
+                            </Popup>
+                        </Marker>
+                    </Map>
+                </div>
             </div>
         );
     }
