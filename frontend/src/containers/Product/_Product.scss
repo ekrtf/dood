@@ -1,7 +1,50 @@
-// border: 1px solid $main-color;
 .product {
     width: 100%;
-    padding: 20px;
+}
+
+.product__back {
+    padding-top: 10px;
+    display: flex;
+    width: 125px;
+    justify-content: space-between;
+    i {
+        align-self: center;
+    }
+    div:hover {
+        cursor: pointer;
+        text-decoration: underline;
+        color: darken($text-color, 5%);
+    }
+}
+
+.product__top {
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.proudct__top__name {
+    align-self: flex-end;
+    @include h1;
+}
+
+.product__top__buttonbox {
+    align-self: flex-end;
+    width: 400px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.product__categories {
+    display: flex;
+}
+
+.product__info {
+    width: 30%;
+    height: 40px;
+    font-size: 1.3em;
+    display: flex;
+    justify-content: space-between;
 }
 
 .product__gallery {
@@ -9,17 +52,7 @@
 }
 
 .product__gallery__image {
-    width: 100px;
-    height: 100px;
+    width: 300px;
+    height: 300px;
     margin: 4px;
-}
-
-.product__categories {
-    display: flex;
-}
-
-.product__buttonbox {
-    width: 400px;
-    display: flex;
-    justify-content: space-between;
 }

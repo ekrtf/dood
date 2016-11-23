@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Lightbox from 'react-images';
 import { toggleImages, selectImage } from '../../actions/product.actions';
-import { Button } from 'react-bootstrap';
+import Rating from 'react-rating';
 
 class Product extends Component {
     constructor(props) {
@@ -58,32 +58,8 @@ class Product extends Component {
 		});
 
 		return (
-			<div className="product__gallery">{ gallery }</div>
-		);
-    }
-
-    _renderCategories() {
-        const categories = this.props.product.categories.map(c => c.title);
-        const tags = categories.map((item, index) => {
-            return (
-                <div key={index}>{item}</div>
-            );
-        });
-
-        return (
-            <div className="product__categories">{ tags }</div>
-        );
-    }
-
-    render() {
-        const { name, price } = this.props.product;
-
-        return (
-            <div className="product">
-                { name }
-                { this._renderCategories() }
-                { price }
-                { this._renderGallery() }
+			<div className="product__gallery">
+                { gallery }
                 <Lightbox
                     images={this.props.product.images}
                     currentImage={this.props.currentImage}
@@ -94,10 +70,48 @@ class Product extends Component {
                     enableKeyboardInput={true}
                     showThumbnails={true}
                 />
-                <div className="product__buttonbox">
-                    <Button className="button big" onClick={this.doAddProductToList}>Add to Shortlist</Button>
-                    <Button className="button special big" onClick={this.doSelectProduct}>Choose</Button>
+            </div>
+		);
+    }
+
+    _renderCategories() {
+        const categories = this.props.product.categories.map(c => c.title);
+        const tags = categories.map((item, index) => {
+            return (<div key={index}>{item}</div>);
+        });
+        return (<div className="product__categories">{ tags }</div>);
+    }
+
+    render() {
+        const { name, price, rating } = this.props.product;
+        console.log(this.props.product)
+
+        return (
+            <div className="product">
+                <div className="product__back">
+                    <i className="glyphicon glyphicon-arrow-left"></i>
+                    <div>Back to results</div>
                 </div>
+                <div className="product__top">
+                    <div className="proudct__top__name">{ name }</div>
+                    <div className="product__top__buttonbox">
+                        <button className="button special" onClick={this.doSelectProduct}>Choose</button>
+                        <button className="button" onClick={this.doAddProductToList}>Add to Shortlist</button>
+                    </div>
+                </div>
+                <div className="product__info">
+                    <div>{ this._renderCategories() }</div>
+                    <Rating
+                        start={0}
+                        stop={5}
+                        readonly={true}
+                        initialRate={rating}
+                        empty="glyphicon glyphicon-star-empty"
+                        full="glyphicon glyphicon-star"
+                    />
+                    <div>{ price }</div>
+                </div>
+                { this._renderGallery() }
             </div>
         );
     }

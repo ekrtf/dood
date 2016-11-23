@@ -17,9 +17,7 @@ class ResultItem extends Component {
     _renderCategories() {
         const categories = this.props.result.categories.map(c => c.title);
         const tags = categories.map((item, index) => {
-            return (
-                <div key={index}>{item}</div>
-            );
+            return (<div key={index}>{item}</div>);
         });
         return (<div>{ tags }</div>);
     }

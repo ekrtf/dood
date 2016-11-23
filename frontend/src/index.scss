@@ -66,6 +66,11 @@ a, a:hover, a:visited, a:active, a:focus {
     background-color: darken(#ffffff, 10%);
 }
 
+// carousel
+.container_a31snl button {
+    box-shadow: none;
+}
+
 /**
  *
  * Fonts
@@ -86,6 +91,7 @@ $main-color: #f56a6a;
 $headerbar-height: 75px;
 $content-width: 80%;
 $h1-color: #3d4449;
+$text-color: #7f888f;
 
 
 /**
@@ -100,6 +106,13 @@ $h1-color: #3d4449;
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+}
+
+@mixin h1 {
+    font-size: 1.75em;
+    font-weight: 700;
+    color: $h1-color;
+    font-family: "Roboto Slab", serif;
 }
 
 /**

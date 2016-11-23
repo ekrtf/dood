@@ -24,10 +24,7 @@
 }
 
 .ritem__info__name {
-    font-size: 1.75em;
-    font-weight: 700;
-    color: $h1-color;
-    font-family: "Roboto Slab", serif;
+    @include h1;
 }
 
 .ritem__contact {
