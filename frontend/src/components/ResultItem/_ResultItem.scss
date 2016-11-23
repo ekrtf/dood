@@ -1,16 +1,35 @@
 .ritem {
     width: 100%;
     height: 200px;
-    border: 1px solid $main-color;
-    border-radius: 6px;
+    border-bottom: 1px solid $main-color;
+    display: flex;
 
     &:hover {
-        background: darken(#fff, 5%);
+        // background: darken(#fff, 5%);
         cursor: pointer;
     }
 }
 
-.ritem__img {
-    width: 70px;
-    height: 70px;
+.ritem__image {
+    width: 20%;
+}
+
+.ritem__image__img {
+    width: 180px;
+    height: 180px;
+}
+
+.ritem__info {
+    width: 60%;
+}
+
+.ritem__info__name {
+    font-size: 1.75em;
+    font-weight: 700;
+    color: $h1-color;
+    font-family: "Roboto Slab", serif;
+}
+
+.ritem__contact {
+
 }

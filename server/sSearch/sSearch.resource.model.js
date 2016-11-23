@@ -36,7 +36,7 @@ SearchModel.prototype.$init = co.wrap(function*() {
 
 /* * * * * * * * * *
  *
- * Public functions
+ * Public Functions
  *
  * * * * * * * * * */
 
@@ -83,7 +83,7 @@ SearchModel.prototype.getItemDetails = function(itemId) {
 
 /* * * * * * * * * *
  *
- * Helper functions
+ * Helper Functions
  *
  * * * * * * * * * */
 
@@ -118,41 +118,6 @@ SearchModel.prototype.translateUserToWeb = function(search, location) {
 };
 
 /**
- * TODO: refactor this to use recursion
- * Remove duplicates form web searches
- * @return {Object} results
- */
-function removeDuplicates(webResults) {
-    let all = [];
-
-    for (let source in webResults) {
-        let item = webResults[source];
-        all.push(item);
-    }
-
-    let results = _.cloneDeep(all);
-
-    for (let i = 0; i < all.length; i++) {
-        let item = all[i];
-        let rest = all.splice(i, 1);
-
-        for (let j = 0; j < rest.length; j++) {
-            levenshtein.getAsync(item.name, rest[j].name, function (error, distance) {
-                if (error) {
-                    throw new Error('Unable to calculate levenshtein distance');
-                }
-
-                if (ditance > 3 && (item.type === rest[j].type)) {
-                    _.remove(results, result => result.id === item.id);
-                }
-            });
-        }
-    }
-
-    return results;
-}
-
-/**
  * Dood filters the results
  *
  * This is where the essense of Dood is conveyed.
@@ -161,7 +126,7 @@ function removeDuplicates(webResults) {
  * @param {Object} context
  * @return {Object} doodResults
  */
-function doodifyResults(rawResults, context, filters) {
+SearchModel.prototype.doodifyResults = function(rawResults, context, filters) {
     // TODO code the dood rules
 
     // 1. check is weather allow outdoors
@@ -170,8 +135,7 @@ function doodifyResults(rawResults, context, filters) {
     // 3. figure out if feelings match
 
     // 4. apply filters
-
-}
+};
 
 /* * * * * * * * * *
  *
