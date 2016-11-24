@@ -40,16 +40,9 @@ function ServerApp() {
 ServerApp.prototype.load = function(list) {
     const frontendService = {
         name: 'frontendService',
-        routes: [
-            {
-                static: '../../frontend/dist'
-            },
-            {
-                default: {
-                    static: '../../frontend/dist/index.html'
-                }
-            }
-        ]
+        routes: [{
+            static: '../../frontend/dist'
+        }]
     };
     list.unshift(frontendService);
 
