@@ -49,7 +49,7 @@ class Product extends Component {
     _renderCategories() {
         const categories = this.props.product.categories.map(c => c.title);
         const tags = categories.map((item, index) => {
-            return (<div key={index}>{item}</div>);
+            return (<div key={index} className="product__categories__item">{item}</div>);
         });
         return (<div className="product__categories">{ tags }</div>);
     }
@@ -111,6 +111,8 @@ class Product extends Component {
                 </div>
                 <div className="product__info">
                     <div>{ this._renderCategories() }</div>
+                </div>
+                <div className="product__info--price">
                     <Rating
                         start={0}
                         stop={5}
