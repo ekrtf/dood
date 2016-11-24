@@ -27,6 +27,9 @@ module.exports = {
             test: /\.(html|otf)$/,
             exclude: /node_modules/,
             loader: 'file?name=[name].[ext]'
+        }, {
+            test: /\.(jpg|png)$/,
+            loader: 'file?name=[path][name].[ext]'
         }]
     },
     resolve: {

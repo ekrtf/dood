@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import L from 'leaflet';
 import { connect } from 'react-redux';
 import Lightbox from 'react-images';
 import { toggleImages, selectImage } from '../../actions/product.actions';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import Rating from 'react-rating';
+
+import iconUrl from '../../resources/images/marker-icon.png';
+import shadowUrl from '../../resources/images/marker-shadow.png';
+const icon = L.icon({ iconUrl, shadowUrl });
 
 class Product extends Component {
     constructor(props) {
@@ -12,7 +17,7 @@ class Product extends Component {
         this.doSelectProduct = this.doSelectProduct.bind(this);
         this.doAddProductToList = this.doAddProductToList.bind(this);
 
-        this.openLightbox = this.openLightbox.bind(this);
+        this.openGallery = this.openGallery.bind(this);
         this.goToPrevious = this.goToPrevious.bind(this);
         this.goToNext = this.goToNext.bind(this);
         this.onClose = this.onClose.bind(this);
@@ -40,7 +45,7 @@ class Product extends Component {
         this.props.doToggleImages();
     }
 
-    openLightbox(index, e) {
+    openGallery(index, e) {
         e.preventDefault();
         this.props.doToggleImages();
         this.props.doSelectImage(index);
@@ -48,6 +53,8 @@ class Product extends Component {
 
     _renderCategories() {
         const categories = this.props.product.categories.map(c => c.title);
+        if (!Array.isArray(categories)) return;
+
         const tags = categories.map((item, index) => {
             return (<div key={index} className="product__categories__item">{item}</div>);
         });
@@ -56,6 +63,8 @@ class Product extends Component {
 
     _renderReviews() {
         const reviews = this.props.product.reviews;
+        if (!Array.isArray(reviews)) return;
+
         const conversation = reviews.map((item, index) => {
             // <img className="product__reviews__item__user__img" src={item.user.image_url} />
             return (
@@ -75,11 +84,11 @@ class Product extends Component {
 
     _renderGallery() {
         const images = this.props.product.images;
-        if (!images) return;
+        if (!Array.isArray(images)) return;
 
 		const gallery = images.map((item, index) => {
 			return (
-				<a key={index} onClick={(e) => this.openLightbox(index, e)}>
+				<a key={index} onClick={(e) => this.openGallery(index, e)}>
 					<img className="product__gallery__image" src={item.src} />
 				</a>
 			);
@@ -141,7 +150,7 @@ class Product extends Component {
                             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                             url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
                         />
-                        <Marker position={position}>
+                        <Marker position={position} icon={icon}>
                             <Popup>
                                 <span>A pretty CSS3 popup.<br/>Easily customizable.</span>
                             </Popup>
