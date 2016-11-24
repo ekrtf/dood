@@ -57,9 +57,19 @@ class Product extends Component {
     _renderReviews() {
         const reviews = this.props.product.reviews;
         const conversation = reviews.map((item, index) => {
-            return (<div key={index}>{item.text}</div>);
+            // <img className="product__reviews__item__user__img" src={item.user.image_url} />
+            return (
+                <div key={index} className="product__reviews__item">
+                    <blockquote>
+                        "{item.text}"
+                        {item.text.includes('...') && <a href={item.url} target="blank">Read more</a>}
+                    </blockquote>
+                    <div className="product__reviews__item__user">
+                        {item.user.name}
+                    </div>
+                </div>
+            );
         });
-        console.log(conversation);
         return (<div className="product__reviews">{ conversation }</div>);
     }
 
@@ -123,8 +133,8 @@ class Product extends Component {
                     />
                     <div>{ price }</div>
                 </div>
-                { this._renderReviews() }
                 { this._renderGallery() }
+                { this._renderReviews() }
                 <div className="product__map">
                     <Map center={position} zoom={13}>
                         <TileLayer

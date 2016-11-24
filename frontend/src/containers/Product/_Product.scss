@@ -56,7 +56,30 @@
 }
 
 .product__reviews {
-    margin-bottom: 20px;
+    margin: 20px;
+}
+
+.product__reviews__item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    blockquote {
+        margin-bottom: 0.5em;
+    }
+}
+
+.product__reviews__item__user {
+    width: 10%;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.product__reviews__item__user__img {
+    margin-right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
 }
 
 .product__gallery {
