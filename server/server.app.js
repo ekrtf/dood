@@ -2,7 +2,7 @@
 
 /**
  * @module ServerApp
- * @description main server for ml-in-tourism app
+ * @description main server for dood app
  */
 
 const _ = require('lodash');

@@ -1,5 +1,5 @@
 {
-  "name": "ml-in-tourism-server",
+  "name": "dood-server",
   "version": "0.0.1",
   "description": "backend for dissertation project",
   "main": "./server.js",

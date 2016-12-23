@@ -1,5 +1,5 @@
 {
-  "name": "ml-in-tourism",
+  "name": "dood",
   "version": "0.0.1",
   "private": true,
   "description": "dissertation project",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ekrtf/ml-in-tourism.git"
+    "url": "git+https://github.com/ekrtf/dood.git"
   },
   "keywords": [
     "hci",
