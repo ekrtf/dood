@@ -8,7 +8,9 @@ class App extends Component {
 
         return (
             <div className="main">
-                <HeaderBar />
+                <div className="main__header">
+                    <HeaderBar />
+                </div>
                 <div className="main__content">
                     {children}
                 </div>

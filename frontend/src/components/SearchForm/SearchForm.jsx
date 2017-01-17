@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { FormControl } from 'react-bootstrap';
+import { Link } from 'react-router';
 
 class SearchForm extends Component {
     constructor(props) {
@@ -41,7 +42,9 @@ class SearchForm extends Component {
                     <FormControl type="text" placeholder="Destination" onChange={this.destinationChange} />
                 </div>
                 <div className="searchform__item">
-                    <button onClick={this.handleSubmit} className="button big">Search</button>
+                    <Link to="/clone/results" onClick={() => this.handleSubmit()}>
+                        <button className="button big">Search</button>
+                    </Link>
                 </div>
             </div>
         );

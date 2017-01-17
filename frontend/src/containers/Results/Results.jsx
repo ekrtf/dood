@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { ResultItem } from '../../components';
 import { submitSearch } from '../../actions/search.actions';
@@ -21,6 +21,7 @@ class Results extends Component {
 
     render() {
         const { isPosting, results } = this.props;
+
         return (
             <div className="results">
                 { isPosting && (<div>Loading...</div>) }
@@ -29,6 +30,11 @@ class Results extends Component {
         );
     }
 }
+
+Results.propTypes = {
+    isPosting: PropTypes.bool.isRequired,
+    results: PropTypes.array.isRequired
+};
 
 function mapStateToProps(state) {
     return {

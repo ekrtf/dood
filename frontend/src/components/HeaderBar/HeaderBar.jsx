@@ -15,6 +15,12 @@ class HeaderBar extends Component {
                     <div className="headerbar__menu__item">
                         <IndexLink to="about">About</IndexLink>
                     </div>
+                    <div className="headerbar__menu__item">
+                        <IndexLink to="clone">Clone</IndexLink>
+                    </div>
+                    <div className="headerbar__menu__item">
+                        <IndexLink to="ml">ML</IndexLink>
+                    </div>
                 </div>
             </div>
         );

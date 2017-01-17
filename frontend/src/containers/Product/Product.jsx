@@ -5,6 +5,7 @@ import Lightbox from 'react-images';
 import { toggleImages, selectImage } from '../../actions/product.actions';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import Rating from 'react-rating';
+import _ from 'lodash';
 
 import iconUrl from '../../resources/images/marker-icon.png';
 import shadowUrl from '../../resources/images/marker-shadow.png';
@@ -67,7 +68,7 @@ class Product extends Component {
 
     _renderReviews() {
         const reviews = this.props.product.reviews;
-        if (!Array.isArray(reviews)) return;
+        if (!Array.isArray(reviews)) return; // some places don't have reviews
 
         const conversation = reviews.map((item, index) => {
             // <img className="product__reviews__item__user__img" src={item.user.image_url} />
@@ -116,8 +117,12 @@ class Product extends Component {
     }
 
     render() {
-        const { name, price, rating } = this.props.product;
-        const position = [ this.props.product.coordinates.latitude, this.props.product.coordinates.longitude ];
+        const { name, price, rating, coordinates } = this.props.product;
+
+        let position = [ 0, 0 ];
+        if (_.isObject(coordinates)) {
+            position = [ coordinates.latitude, coordinates.longitude ];
+        }
 
         return (
             <div className="product">
@@ -133,7 +138,7 @@ class Product extends Component {
                     </div>
                 </div>
                 <div className="product__info">
-                    <div>{ this._renderCategories() }</div>
+                    <div>{ _.isArray(this.props.product.categories) && this._renderCategories() }</div>
                 </div>
                 <div className="product__info--price">
                     <Rating
@@ -146,8 +151,8 @@ class Product extends Component {
                     />
                     <div>{ price }</div>
                 </div>
-                { this._renderGallery() }
-                { this._renderReviews() }
+                { _.isArray(this.props.product.images) && this._renderGallery() }
+                { _.isArray(this.props.product.reviews) && this._renderReviews() }
                 <div className="product__map">
                     <Map ref="map" center={position} zoom={13}>
                         <TileLayer
@@ -168,7 +173,7 @@ class Product extends Component {
 
 function mapStateToProps(state) {
     return {
-        product: state.results.selectedItem || {},
+        product: state.results.selectedItem || {}, // HACK
         showImages: state.product.showImages,
         currentImage: state.product.currentImage
     };

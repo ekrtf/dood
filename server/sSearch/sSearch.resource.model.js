@@ -52,6 +52,9 @@ SearchModel.prototype.doSearch = function(destination, term) {
 
         // fetch results from the web
         const yelpResults = yield self.searchYelp(destination, term);
+        if (!_.isArray(yelpResults)) {
+            throw new Error(`Failed to fetch Yelp results`);
+        }
 
         // save results to Results table
         const resultsPromises = yelpResults.map((item, index) => {

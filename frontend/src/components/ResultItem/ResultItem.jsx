@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 import Rating from 'react-rating';
 
 class ResultItem extends Component {
@@ -24,39 +25,41 @@ class ResultItem extends Component {
 
     render() {
         const result = this.props.result;
-        const { name, price, rating, phone, location } = result;
+        const { id, name, price, rating, phone, location } = result;
         const categories = result.categories.map(c => c.title);
         const numberOfReviews = result.review_count;
         const imageUrl = result.image_url; // TODO normalize this on the server
 
         return (
-            <div className="ritem" onClick={this.selectItem}>
-                <div className="ritem__image">
-                    <img className="ritem__image__img" alt="pic" src={imageUrl} />
+            <Link to={`/clone/results/${id}`} onClick={(e) => this.selectItem(e)}>
+                <div className="ritem">
+                    <div className="ritem__image">
+                        <img className="ritem__image__img" alt="pic" src={imageUrl} />
+                    </div>
+                    <div className="ritem__info">
+                        <div className="ritem__info__name">{name}</div>
+                        { this._renderCategories() }
+                        <div>{price}</div>
+                        <Rating
+                            start={0}
+                            stop={5}
+                            readonly={true}
+                            initialRate={rating}
+                            empty="glyphicon glyphicon-star-empty"
+                            full="glyphicon glyphicon-star"
+                        />
+                        <div>{numberOfReviews} Reviews</div>
+                    </div>
+                    <div className="ritem__contact">
+                        <div>{location.address1}</div>
+                        <div>{location.address2}</div>
+                        <div>{location.address3}</div>
+                        <div>{location.city}</div>
+                        <div>{location.country}</div>
+                        <div>{phone}</div>
+                    </div>
                 </div>
-                <div className="ritem__info">
-                    <div className="ritem__info__name">{name}</div>
-                    { this._renderCategories() }
-                    <div>{price}</div>
-                    <Rating
-                        start={0}
-                        stop={5}
-                        readonly={true}
-                        initialRate={rating}
-                        empty="glyphicon glyphicon-star-empty"
-                        full="glyphicon glyphicon-star"
-                    />
-                    <div>{numberOfReviews} Reviews</div>
-                </div>
-                <div className="ritem__contact">
-                    <div>{location.address1}</div>
-                    <div>{location.address2}</div>
-                    <div>{location.address3}</div>
-                    <div>{location.city}</div>
-                    <div>{location.country}</div>
-                    <div>{phone}</div>
-                </div>
-            </div>
+            </Link>
         );
     }
 }
