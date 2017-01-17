@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, browserHistory } from 'react-router';
-import { App, Landing, Main } from './containers';
+import { App, About, Main } from './containers';
 import configureStore from './utils/configure-store';
 
 import './index.scss';
@@ -15,7 +15,7 @@ render(
         <Router history={browserHistory}>
             <Route component={App}>
                 <Route path="/" component={Main} />
-                <Route path="landing" component={Landing} />
+                <Route path="about" component={About} />
             </Route>
         </Router>
     </Provider>,

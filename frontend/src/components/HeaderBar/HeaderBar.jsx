@@ -13,7 +13,7 @@ class HeaderBar extends Component {
                 </div>
                 <div className="headerbar__menu">
                     <div className="headerbar__menu__item">
-                        <IndexLink to="landing">About</IndexLink>
+                        <IndexLink to="about">About</IndexLink>
                     </div>
                 </div>
             </div>

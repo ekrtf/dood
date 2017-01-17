@@ -1,5 +1,5 @@
 export { default as App } from './App/App';
-export { default as Landing } from './Landing/Landing';
+export { default as About } from './About/About';
 export { default as Main } from './Main/Main';
 export { default as Product } from './Product/Product';
 export { default as Results } from './Results/Results';
