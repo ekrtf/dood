@@ -28,7 +28,7 @@ class ResultItem extends Component {
         const categories = result.categories.map(c => c.title);
         const numberOfReviews = result.review_count;
         const imageUrl = result.image_url; // TODO normalize this on the server
-        console.log(result)
+
         return (
             <div className="ritem" onClick={this.selectItem}>
                 <div className="ritem__image">

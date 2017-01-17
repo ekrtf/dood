@@ -5,7 +5,7 @@ import { Router, Route, browserHistory } from 'react-router';
 import { App, Landing, Main } from './containers';
 import configureStore from './utils/configure-store';
 
-import './index.scss';\
+import './index.scss';
 import './index.html';
 
 const store = configureStore();

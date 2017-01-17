@@ -23,6 +23,10 @@ class Product extends Component {
         this.onClose = this.onClose.bind(this);
     }
 
+    componentDidMount() {
+        this.refs.map.leafletElement.scrollWheelZoom.disable();
+    }
+
     doSelectProduct() {
         // TODO
     }
@@ -145,14 +149,14 @@ class Product extends Component {
                 { this._renderGallery() }
                 { this._renderReviews() }
                 <div className="product__map">
-                    <Map center={position} zoom={13}>
+                    <Map ref="map" center={position} zoom={13}>
                         <TileLayer
                             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                             url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
                         />
                         <Marker position={position} icon={icon}>
                             <Popup>
-                                <span>A pretty CSS3 popup.<br/>Easily customizable.</span>
+                                <span>{name}</span>
                             </Popup>
                         </Marker>
                     </Map>
