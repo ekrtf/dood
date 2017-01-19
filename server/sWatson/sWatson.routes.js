@@ -1,16 +1,23 @@
 module.exports = [
     {
-        api: '/api/v1/watson/conceptExpansion',
+        api: '/api/v1/watson/concepts',
         controller: 'watson',
         method: {
-            post: 'conceptExpansion'
+            post: 'concepts'
         }
     },
     {
-        api: '/api/v1/watson/languageAlchemy',
+        api: '/api/v1/watson/keywords',
         controller: 'watson',
         method: {
-            post: 'languageAlchemy'
+            post: 'keywords'
+        }
+    },
+    {
+        api: '/api/v1/watson/emotion',
+        controller: 'watson',
+        method: {
+            post: 'emotion'
         }
     }
 ];

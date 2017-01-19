@@ -3,12 +3,8 @@
  * @description entry point for IBM Watson calls
  */
 
-const watson = require('watson-developer-cloud');
-const fs = require('fs');
-const path = require('path');
-const config = require('../config.json');
-
-let logger = null;
+const AlchemyLanguageV1 = require('watson-developer-cloud/alchemy-language/v1');
+const _ = require('lodash');
 
 module.exports = WatsonService;
 
@@ -18,9 +14,10 @@ module.exports = WatsonService;
  *
  * * * * * * * * * */
 
-function WatsonService($logger) {
-    logger = $logger;
-
+function WatsonService($config) {
+    this.alchemy_language = new AlchemyLanguageV1({
+      api_key: $config.credentials.apiKey
+    });
 }
 
 /* * * * * * * * * *
@@ -29,62 +26,37 @@ function WatsonService($logger) {
  *
  * * * * * * * * * */
 
-WatsonService.prototype.conceptExpansion = function(search, label) {
-    const concept_expansion = watson.concept_expansion({
-        username: config.apis.watson.credentials.username,
-        password: config.apis.watson.credentials.password,
-        version: 'v1-beta'
-    });
-
-    const params = {
-        seeds: search,
-        label: label || null
-    };
-
-    concept_expansion.expand(params, function (error, response) {
-        if (error) {
-            throw new Error('error:', error);
-        }
-
-        console.log(JSON.stringify(response, null, 4));
-
-        // var content = JSON.stringify(response, null, 4);
-        // var memoryPath = path.join(path.resolve(__dirname, '../memory/'), search[0] + '.js');
-        //
-        // fs.writeFile(memoryPath, content, function(err) {
-        //     if (err) {
-        //         return console.log(err);
-        //     }
-        //
-        //     console.log("The file was saved!");
-        // });
-
-
-        if (response.out_of_vocabulary) {
-            // TODO tell search that there are some unknow terms
-        }
-
-        // TODO filter prevalence
-
-        return {};
-    });
+WatsonService.prototype.concepts = function(search) {
+    return this._alchemyAsPromised('concepts', { text: search });
 };
 
-WatsonService.prototype.languageAlchemy = function(search) {
-    const alchemy_language = watson.alchemy_language({
-        api_key: config.apis.watson.credentials.apiKey
-    });
+WatsonService.prototype.keywords = function(search) {
+    return this._alchemyAsPromised('keywords', { text: search });
+};
 
-    const params = {
-        text: search
-    };
+WatsonService.prototype.emotion = function(search) {
+    return this._alchemyAsPromised('emotion', { text: search })
+        .then((response) => {
+            return _.chain(response.docEmotions)
+                .map((score, emotion) => ({ emotion, score }))
+                .filter(item => item.score > 0.75);
+        });
+};
 
-    console.log(alchemy_language);
+/* * * * * * * * * *
+ *
+ * Private functions
+ *
+ * * * * * * * * * */
 
-    alchemy_language.concepts(params, function (err, response) {
-        if (err)
-            console.log('error:', err);
-        else
-            console.log(JSON.stringify(response, null, 4));
+WatsonService.prototype._alchemyAsPromised = function(func, params) {
+    return new Promise((resolve, reject) => {
+        this.alchemy_language[func](params, function (err, response) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(response);
+            }
+        });
     });
 };

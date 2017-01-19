@@ -13,7 +13,7 @@ function ContextCtrl() {}
 /**
  * GET /api/v1/context
  */
-ContextCtrl.prototype.getContext = function($done, $error, $logger, contextStore) {
+ContextCtrl.prototype.getContext = function($done, $error, $logger, contextModel) {
     const location = {
         lat: _.parseInt($input.query.lat),
         lng: _.parseInt($input.query.lng)
@@ -23,7 +23,7 @@ ContextCtrl.prototype.getContext = function($done, $error, $logger, contextStore
         throw new Error('Invalid location, cannot get context.');
     }
 
-    contextStore.getContext(location)
+    contextModel.getContext(location)
         .then($done)
         .catch($error);
 };
@@ -31,7 +31,7 @@ ContextCtrl.prototype.getContext = function($done, $error, $logger, contextStore
 /**
  * GET /api/v1/context/outdoors
  */
-ContextCtrl.prototype.disableOutdoors = function($input, $done, $error, $logger, contextStore) {
+ContextCtrl.prototype.disableOutdoors = function($input, $done, $error, $logger, contextModel) {
     const location = {
         lat: _.parseInt($input.query.lat),
         lng: _.parseInt($input.query.lng)
@@ -41,7 +41,7 @@ ContextCtrl.prototype.disableOutdoors = function($input, $done, $error, $logger,
         throw new Error('Invalid location, cannot verify outdoor activities.');
     }
 
-    contextStore.disableOutdoors(location)
+    contextModel.disableOutdoors(location)
         .then($done)
         .catch($error);
 };

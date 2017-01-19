@@ -48,7 +48,7 @@ ContextStore.prototype.$init = function() {
  * Get user context
  * @return {Object} context
  */
-ContextStore.prototype.getContext = function*(location) {
+ContextStore.prototype.getContext = co.wrap(function*(location) {
     const self = this;
 
     const context = {
@@ -61,7 +61,7 @@ ContextStore.prototype.getContext = function*(location) {
     context.disableOutdoors = yield self.disableOutdoors(location);
 
     return context;
-};
+});
 
 /**
  * Check weather at client location to disable outdoor activities

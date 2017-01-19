@@ -13,20 +13,26 @@ function WatsonCtrl() {}
 /**
  * POST /api/v1/watson/conceptExpansion
  */
-WatsonCtrl.prototype.conceptExpansion = function($input, $error, $done, $service, $logger) {
+WatsonCtrl.prototype.concepts = function($input, $error, $done, $service) {
     const search = $input.body.search;
-    const label = $input.body.label || null;
 
-    $service.conceptExpansion(search, label)
+    $service.concepts(search)
         .then($done)
         .catch($error);
 };
 
-WatsonCtrl.prototype.languageAlchemy = function($input, $error, $done, $service, $logger) {
+WatsonCtrl.prototype.keywords = function($input, $error, $done, $service) {
     const search = $input.body.search;
 
-    $service.languageAlchemy(search)
+    $service.keywords(search)
         .then($done)
         .catch($error);
 };
 
+WatsonCtrl.prototype.emotion = function($input, $error, $done, $service) {
+    const search = $input.body.search;
+
+    $service.emotion(search)
+        .then($done)
+        .catch($error);
+};

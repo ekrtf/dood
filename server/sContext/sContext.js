@@ -6,5 +6,5 @@
 module.exports = ContextService;
 
 function ContextService($resource) {
-    $resource.add('contextStore', require('./sContext.resource.datastore.js'));
+    $resource.add('contextModel', require('./sContext.model.js'));
 }
