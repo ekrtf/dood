@@ -70,8 +70,9 @@ ServerApp.prototype.start = function(list) {
  * @param {Object} app
  */
 ServerApp.prototype.addCORS = function(app) {
+    const origin = this._options.env === 'dev' ? 'http://localhost:4001' : 'http://localhost:4000';
     app.use(function(req, res, next) {
-        res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4001');
+        res.setHeader('Access-Control-Allow-Origin', origin);
         res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
         res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,x-access-token');
         res.setHeader('Access-Control-Allow-Credentials', true);
