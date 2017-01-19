@@ -1,34 +1,30 @@
 import _ from 'lodash';
-import axios from 'axios';
+import request from 'request-promise';
 
 const API_BASE = 'http://localhost:4000/api/v1';
 
-function Http(method, url, data, isFiles) {
-    method = _.upperCase(method);
-    url = _.includes(url, API_BASE) ? url : API_BASE + url;
+const http = {
+    get: (url, params) => {
+        return request({
+            uri: API_BASE + url,
+            qs: params,
+            json: true
+        });
+    },
+    post: (url, data) => {
+        return request({
+            method: 'POST',
+            uri: API_BASE + url,
+            body: data,
+            json: true
+        });
+    },
+    put: (url, data) => {
 
-    if (isFiles === 'files') {
-        return axios({
-            method: 'post',
-            url: url,
-            data: data,
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        }).then((response) => response.data).catch((err) => err);
+    },
+    delete: (url, data) => {
+
     }
+};
 
-    switch(method) {
-        case 'GET':
-            return axios.get(url)
-                .then((response) => response.data)
-                .catch((err) => err);
-
-        case 'POST':
-            return axios.post(url, JSON.stringify(data))
-                .then((response) => response.data)
-                .catch((err) => err);
-    }
-}
-
-export default Http;
+export default http;

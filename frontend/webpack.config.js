@@ -30,7 +30,15 @@ module.exports = {
         }, {
             test: /\.(jpg|png)$/,
             loader: 'file?name=[path][name].[ext]'
+        }, {
+            test: /\.json$/,
+            loader: 'json-loader'
         }]
+    },
+    node: {
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty'
     },
     resolve: {
         extensions: ['', '.js', '.jsx']

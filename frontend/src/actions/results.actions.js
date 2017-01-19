@@ -5,7 +5,7 @@ import http from '../utils/http';
 export function selectItem(itemId) {
     return (dispatch) => {
         dispatch(selectItemRequest(itemId));
-        return http('GET', '/search/details/' + itemId)
+        return http.get('/search/details/' + itemId)
             .then(response => dispatch(selectItemSuccess(response)))
             .catch(e => dispatch(selectItemFailure(e)));
     };

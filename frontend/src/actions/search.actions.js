@@ -21,7 +21,7 @@ export function destinationChange(destination) {
 export function submitSearch(searchParams) {
     return (dispatch) => {
         dispatch(postSearchRequest(searchParams));
-        return http('POST', '/search', searchParams)
+        return http.post('/search', searchParams)
             .then(response => dispatch(postSearchSuccess(response)))
             .catch(e => dispatch(postSearchFailure(e)));
     };

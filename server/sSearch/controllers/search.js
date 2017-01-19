@@ -13,15 +13,15 @@ function SearchCtrl() {}
  * * * * * * * * * */
 
 SearchCtrl.prototype.doSearch = function($input, $error, $done, searchModel) {
-    let parsedBody = null;
-    try {
-        parsedBody = JSON.parse(Object.keys($input.body)[0]);
-    } catch(e) {
-        console.error(e);
-        $error();
-    }
+    // let parsedBody = null;
+    // try {
+    //     parsedBody = JSON.parse(Object.keys($input.body)[0]);
+    // } catch(e) {
+    //     console.error(e);
+    //     $error();
+    // }
 
-    const { destination, term } = parsedBody;
+    const { destination, term } = $input.body;
     searchModel.doSearch(destination, term)
         .then($done)
         .catch(function(e) {
