@@ -51,7 +51,7 @@ SearchModel.prototype.doSearch = function(destination, term) {
         const searchId = uuid.v4();
 
         // fetch results from the web
-        const yelpResults = yield self.searchYelp(destination, term);
+        const yelpResults = yield self._searchYelp(destination, term);
         if (!_.isArray(yelpResults)) {
             throw new Error(`Failed to fetch Yelp results`);
         }
@@ -81,8 +81,13 @@ SearchModel.prototype.doSearch = function(destination, term) {
 };
 
 SearchModel.prototype.getItemDetails = function(itemId) {
-    return this.getYelpBusinessDetails(itemId);
+    return this._getYelpBusinessDetails(itemId);
 };
+
+SearchModel.prototype.smartSearch = co.wrap(function*(userInput) {
+    const keywords = yield this._getKeywords(userInput);
+    return this._searchYelp('London', keywords[0].text);
+});
 
 /* * * * * * * * * *
  *
@@ -146,27 +151,27 @@ SearchModel.prototype.doodifyResults = function(rawResults, context, filters) {
  *
  * * * * * * * * * */
 
-SearchModel.prototype.getContext = function(location) {
+SearchModel.prototype._getContext = function(location) {
     const lat = _.toString(location.lat);
     const lng = _.toString(location.lng);
     return this.$services.find('sContext').get('/api/v1/context?lat=' + lat + '?lng=' + lng);
 };
 
-SearchModel.prototype.expandConcept = function(search, label) {
-    const query = { label, search };
-    return this.$services.find('sWatson').post('/api/v1/watson/conceptExpansion', query);
+SearchModel.prototype._getConcepts = function(search) {
+    const query = { search };
+    return this.$services.find('sWatson').post('/api/v1/watson/concepts', query);
 };
 
-SearchModel.prototype.languageAlchemy = function(search) {
-    let query = { search };
-    return this.$services.find('sWatson').post('/api/v1/watson/languageAlchemy', query);
+SearchModel.prototype._getKeywords = function(search) {
+    const query = { search };
+    return this.$services.find('sWatson').post('/api/v1/watson/keywords', query);
 };
 
-SearchModel.prototype.searchYelp = function(location, term) {
+SearchModel.prototype._searchYelp = function(location, term) {
     const query = { location, term };
     return this.$services.find('sYelp').post('/api/v1/yelp/query', query);
 };
 
-SearchModel.prototype.getYelpBusinessDetails = function(yelpBusinessId) {
+SearchModel.prototype._getYelpBusinessDetails = function(yelpBusinessId) {
     return this.$services.find('sYelp').get('/api/v1/yelp/details/' + yelpBusinessId);
 };

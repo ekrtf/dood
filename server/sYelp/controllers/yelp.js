@@ -18,6 +18,7 @@ function YelpCtrl($logger) {
  * GET /api/v1/yelp/query
  */
 YelpCtrl.prototype.searchYelp = function($input, $error, $done, $service, $logger) {
+    console.log('yelp ctrl', $input.body);
     let { location, term } = $input.body;
     if (!location) {
         log.warn('No location provided to Yelp. Default to "London"');

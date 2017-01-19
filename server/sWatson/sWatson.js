@@ -31,7 +31,8 @@ WatsonService.prototype.concepts = function(search) {
 };
 
 WatsonService.prototype.keywords = function(search) {
-    return this._alchemyAsPromised('keywords', { text: search });
+    return this._alchemyAsPromised('keywords', { text: search })
+        .then(response => response.keywords);
 };
 
 WatsonService.prototype.emotion = function(search) {
