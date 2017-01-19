@@ -17,6 +17,14 @@ export function destinationChange(destination) {
     };
 }
 
+// "user types in textarea"
+export function userInputChange(userInput) {
+    return {
+        type: types.USER_INPUT_CHANGE,
+        userInput
+    };
+}
+
 // "user submits seach"
 export function submitSearch(searchParams) {
     return (dispatch) => {

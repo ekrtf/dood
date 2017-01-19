@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Results } from '../.';
 import { ResultItem } from '../../components';
-import { smartSearch } from '../../actions/search.actions';
+import { smartSearch, userInputChange } from '../../actions/search.actions';
 
 class Smart extends Component {
     constructor(props) {
@@ -10,8 +10,13 @@ class Smart extends Component {
         this._doSmartSearch = this._doSmartSearch.bind(this);
     }
 
-    _doSmartSearch(text) {
-        this.props.smartSearch(text)
+    _doSmartSearch(e) {
+        this.props.smartSearch(this.props.userInput);
+    }
+
+    _handleInputChange(e) {
+        const input = e.target.value;
+        this.props.userInputChange(input);
     }
 
     _renderResult(result, index) {
@@ -24,14 +29,21 @@ class Smart extends Component {
     }
 
     render() {
-        let val = 'cheap place for two with romantic music';
+        const { userInput } = this.props;
         return (
             <div className="smart">
                 <div className="smart__input">
                     <h2>What are you in the mood for?</h2>
                     <div className="smart__input__form">
-                        <textarea className="smart__input__form__textarea" placeholder="e.g. Cheap restaurant for a dinner with friends" value={val}></textarea>
-                        <button onClick={() => this._doSmartSearch(val)} className="smart__input__form__button button big">Be smart and save me scrolling time</button>
+                        <textarea className="smart__input__form__textarea"
+                                  placeholder="e.g. Cheap restaurant for a dinner with friends"
+                                  onChange={(e) => this._handleInputChange(e)}
+                        ></textarea>
+                        <button onClick={(e) => this._doSmartSearch(e)}
+                                className="smart__input__form__button button big"
+                        >
+                            Be smart and save me scrolling time
+                        </button>
                     </div>
                 </div>
 
@@ -45,11 +57,13 @@ class Smart extends Component {
 
 Smart.propTypes = {
     smartSearch: PropTypes.func.isRequired,
+    userInput: PropTypes.string
 };
 
 function mapStateToProps(state) {
     return {
-        results: state.results.results
+        results: state.results.results,
+        userInput: state.search.userInput
     };
 }
 
@@ -57,6 +71,9 @@ function mapDispatchToProps(dispatch) {
     return {
         smartSearch: (text) => {
             dispatch(smartSearch(text));
+        },
+        userInputChange: (input) => {
+            dispatch(userInputChange(input));
         }
     };
 }

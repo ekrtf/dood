@@ -4,6 +4,7 @@ import * as types from '../actions/action-types';
 const initialState = {
     destination: '',
     term: '',
+    userInput: null,
     isPosting: false
 };
 
@@ -13,6 +14,12 @@ const search = function(state, action) {
     }
 
     switch(action.type) {
+
+        case types.USER_INPUT_CHANGE:
+            return _.assign({}, state, {
+                userInput: action.userInput
+            });
+
 
         case types.POST_SEARCH_REQUEST:
             return _.assign({}, state, {
