@@ -48,3 +48,34 @@ function postSearchFailure(error) {
         error
     };
 }
+
+// "user submits SMART search"
+export function smartSearch(userInput) {
+    return (dispatch) => {
+        dispatch(smartSearchRequest(userInput));
+        return http.post('/smart-search', { search: userInput })
+            .then(response => dispatch(smartSearchSuccess(response)))
+            .catch(e => dispatch(smartSearchFailure(e)));
+    };
+}
+
+function smartSearchRequest(userInput) {
+    return {
+        type: types.SMART_SEARCH_REQUEST,
+        input: userInput
+    };
+}
+
+function smartSearchSuccess(results) {
+    return {
+        type: types.SMART_SEARCH_SUCCESS,
+        results
+    };
+}
+
+function smartSearchFailure(error) {
+    return {
+        type: types.SMART_SEARCH_FAILURE,
+        error
+    };
+}

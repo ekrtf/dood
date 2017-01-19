@@ -39,7 +39,7 @@ Results.propTypes = {
 function mapStateToProps(state) {
     return {
         isPosting: state.search.isPosting,
-        results: state.search.results
+        results: state.results.results
     };
 }
 

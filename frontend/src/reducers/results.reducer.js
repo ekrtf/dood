@@ -3,7 +3,8 @@ import * as types from '../actions/action-types';
 
 const initialState = {
     slectedItem: {},
-    isFetching: false
+    isFetching: false,
+    results: []
 };
 
 const results = function(state, action) {
@@ -12,6 +13,17 @@ const results = function(state, action) {
     }
 
     switch(action.type) {
+
+        case types.SMART_SEARCH_SUCCESS:
+            return _.assign({}, state, {
+                results: action.results.slice(0, 4) // display only top 5
+            });
+
+        case types.POST_SEARCH_SUCCESS:
+            return _.assign({}, state, {
+                results: action.results,
+                isPosting: false
+            });
 
         case types.SELECT_ITEM_REQUEST:
             return _.assign({}, state, {

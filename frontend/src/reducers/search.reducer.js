@@ -4,8 +4,7 @@ import * as types from '../actions/action-types';
 const initialState = {
     destination: '',
     term: '',
-    isPosting: false,
-    results: []
+    isPosting: false
 };
 
 const search = function(state, action) {
@@ -24,11 +23,25 @@ const search = function(state, action) {
 
         case types.POST_SEARCH_SUCCESS:
             return _.assign({}, state, {
-                results: action.results,
                 isPosting: false
             });
 
         case types.POST_SEARCH_FAILURE:
+            // TODO UI error message
+            return _.assign({}, state, { isPosting: false });
+
+
+        case types.SMART_SEARCH_REQUEST:
+            return _.assign({}, state, {
+                isPosting: true
+            });
+
+        case types.SMART_SEARCH_SUCCESS:
+            return _.assign({}, state, {
+                isPosting: false
+            });
+
+        case types.SMART_SEARCH_FAILURE:
             // TODO UI error message
             return _.assign({}, state, { isPosting: false });
 
