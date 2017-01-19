@@ -14,6 +14,11 @@ const results = function(state, action) {
 
     switch(action.type) {
 
+        case types.VERSION_CHANGE:
+            return _.assign({}, state, {
+                results: []
+            });
+
         case types.SMART_SEARCH_SUCCESS:
             return _.assign({}, state, {
                 results: action.results.slice(0, 4) // display only top 5

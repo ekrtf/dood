@@ -29,7 +29,7 @@ class Smart extends Component {
     }
 
     render() {
-        const { userInput } = this.props;
+        const { userInput, areResultsEmpty } = this.props;
         return (
             <div className="smart">
                 <div className="smart__input">
@@ -42,12 +42,15 @@ class Smart extends Component {
                         <button onClick={(e) => this._doSmartSearch(e)}
                                 className="smart__input__form__button button big"
                         >
-                            Be smart and save me scrolling time
+                            Be smart and save me some scrolling time
                         </button>
                     </div>
                 </div>
 
                 <div className="smart__output">
+                    {!areResultsEmpty &&
+                        <h2 className="smart__output__title">Here are the top 5 results just for you:</h2>
+                    }
                     <Results />
                 </div>
             </div>
@@ -57,12 +60,13 @@ class Smart extends Component {
 
 Smart.propTypes = {
     smartSearch: PropTypes.func.isRequired,
+    areResultsEmpty: PropTypes.bool.isRequired,
     userInput: PropTypes.string
 };
 
 function mapStateToProps(state) {
     return {
-        results: state.results.results,
+        areResultsEmpty: state.results.results.length === 0,
         userInput: state.search.userInput
     };
 }
