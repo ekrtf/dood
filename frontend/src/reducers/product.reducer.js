@@ -3,7 +3,8 @@ import * as types from '../actions/action-types';
 
 const initialState = {
     showImages: false,
-    currentImage: 0
+    currentImage: 0,
+    chosenProduct: null
 };
 
 const product = function(state, action) {
@@ -12,6 +13,11 @@ const product = function(state, action) {
     }
 
     switch(action.type) {
+
+        case types.SET_CHOSEN_PRODUCT:
+            return _.assign({}, state, {
+                chosenProduct: action.product
+            });
 
         case types.TOGGLE_IMAGES:
             return _.assign({}, state, {

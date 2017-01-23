@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import L from 'leaflet';
 import { connect } from 'react-redux';
 import Lightbox from 'react-images';
-import { toggleImages, selectImage } from '../../actions/product.actions';
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import Rating from 'react-rating';
+import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
+import { Link } from 'react-router';
+import { toggleImages, selectImage, setChosenProduct } from '../../actions/product.actions';
 import _ from 'lodash';
 
 import iconUrl from '../../resources/images/marker-icon.png';
@@ -16,7 +17,6 @@ class Product extends Component {
         super(props);
 
         this.doSelectProduct = this.doSelectProduct.bind(this);
-        this.doAddProductToList = this.doAddProductToList.bind(this);
 
         this.openGallery = this.openGallery.bind(this);
         this.goToPrevious = this.goToPrevious.bind(this);
@@ -29,11 +29,7 @@ class Product extends Component {
     }
 
     doSelectProduct() {
-        // TODO
-    }
-
-    doAddProductToList() {
-        // TODO
+        this.props.setChosenProduct(this.props.product);
     }
 
     goToPrevious() {
@@ -133,8 +129,9 @@ class Product extends Component {
                 <div className="product__top">
                     <div className="proudct__top__name">{ name }</div>
                     <div className="product__top__buttonbox">
-                        <button className="button special" onClick={this.doSelectProduct}>Choose</button>
-                        <button className="button" onClick={this.doAddProductToList}>Add to Shortlist</button>
+                        <Link to="/feedback">
+                            <button className="button special" onClick={this.doSelectProduct}>Choose</button>
+                        </Link>
                     </div>
                 </div>
                 <div className="product__info">
@@ -186,6 +183,9 @@ function mapDispatchToProps(dispatch) {
         },
         doSelectImage: (imageIndex) => {
             dispatch(selectImage(imageIndex));
+        },
+        setChosenProduct: (product) => {
+            dispatch(setChosenProduct(product));
         }
     };
 }

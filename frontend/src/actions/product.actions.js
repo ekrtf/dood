@@ -13,3 +13,11 @@ export function selectImage(imageIndex) {
         imageIndex
     };
 }
+
+// "user chooses a venue"
+export function setChosenProduct(product) {
+    return {
+        type: types.SET_CHOSEN_PRODUCT,
+        product
+    };
+}

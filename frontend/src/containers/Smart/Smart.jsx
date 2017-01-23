@@ -69,9 +69,7 @@ class Smart extends Component {
                         </div>
                         <button onClick={(e) => this._doSmartSearch(e)}
                                 className="smart__input__form__button button big"
-                        >
-                            Be smart and save me some scrolling time
-                        </button>
+                        >Be smart and save me some scrolling time</button>
                     </div>
                 </div>
 

@@ -2,7 +2,7 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRedirect, browserHistory } from 'react-router';
-import { App, About, Smart, Search, Results, Product } from './containers';
+import { App, About, Smart, Search, Results, Product, Feedback } from './containers';
 import configureStore from './utils/configure-store';
 
 import './index.scss';
@@ -23,6 +23,7 @@ render(
                     <Route path="results/:resultId" component={Product} />
                 </Route>
                 <Route path="/ml" component={Smart} />
+                <Route path="/feedback" component={Feedback} />
             </Route>
         </Router>
     </Provider>,
