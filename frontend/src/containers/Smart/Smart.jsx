@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Results } from '../.';
 import { ResultItem } from '../../components';
-import { smartSearch, userInputChange, setUserLocation } from '../../actions/search.actions';
+import { smartSearch, userInputChange, getUserLocation } from '../../actions/search.actions';
 
 class Smart extends Component {
     constructor(props) {
@@ -20,7 +20,7 @@ class Smart extends Component {
         }
 
         navigator.geolocation.getCurrentPosition((position) => {
-            this.props.setUserLocation({
+            this.props.getUserLocation({
                 timestamp: position.timestamp,
                 accuracy: position.coords.accuracy,
                 location: {
@@ -50,7 +50,7 @@ class Smart extends Component {
     }
 
     render() {
-        const { userInput, areResultsEmpty } = this.props;
+        const { userInput, areResultsEmpty, userLocation } = this.props;
         return (
             <div className="smart">
                 <div className="smart__input">
@@ -60,6 +60,9 @@ class Smart extends Component {
                                   placeholder="e.g. Cheap restaurant for a dinner with friends"
                                   onChange={(e) => this._handleInputChange(e)}
                         ></textarea>
+                        <div>
+                            Location: { userLocation || 'NA' }
+                        </div>
                         <button onClick={(e) => this._doSmartSearch(e)}
                                 className="smart__input__form__button button big"
                         >
@@ -82,6 +85,7 @@ class Smart extends Component {
 Smart.propTypes = {
     smartSearch: PropTypes.func.isRequired,
     areResultsEmpty: PropTypes.bool.isRequired,
+    userLocation: PropTypes.string,
     userInput: PropTypes.string
 };
 
@@ -101,8 +105,8 @@ function mapDispatchToProps(dispatch) {
         userInputChange: (input) => {
             dispatch(userInputChange(input));
         },
-        setUserLocation: (location) => {
-            dispatch(setUserLocation(location));
+        getUserLocation: (location) => {
+            dispatch(getUserLocation(location));
         }
     };
 }

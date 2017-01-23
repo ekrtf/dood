@@ -16,7 +16,7 @@ const search = function(state, action) {
 
     switch(action.type) {
 
-        case types.SET_USER_LOCATION:
+        case types.USER_LOCATION_SUCCESS:
             return _.assign({}, state, {
                 userLocation: action.userLocation
             });

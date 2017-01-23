@@ -2,10 +2,31 @@ import * as types from './action-types';
 import http from '../utils/http';
 
 // "server returns user location (i.e. user allowed browser to access location)"
-export function setUserLocation(location) {
+export function getUserLocation(browserCoords) {
+    return (dispatch) => {
+        dispatch(userLocationRequest(browserCoords));
+        return http.get('/context/reverseloc', browserCoords.location)
+            .then(response => dispatch(userLocationSuccess(response)))
+            .catch(e => dispatch(userLocationFailure(e)));
+    };
+}
+
+function userLocationRequest() {
     return {
-        type: types.SET_USER_LOCATION,
-        userLocation: location
+        type: types.USER_LOCATION_REQUEST
+    };
+}
+
+function userLocationSuccess(location) {
+    return {
+        type: types.USER_LOCATION_SUCCESS,
+        userLocation: location[0].city
+    };
+}
+
+function userLocationFailure() {
+    return {
+        type: types.USER_LOCATION_FAILURE
     };
 }
 

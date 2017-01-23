@@ -20,7 +20,7 @@ ContextCtrl.prototype.getReverseLoc = function($done, $error, $input, $service) 
     const lng = $input.query.lng;
 
     if (!lat || !lng) {
-        throw new Error('Invalid location, cannot get context.');
+        $error('Invalid location, cannot get context.');
     }
 
     $service.reverseLocation({ lat, lng })
