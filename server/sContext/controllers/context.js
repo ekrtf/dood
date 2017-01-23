@@ -1,5 +1,7 @@
 'use strict';
 
+const _ = require('lodash');
+
 module.exports = ContextCtrl;
 
 function ContextCtrl() {}
@@ -11,19 +13,17 @@ function ContextCtrl() {}
  * * * * * * * * * */
 
 /**
- * GET /api/v1/context
+ * GET /api/v1/context/reverseloc
  */
-ContextCtrl.prototype.getContext = function($done, $error, $logger, contextModel) {
-    const location = {
-        lat: _.parseInt($input.query.lat),
-        lng: _.parseInt($input.query.lng)
-    };
+ContextCtrl.prototype.getReverseLoc = function($done, $error, $input, $service) {
+    const lat = $input.query.lat;
+    const lng = $input.query.lng;
 
-    if (!location) {
+    if (!lat || !lng) {
         throw new Error('Invalid location, cannot get context.');
     }
 
-    contextModel.getContext(location)
+    $service.reverseLocation({ lat, lng })
         .then($done)
         .catch($error);
 };
@@ -31,7 +31,7 @@ ContextCtrl.prototype.getContext = function($done, $error, $logger, contextModel
 /**
  * GET /api/v1/context/outdoors
  */
-ContextCtrl.prototype.disableOutdoors = function($input, $done, $error, $logger, contextModel) {
+ContextCtrl.prototype.disableOutdoors = function($input, $done, $error, $service) {
     const location = {
         lat: _.parseInt($input.query.lat),
         lng: _.parseInt($input.query.lng)
@@ -41,7 +41,7 @@ ContextCtrl.prototype.disableOutdoors = function($input, $done, $error, $logger,
         throw new Error('Invalid location, cannot verify outdoor activities.');
     }
 
-    contextModel.disableOutdoors(location)
+    $service.isRaining(location)
         .then($done)
         .catch($error);
 };

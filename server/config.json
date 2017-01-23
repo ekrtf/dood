@@ -23,7 +23,10 @@
             "apiKey": "ad928a3256912c856f159ed2d5ac55409db1d3c1"
         }
     },
-    "apis": {
+    "sContext": {
+        "geocoder": {
+            "key": "18b40446a2f75111a44ad6636c52951e"
+        },
         "forecast": {
             "key": "95f0d13da1b7180723bb9c87d6c185b8"
         }

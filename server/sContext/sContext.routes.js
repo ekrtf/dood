@@ -1,9 +1,9 @@
 module.exports = [
     {
-        api: '/api/v1/context',
+        api: '/api/v1/context/reverseloc',
         controller: 'context',
         method: {
-            get: 'getContext'
+            get: 'getReverseLoc'
         }
     },
     {
