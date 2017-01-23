@@ -2,12 +2,33 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Results } from '../.';
 import { ResultItem } from '../../components';
-import { smartSearch, userInputChange } from '../../actions/search.actions';
+import { smartSearch, userInputChange, setUserLocation } from '../../actions/search.actions';
 
 class Smart extends Component {
     constructor(props) {
         super(props);
         this._doSmartSearch = this._doSmartSearch.bind(this);
+    }
+
+    componentDidMount() {
+        this.getUserLocation();
+    }
+
+    getUserLocation() {
+        if (!navigator.geolocation) {
+            // TODO: display input for user
+        }
+
+        navigator.geolocation.getCurrentPosition((position) => {
+            this.props.setUserLocation({
+                timestamp: position.timestamp,
+                accuracy: position.coords.accuracy,
+                location: {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                }
+            });
+        });
     }
 
     _doSmartSearch(e) {
@@ -67,7 +88,8 @@ Smart.propTypes = {
 function mapStateToProps(state) {
     return {
         areResultsEmpty: state.results.results.length === 0,
-        userInput: state.search.userInput
+        userInput: state.search.userInput,
+        userLocation: state.search.userLocation
     };
 }
 
@@ -78,6 +100,9 @@ function mapDispatchToProps(dispatch) {
         },
         userInputChange: (input) => {
             dispatch(userInputChange(input));
+        },
+        setUserLocation: (location) => {
+            dispatch(setUserLocation(location));
         }
     };
 }

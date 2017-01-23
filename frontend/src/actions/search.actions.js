@@ -1,6 +1,14 @@
 import * as types from './action-types';
 import http from '../utils/http';
 
+// "server returns user location (i.e. user allowed browser to access location)"
+export function setUserLocation(location) {
+    return {
+        type: types.SET_USER_LOCATION,
+        userLocation: location
+    };
+}
+
 // "user types in term input"
 export function termChange(term) {
     return {

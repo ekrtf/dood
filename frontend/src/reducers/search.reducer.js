@@ -5,7 +5,8 @@ const initialState = {
     destination: '',
     term: '',
     userInput: null,
-    isPosting: false
+    isPosting: false,
+    userLocation: null
 };
 
 const search = function(state, action) {
@@ -14,6 +15,12 @@ const search = function(state, action) {
     }
 
     switch(action.type) {
+
+        case types.SET_USER_LOCATION:
+            return _.assign({}, state, {
+                userLocation: action.userLocation
+            });
+
 
         case types.USER_INPUT_CHANGE:
             return _.assign({}, state, {
