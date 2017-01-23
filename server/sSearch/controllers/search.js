@@ -34,7 +34,9 @@ SearchCtrl.prototype.getItemDetails = function($input, $error, $done, searchMode
 
 SearchCtrl.prototype.smartSearch = function($input, $error, $done, searchModel) {
     const text = $input.body.search;
-    searchModel.smartSearch(text)
+    const location = $input.body.location;
+
+    searchModel.smartSearch(text, location)
         .then($done)
         .catch(function(e) {
             console.log(e);

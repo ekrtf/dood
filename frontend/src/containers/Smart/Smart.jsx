@@ -32,7 +32,11 @@ class Smart extends Component {
     }
 
     _doSmartSearch(e) {
-        this.props.smartSearch(this.props.userInput);
+        if (!this.props.userInput || !this.props.userLocation) {
+            // TODO: error message
+        } else {
+            this.props.smartSearch(this.props.userInput, this.props.userLocation);
+        }
     }
 
     _handleInputChange(e) {

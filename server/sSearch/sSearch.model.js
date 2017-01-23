@@ -84,9 +84,9 @@ SearchModel.prototype.getItemDetails = function(itemId) {
     return this._getYelpBusinessDetails(itemId);
 };
 
-SearchModel.prototype.smartSearch = co.wrap(function*(userInput) {
+SearchModel.prototype.smartSearch = co.wrap(function*(userInput, location) {
     const keywords = yield this._getKeywords(userInput);
-    return this._searchYelp('London', keywords[0].text);
+    return this._searchYelp(location, keywords[0].text);
 });
 
 /* * * * * * * * * *
@@ -106,7 +106,7 @@ SearchModel.prototype.smartSearch = co.wrap(function*(userInput) {
  */
 SearchModel.prototype.translateUserToWeb = function(search, location) {
     // this.expandConcept(search);
-    this.languageAlchemy(search);
+    // this.languageAlchemy(search);
 
     // TODO THE HARD PART
 
@@ -150,12 +150,6 @@ SearchModel.prototype.doodifyResults = function(rawResults, context, filters) {
  * Calls to external services
  *
  * * * * * * * * * */
-
-SearchModel.prototype._getContext = function(location) {
-    const lat = _.toString(location.lat);
-    const lng = _.toString(location.lng);
-    return this.$services.find('sContext').get('/api/v1/context?lat=' + lat + '?lng=' + lng);
-};
 
 SearchModel.prototype._getConcepts = function(search) {
     const query = { search };

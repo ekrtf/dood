@@ -87,10 +87,10 @@ function postSearchFailure(error) {
 }
 
 // "user submits SMART search"
-export function smartSearch(userInput) {
+export function smartSearch(userInput, userLocation) {
     return (dispatch) => {
         dispatch(smartSearchRequest(userInput));
-        return http.post('/smart-search', { search: userInput })
+        return http.post('/smart-search', { search: userInput, location: userLocation })
             .then(response => dispatch(smartSearchSuccess(response)))
             .catch(e => dispatch(smartSearchFailure(e)));
     };
