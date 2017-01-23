@@ -26,3 +26,4 @@ export const SELECT_ITEM_FAILURE = 'SELECT_ITEM_FAILURE';
 /** Product actions */
 export const TOGGLE_IMAGES = 'TOGGLE_IMAGES';
 export const SELECT_IMAGE = 'SELECT_IMAGE';
+export const SET_CHOSEN_PRODUCT = 'SET_CHOSEN_PRODUCT';

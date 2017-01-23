@@ -1,12 +1,20 @@
 .about {
 	width: 100%;
-    top: 75px;
-    height: calc(100% - $headerbar-height);
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	margin: 0 5%;
 }
 
 .about__content {
-	width: 90%;
+	width: 100%;
+}
+
+.about__content__greet {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}
+
+.about__start {
+	width: 100%;
+	display: flex;
+	justify-content: center;
 }
