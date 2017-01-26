@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FormControl } from 'react-bootstrap';
 import { Link } from 'react-router';
+import { Results } from '../.';
 import { setVersion } from '../../actions/results.actions';
 import {
     submitSearch,
@@ -9,7 +10,7 @@ import {
     destinationChange
 } from '../../actions/search.actions';
 
-class Search extends Component {
+class Clone extends Component {
     constructor(props) {
         super(props);
         this._handleTermChange = this._handleTermChange.bind(this);
@@ -35,19 +36,22 @@ class Search extends Component {
 
     render() {
         return (
-            <div className="search">
-                <div className="search__form">
-                    <div className="search__form__item--destination">
+            <div className="clone">
+                <div className="clone__form">
+                    <div className="clone__form__item--destination">
                         <FormControl type="text" placeholder="What are you looking for?" onChange={(e) => this._handleTermChange(e)} />
                     </div>
-                    <div className="search__form__item--destination">
+                    <div className="clone__form__item--destination">
                         <FormControl type="text" placeholder="Destination" onChange={(e) => this._handleDestinationChange(e)} />
                     </div>
-                    <div className="search__form__item">
+                    <div className="clone__form__item">
                         <Link to="/clone/results" onClick={(e) => this._handleSubmit(e)}>
                             <button className="button big">Search</button>
                         </Link>
                     </div>
+                </div>
+                <div className="clone__output">
+                    <Results />
                 </div>
             </div>
         );
@@ -78,4 +82,4 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Search);
+export default connect(mapStateToProps, mapDispatchToProps)(Clone);
