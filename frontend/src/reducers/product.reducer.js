@@ -8,7 +8,8 @@ const initialState = {
     rating: null,
     comment: null,
     email: null,
-    isSubmitted: false
+    isSubmitted: false,
+    disableFinish: true
 };
 
 const product = function(state, action) {
@@ -35,7 +36,8 @@ const product = function(state, action) {
 
         case types.SET_RATING:
             return _.assign({}, state, {
-                rating: action.rating
+                rating: action.rating,
+                disableFinish: false
             });
 
         case types.SET_CHOSEN_PRODUCT:

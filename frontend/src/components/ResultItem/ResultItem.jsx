@@ -31,7 +31,7 @@ class ResultItem extends Component {
         const imageUrl = result.image_url; // TODO normalize this on the server
 
         return (
-            <Link to={`/clone/results/${id}`} onClick={(e) => this.selectItem(e)}>
+            <Link to={`/results/${id}`} onClick={(e) => this.selectItem(e)}>
                 <div className="ritem">
                     <div className="ritem__image">
                         <img className="ritem__image__img" alt="pic" src={imageUrl} />

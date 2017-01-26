@@ -45,9 +45,7 @@ class Clone extends Component {
                         <FormControl type="text" placeholder="Destination" onChange={(e) => this._handleDestinationChange(e)} />
                     </div>
                     <div className="clone__form__item">
-                        <Link to="/clone/results" onClick={(e) => this._handleSubmit(e)}>
-                            <button className="button big">Search</button>
-                        </Link>
+                        <button onClick={(e) => this._handleSubmit(e)} className="button big">Search</button>
                     </div>
                 </div>
                 <div className="clone__output">

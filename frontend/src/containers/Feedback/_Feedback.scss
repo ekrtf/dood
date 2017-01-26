@@ -14,11 +14,12 @@
     font-size: 40px;
 }
 
+.feedback__prompt__message {
+    height: 200px;
+}
+
 .feedback__email {
     margin-top: 30px;
-    input {
-        width: 40%;
-    }
 }
 
 .feedback__submit {

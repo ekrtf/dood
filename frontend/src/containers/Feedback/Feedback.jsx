@@ -29,7 +29,7 @@ class Feedback extends Component {
     }
 
     render() {
-        const { rating, isSubmitted } = this.props;
+        const { rating, disableFinish } = this.props;
         return (
             <div className="feedback">
                 <div className="feedback__greet">
@@ -63,9 +63,9 @@ class Feedback extends Component {
                 <div className="feedback__submit">
                     <button onClick={(e) => this._handleFinish(e)}
                             className="button special big"
+                            disabled={disableFinish}
                     >Finish</button>
                 </div>
-                isSub: {isSubmitted.toString()}
             </div>
         );
     }
@@ -76,7 +76,8 @@ Feedback.propTypes = {
     rating: PropTypes.number,
     email: PropTypes.string,
     comment: PropTypes.string,
-    isSubmitted: PropTypes.bool
+    isSubmitted: PropTypes.bool,
+    disableFinish: PropTypes.bool.isRequired
 };
 
 function mapStateToProps(state) {
@@ -85,7 +86,8 @@ function mapStateToProps(state) {
         rating: state.product.rating,
         email: state.product.email,
         comment: state.product.comment,
-        isSubmitted: state.product.isSubmitted
+        isSubmitted: state.product.isSubmitted,
+        disableFinish: state.product.disableFinish
     };
 }
 

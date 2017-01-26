@@ -12,7 +12,7 @@ $item-radius: 0.375em;
 
 .clone__form {
 	padding: 0 5%;
-	height: 200px;
+	margin-bottom: 20px;
     width: 100%;
 	display: flex;
     align-items: center;
@@ -46,5 +46,5 @@ $item-radius: 0.375em;
 }
 
 .clone__output {
-	
+	width: 100%;
 }
