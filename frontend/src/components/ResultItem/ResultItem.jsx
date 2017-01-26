@@ -10,7 +10,7 @@ class ResultItem extends Component {
 
     selectItem(e) {
         e.stopPropagation();
-        const itemId = this.props.result.id;
+        const itemId = this.props.result.resultId;
         this.props.onSelect(itemId);
         // TODO navigate to product page
     }
@@ -25,13 +25,13 @@ class ResultItem extends Component {
 
     render() {
         const result = this.props.result;
-        const { id, name, price, rating, phone, location } = result;
+        const { resultId, name, price, rating, phone, location } = result;
         const categories = result.categories.map(c => c.title);
         const numberOfReviews = result.review_count;
-        const imageUrl = result.image_url; // TODO normalize this on the server
+        const imageUrl = result.imageUrl;
 
         return (
-            <Link to={`/results/${id}`} onClick={(e) => this.selectItem(e)}>
+            <Link to={`/results/${resultId}`} onClick={(e) => this.selectItem(e)}>
                 <div className="ritem">
                     <div className="ritem__image">
                         <img className="ritem__image__img" alt="pic" src={imageUrl} />
@@ -44,7 +44,7 @@ class ResultItem extends Component {
                             start={0}
                             stop={5}
                             readonly={true}
-                            initialRate={rating}
+                            initialRate={Number(rating)}
                             empty="glyphicon glyphicon-star-empty"
                             full="glyphicon glyphicon-star"
                         />

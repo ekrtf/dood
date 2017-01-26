@@ -113,7 +113,7 @@ class Product extends Component {
     }
 
     render() {
-        const backLink = this.props.version === 'ml' ? '/ml' : '/clone/results';
+        const backLink = '/' + this.props.version;
         const { name, price, rating, coordinates } = this.props.product;
 
         let position = [ 0, 0 ];

@@ -12,9 +12,10 @@ function SearchCtrl() {}
  *
  * * * * * * * * * */
 
-SearchCtrl.prototype.doSearch = function($input, $error, $done, searchModel) {
+SearchCtrl.prototype.cloneSearch = function($input, $error, $done, searchModel) {
     const { destination, term } = $input.body;
-    searchModel.doSearch(destination, term)
+
+    searchModel.cloneSearch(destination, term)
         .then($done)
         .catch(function(e) {
             console.log(e);
