@@ -1,9 +1,20 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Rating from 'react-rating';
+import { setRating } from '../../actions/product.actions';
 
 class Feedback extends Component {
+    constructor(props) {
+        super(props);
+        this._handleRatingChange = this._handleRatingChange.bind(this);
+    }
+
+    _handleRatingChange(rating) {
+        this.props.setRating(rating);
+    }
+
     render() {
+        const rating = this.props.rating;
         return (
             <div className="feedback">
                 <div className="feedback__greet">
@@ -15,6 +26,8 @@ class Feedback extends Component {
                         <Rating
                             start={0}
                             stop={5}
+                            initialRate={rating}
+                            onChange={this._handleRatingChange}
                             empty="glyphicon glyphicon-star-empty"
                             full="glyphicon glyphicon-star"
                         />
@@ -40,17 +53,22 @@ class Feedback extends Component {
 }
 
 Feedback.propTypes = {
-    chosenProduct: PropTypes.object // isRequired
+    chosenProduct: PropTypes.object, // isRequired
+    rating: PropTypes.number
 };
 
 function mapStateToProps(state) {
     return {
-        chosenProduct: state.product.chosenProduct
+        chosenProduct: state.product.chosenProduct,
+        rating: state.product.rating
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
+        setRating: (rating) => {
+            dispatch(setRating(rating));
+        }
     };
 }
 

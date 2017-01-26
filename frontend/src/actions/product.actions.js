@@ -21,3 +21,11 @@ export function setChosenProduct(product) {
         product
     };
 }
+
+// "user sets the feedback rating"
+export function setRating(rating) {
+	return {
+		type: types.SET_RATING,
+		rating
+	};
+}

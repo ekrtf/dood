@@ -50,6 +50,7 @@ AnalyticModel.prototype.logFeedback = function(feedback) {
             feedbackId: feedbackId,
             searchId: 'TODO',
             comment: feedback.comment,
+            version: feedback.version,
             email: feedback.email,
             rating: Number(feedback.rating),
             createdAt: Date.now()

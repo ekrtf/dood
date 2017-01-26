@@ -4,7 +4,8 @@ import * as types from '../actions/action-types';
 const initialState = {
     showImages: false,
     currentImage: 0,
-    chosenProduct: null
+    chosenProduct: null,
+    rating: null
 };
 
 const product = function(state, action) {
@@ -13,6 +14,11 @@ const product = function(state, action) {
     }
 
     switch(action.type) {
+
+        case types.SET_RATING:
+            return _.assign({}, state, {
+                rating: action.rating
+            });
 
         case types.SET_CHOSEN_PRODUCT:
             return _.assign({}, state, {
