@@ -75,9 +75,9 @@ SearchModel.prototype.cloneSearch = co.wrap(function*(destination, term) {
  * @return {Object} result
  */
 SearchModel.prototype.smartSearch = co.wrap(function*(userInput, location) {
-    const keywords = yield this._getKeywords(userInput);
+    const keyword = yield this._getKeywords(userInput);
     const searchParams = {
-        term: keywords[0].text,
+        term: keyword,
         location
     };
 
@@ -190,6 +190,41 @@ SearchModel.prototype._getResults = function(searchId) {
         });
 };
 
+/**
+ * Get keywords from DB or Watson
+ * @param  {String} userInput
+ * @return {Promise}
+ */
+SearchModel.prototype._getKeywords = co.wrap(function*(userInput) {
+    const dbQuery = yield this.db('keywords').where({ userInput }).select('keyword');
+    const keyword = _.get(dbQuery, '[0].keyword', undefined);
+    
+    // if the keyword is in the db, return it
+    if (_.isString(keyword)) {
+        return keyword;
+    }
+
+    // otherwise query Watson
+    const watsonKeywords = yield this._getWatsonKeywords(userInput);
+    const savedKeyword = watsonKeywords[0].text
+    yield this._createKeyword(userInput, savedKeyword);
+    return savedKeyword;
+});
+
+/**
+ * Insert Watson results into DB
+ * @param  {String} searchId
+ * @return {Promise}
+ */
+SearchModel.prototype._createKeyword = function(userInput, keyword) {
+    return this.db('Keywords').insert({
+        keywordId: uuid.v4(),
+        createdAt: Date.now(),
+        keyword,
+        userInput
+    });
+};
+
 function stringifyJsonColumns(result) {
     result.location = JSON.parse(result.location).data;
     result.categories = JSON.parse(result.categories).data;
@@ -218,7 +253,7 @@ SearchModel.prototype._getConcepts = function(search) {
     return this.$services.find('sWatson').post('/api/v1/watson/concepts', query);
 };
 
-SearchModel.prototype._getKeywords = function(search) {
+SearchModel.prototype._getWatsonKeywords = function(search) {
     const query = { search };
     return this.$services.find('sWatson').post('/api/v1/watson/keywords', query);
 };

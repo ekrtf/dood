@@ -13,14 +13,14 @@ module.exports = function(config) {
     });
 
     return co(function*() {
-        let accountsTable = yield db.schema.createTableIfNotExists('Searches', (search) => {
+        yield db.schema.createTableIfNotExists('Searches', (search) => {
             search.text('searchId').notNullable().primary();
             search.string('location').notNullable();
             search.string('term').notNullable();
             search.timestamp('createdAt').notNullable();
         });
 
-        let transactionsTable = yield db.schema.createTableIfNotExists('Results', (result) => {
+        yield db.schema.createTableIfNotExists('Results', (result) => {
             result.text('resultId').notNullable().primary();
             result.string('searchId').notNullable().references('searchId').inTable('Searches');
             result.string('sourceId').notNullable();
@@ -35,6 +35,13 @@ module.exports = function(config) {
             result.json('reviews');
             result.json('location');
             result.timestamp('createdAt').notNullable();
+        });
+
+        yield db.schema.createTableIfNotExists('Keywords', (key) => {
+            key.text('keywordId').notNullable().primary();
+            key.string('userInput').notNullable();
+            key.string('keyword').notNullable(); // store several
+            key.timestamp('createdAt').notNullable();
         });
 
         return db;
