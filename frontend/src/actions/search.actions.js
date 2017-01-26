@@ -105,19 +105,24 @@ function postSearchFailure(error) {
 }
 
 // "user submits SMART search"
-export function smartSearch(userInput, userLocation) {
-    return (dispatch) => {
-        dispatch(smartSearchRequest(userInput));
-        return http.post('/smart-search', { search: userInput, location: userLocation })
+export function smartSearch() {
+    return (dispatch, getState) => {
+        const state = getState();
+        const params = {
+            search: state.search.userInput,
+            location: state.search.userLocation
+        };
+
+        dispatch(smartSearchRequest());
+        return http.post('/smart-search', params)
             .then(response => dispatch(smartSearchSuccess(response)))
             .catch(e => dispatch(smartSearchFailure(e)));
     };
 }
 
-function smartSearchRequest(userInput) {
+function smartSearchRequest() {
     return {
-        type: types.SMART_SEARCH_REQUEST,
-        input: userInput
+        type: types.SMART_SEARCH_REQUEST
     };
 }
 

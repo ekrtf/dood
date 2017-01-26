@@ -136,8 +136,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        smartSearch: (text) => {
-            dispatch(smartSearch(text));
+        smartSearch: () => {
+            dispatch(smartSearch());
         },
         userInputChange: (input) => {
             dispatch(userInputChange(input));
