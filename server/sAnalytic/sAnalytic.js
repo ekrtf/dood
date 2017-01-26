@@ -6,5 +6,5 @@
 module.exports = AnalyticService;
 
 function AnalyticService($resource) {
-    $resource.add('analyticModel', require('./sSearch.model.js'));
+    $resource.add('analyticModel', require('./sAnalytic.model.js'));
 }

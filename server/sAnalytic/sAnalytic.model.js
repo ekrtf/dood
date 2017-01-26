@@ -43,18 +43,14 @@ AnalyticModel.prototype.$init = co.wrap(function*() {
  */
 AnalyticModel.prototype.logFeedback = function(feedback) {
     const self = this;
-
-    return co(function*() {
-        const feedbackId = uuid.v4();
-        return self.db('Feedback').insert({
-            feedbackId: feedbackId,
-            searchId: 'TODO',
-            comment: feedback.comment,
-            version: feedback.version,
-            email: feedback.email,
-            rating: Number(feedback.rating),
-            createdAt: Date.now()
-        });
+    return self.db('Feedback').insert({
+        feedbackId: uuid.v4(),
+        searchId: 'TODO',
+        comment: feedback.comment,
+        version: feedback.version,
+        email: feedback.email,
+        rating: Number(feedback.rating),
+        createdAt: Date.now()
     });
 };
 

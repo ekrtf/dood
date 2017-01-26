@@ -5,7 +5,10 @@ const initialState = {
     showImages: false,
     currentImage: 0,
     chosenProduct: null,
-    rating: null
+    rating: null,
+    comment: null,
+    email: null,
+    isSubmitted: false
 };
 
 const product = function(state, action) {
@@ -14,6 +17,21 @@ const product = function(state, action) {
     }
 
     switch(action.type) {
+
+        case types.POST_FEEDBACK_SUCCESS:
+            return _.assign({}, state, {
+                isSubmitted: true
+            });
+
+        case types.SET_COMMENT:
+            return _.assign({}, state, {
+                comment: action.comment
+            });
+
+        case types.SET_EMAIL:
+            return _.assign({}, state, {
+                email: action.email
+            });
 
         case types.SET_RATING:
             return _.assign({}, state, {
