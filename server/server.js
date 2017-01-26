@@ -7,4 +7,5 @@ app.load([
     'sContext',
     'sYelp',
     'sWatson',
+    'sAnalytic'
 ]).then((hyper) => hyper.start());

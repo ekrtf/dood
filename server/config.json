@@ -15,6 +15,14 @@
             }
         }
     },
+    "sAnalytic": {
+        "database": {
+            "client": "sqlite",
+            "connection": {
+                "filename": "sAnalytic.sqlite"
+            }
+        }
+    },
     "sWatson": {
         "credentials": {
             "url": "https://gateway-a.watsonplatform.net/calls",
