@@ -9,7 +9,11 @@
     "convert": "cd bin && node convert",
     "report": "pandoc -s -S *.md > MASTER.docx",
     "lint": "node_modules/.bin/eslint **/**/*.js",
-    "start": "node ./server/server.js"
+    "start": "cd server && node ./server.js"
+  },
+  "engines": {
+    "npm": "~3.10.3",
+    "node": "~6.6.0"
   },
   "repository": {
     "type": "git",
@@ -26,16 +30,16 @@
   "author": "Emile Kratiroff",
   "license": "MIT",
   "devDependencies": {
-    "babel-core": "^6.7.7",
-    "babel-eslint": "^7.1.0",
-    "eslint": "^3.9.1",
-    "eslint-config-airbnb": "^12.0.0",
-    "eslint-plugin-import": "^2.1.0",
-    "eslint-plugin-jsx-a11y": "^2.2.3",
-    "eslint-plugin-react": "^6.6.0",
-    "webpack": "^1.13.3",
-    "webpack-dev-middleware": "^1.8.4",
-    "webpack-hot-middleware": "^2.13.1",
-    "shelljs": "^0.7.5"
+    "babel-core": "~6.7.7",
+    "babel-eslint": "~7.1.0",
+    "eslint": "~3.9.1",
+    "eslint-config-airbnb": "~12.0.0",
+    "eslint-plugin-import": "~2.1.0",
+    "eslint-plugin-jsx-a11y": "~2.2.3",
+    "eslint-plugin-react": "~6.6.0",
+    "webpack": "~1.13.3",
+    "webpack-dev-middleware": "~1.8.4",
+    "webpack-hot-middleware": "~2.13.1",
+    "shelljs": "~0.7.5"
   }
 }
