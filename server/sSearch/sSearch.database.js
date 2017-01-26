@@ -15,8 +15,8 @@ module.exports = function(config) {
     return co(function*() {
         let accountsTable = yield db.schema.createTableIfNotExists('Searches', (search) => {
             search.text('searchId').notNullable().primary();
-            search.json('params').notNullable();
-            search.string('choice'); //.references('Result');
+            search.string('location').notNullable();
+            search.string('term').notNullable();
             search.timestamp('createdAt').notNullable();
         });
 

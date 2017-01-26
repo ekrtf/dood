@@ -46,13 +46,19 @@ SearchModel.prototype.$init = co.wrap(function*() {
  * @return {Object} result  user results
  */
 SearchModel.prototype.cloneSearch = co.wrap(function*(destination, term) {
-    const searchId = uuid.v4();
     const searchParams = {
         location: destination,
         term
     };
 
+    // if this search has already been done, return results
+    const existingSearchId = yield this._checkIfSearchExists(searchParams)
+    if (_.isString(existingSearchId)) {
+        return this._getResults(existingSearchId);
+    }
+
     // record search
+    const searchId = uuid.v4();
     yield this._createSearch(searchId, searchParams);
 
     // query yelp and save results
@@ -69,14 +75,20 @@ SearchModel.prototype.cloneSearch = co.wrap(function*(destination, term) {
  * @return {Object} result
  */
 SearchModel.prototype.smartSearch = co.wrap(function*(userInput, location) {
-    const searchId = uuid.v4();
     const keywords = yield this._getKeywords(userInput);
     const searchParams = {
         term: keywords[0].text,
         location
     };
 
+    // if this search has already been done, return results
+    const existingSearchId = yield this._checkIfSearchExists(searchParams)
+    if (_.isString(existingSearchId)) {
+        return this._getResults(existingSearchId);
+    }
+
     // record search
+    const searchId = uuid.v4();
     yield this._createSearch(searchId, searchParams);
 
     // query yelp and save results
@@ -94,7 +106,7 @@ SearchModel.prototype.getItemDetails = co.wrap(function*(itemId) {
     const resultDetails = yield this._getYelpBusinessDetails(sourceId[0].sourceId);
     yield this._extendResult(itemId, resultDetails);
     const rawResult = yield this.db('Results').where('resultId', itemId);
-    return _makeUiReady(rawResult[0]);
+    return stringifyJsonColumns(rawResult[0]);
 });
 
 /* * * * * * * * * *
@@ -104,6 +116,16 @@ SearchModel.prototype.getItemDetails = co.wrap(function*(itemId) {
  * * * * * * * * * */
 
 /**
+ * Check if the results exist in DB
+ * @param  {Object}  search
+ * @return {Object} query
+ */
+SearchModel.prototype._checkIfSearchExists = co.wrap(function*(searchParams) {
+    const search = yield this.db('Searches').where(searchParams).select('searchId');
+    return _.get(search, '[0].searchId', undefined);
+});
+
+/**
  * Record user search
  * @param  {Array}  search
  * @return {Object} query
@@ -111,7 +133,8 @@ SearchModel.prototype.getItemDetails = co.wrap(function*(itemId) {
 SearchModel.prototype._createSearch = function(searchId, searchParams) {
     return this.db('Searches').insert({
         searchId: searchId,
-        params: JSON.stringify(searchParams),
+        location: searchParams.location,
+        term: searchParams.term,
         createdAt: Date.now()
     });
 };
@@ -163,11 +186,11 @@ SearchModel.prototype._extendResult = function(resultId, resultDetails) {
 SearchModel.prototype._getResults = function(searchId) {
     return this.db.select('*').from('Results').where('searchId', searchId)
         .then((response) => {
-            return _.map(response, _makeUiReady);
+            return _.map(response, stringifyJsonColumns);
         });
 };
 
-function _makeUiReady(result) {
+function stringifyJsonColumns(result) {
     result.location = JSON.parse(result.location).data;
     result.categories = JSON.parse(result.categories).data;
 
