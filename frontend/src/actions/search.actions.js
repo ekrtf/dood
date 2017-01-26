@@ -55,8 +55,13 @@ export function userInputChange(userInput) {
 }
 
 // "user submits seach"
-export function submitSearch(searchParams) {
-    return (dispatch) => {
+export function submitSearch() {
+    return (dispatch, getState) => {
+        const state = getState();
+        const searchParams = {
+            term: state.search.term,
+            destination: state.search.destination
+        };
         dispatch(postSearchRequest(searchParams));
         return http.post('/search', searchParams)
             .then(response => dispatch(postSearchSuccess(response)))
@@ -66,9 +71,7 @@ export function submitSearch(searchParams) {
 
 function postSearchRequest(searchParams) {
     return {
-        type: types.POST_SEARCH_REQUEST,
-        destination: searchParams.destination,
-        term: searchParams.term
+        type: types.POST_SEARCH_REQUEST
     };
 }
 

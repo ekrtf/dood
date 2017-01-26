@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { SearchForm } from '../../components';
+import { FormControl } from 'react-bootstrap';
+import { Link } from 'react-router';
 import { setVersion } from '../../actions/results.actions';
 import {
     submitSearch,
@@ -11,31 +12,42 @@ import {
 class Search extends Component {
     constructor(props) {
         super(props);
+        this._handleTermChange = this._handleTermChange.bind(this);
+        this._handleDestinationChange = this._handleDestinationChange.bind(this);
+        this._handleSubmit = this._handleSubmit.bind(this);
     }
 
     componentDidMount() {
         this.props.setVersion('clone');
     }
 
-    render() {
-        const {
-            onSearchSubmit,
-            onSearchTermChange,
-            onSearchDestinationChange,
-            destination,
-            term
-        } = this.props;
+    _handleTermChange(e) {
+        this.props.onSearchTermChange(e.target.value);
+    }
 
+    _handleDestinationChange(e) {
+        this.props.onSearchDestinationChange(e.target.value);
+    }
+
+    _handleSubmit(e) {
+        this.props.onSearchSubmit();
+    }
+
+    render() {
         return (
             <div className="search">
                 <div className="search__form">
-                    <SearchForm
-                        onSubmit={onSearchSubmit}
-                        onTermChange={onSearchTermChange}
-                        onDestinationChange={onSearchDestinationChange}
-                        destination={destination}
-                        term={term}
-                    />
+                    <div className="search__form__item--destination">
+                        <FormControl type="text" placeholder="What are you looking for?" onChange={(e) => this._handleTermChange(e)} />
+                    </div>
+                    <div className="search__form__item--destination">
+                        <FormControl type="text" placeholder="Destination" onChange={(e) => this._handleDestinationChange(e)} />
+                    </div>
+                    <div className="search__form__item">
+                        <Link to="/clone/results" onClick={(e) => this._handleSubmit(e)}>
+                            <button className="button big">Search</button>
+                        </Link>
+                    </div>
                 </div>
             </div>
         );
@@ -51,8 +63,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        onSearchSubmit: (search) => {
-            dispatch(submitSearch(search));
+        onSearchSubmit: () => {
+            dispatch(submitSearch());
         },
         onSearchTermChange: (term) => {
             dispatch(termChange(term));

@@ -16,6 +16,16 @@ const search = function(state, action) {
 
     switch(action.type) {
 
+        case types.TERM_CHANGE:
+            return _.assign({}, state, {
+                term: action.term
+            });
+
+        case types.DESTINATION_CHANGE:
+            return _.assign({}, state, {
+                destination: action.destination
+            });
+
         case types.USER_LOCATION_SUCCESS:
             return _.assign({}, state, {
                 userLocation: action.userLocation
