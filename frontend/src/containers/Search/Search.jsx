@@ -1,11 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { SearchForm } from '../../components';
-import { submitSearch, termChange, destinationChange } from '../../actions/search.actions';
+import { setVersion } from '../../actions/results.actions';
+import {
+    submitSearch,
+    termChange,
+    destinationChange
+} from '../../actions/search.actions';
 
 class Search extends Component {
     constructor(props) {
         super(props);
+    }
+
+    componentDidMount() {
+        this.props.setVersion('clone');
     }
 
     render() {
@@ -50,6 +59,9 @@ function mapDispatchToProps(dispatch) {
         },
         onSearchDestinationChange: (destination) => {
             dispatch(destinationChange(destination));
+        },
+        setVersion: (version) => {
+            dispatch(setVersion(version));
         }
     };
 }

@@ -2,7 +2,12 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Results } from '../.';
 import { ResultItem } from '../../components';
-import { smartSearch, userInputChange, getUserLocation } from '../../actions/search.actions';
+import { setVersion } from '../../actions/results.actions';
+import {
+    smartSearch,
+    userInputChange,
+    getUserLocation
+} from '../../actions/search.actions';
 
 class Smart extends Component {
     constructor(props) {
@@ -11,6 +16,7 @@ class Smart extends Component {
     }
 
     componentDidMount() {
+        this.props.setVersion('ml');
         this.getUserLocation();
     }
 
@@ -109,6 +115,9 @@ function mapDispatchToProps(dispatch) {
         },
         getUserLocation: (location) => {
             dispatch(getUserLocation(location));
+        },
+        setVersion: (version) => {
+            dispatch(setVersion(version));
         }
     };
 }

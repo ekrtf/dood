@@ -1,13 +1,6 @@
 import * as types from './action-types';
 import http from '../utils/http';
 
-// "user changes version (ML or Clone)"
-export function changeVersion() {
-    return {
-        type: types.VERSION_CHANGE
-    };
-}
-
 // "user selects result item"
 export function selectItem(itemId) {
     return (dispatch) => {
@@ -36,5 +29,13 @@ function selectItemFailure(error) {
     return {
         type: types.SELECT_ITEM_FAILURE,
         error
+    };
+}
+
+// user navigates to either version
+export function setVersion(version) {
+    return {
+        type: types.SET_VERSION,
+        version
     };
 }

@@ -4,7 +4,6 @@ import { Button } from 'react-bootstrap';
 
 class HeaderBar extends Component {
     render() {
-        const { handleChangeVersion } = this.props;
         return (
             <div className="headerbar">
                 <div className="headerbar__logo">
@@ -14,13 +13,13 @@ class HeaderBar extends Component {
                 </div>
                 <div className="headerbar__menu">
                     <div className="headerbar__menu__item">
-                        <IndexLink to="about">About</IndexLink>
+                        <IndexLink to="/about">About</IndexLink>
                     </div>
                     <div className="headerbar__menu__item">
-                        <IndexLink to="clone" onClick={(e) => handleChangeVersion(e)}>Clone</IndexLink>
+                        <IndexLink to="/clone">Clone</IndexLink>
                     </div>
                     <div className="headerbar__menu__item">
-                        <IndexLink to="ml" onClick={(e) => handleChangeVersion(e)}>ML</IndexLink>
+                        <IndexLink to="/ml">ML</IndexLink>
                     </div>
                 </div>
             </div>
@@ -29,7 +28,6 @@ class HeaderBar extends Component {
 }
 
 HeaderBar.propTypes = {
-    handleChangeVersion: PropTypes.func.isRequired
 };
 
 export default HeaderBar;

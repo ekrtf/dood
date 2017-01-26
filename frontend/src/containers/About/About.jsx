@@ -26,7 +26,7 @@ class About extends Component {
                     </div>
                     <h4>TL;DR: please take part in the experiment</h4>
                     <section>
-                        <h3>What's the dissertation about?</h3>
+                        <h3>What is the dissertation about?</h3>
                         <p>
                             Trying to find out if there is significant business value in enhancing
                             your user experience on travel websites (think Yelp) with machine learning
@@ -71,7 +71,8 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return {};
+    return {
+    };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(About);

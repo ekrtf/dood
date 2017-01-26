@@ -113,6 +113,7 @@ class Product extends Component {
     }
 
     render() {
+        const backLink = this.props.version === 'ml' ? '/ml' : '/clone/results';
         const { name, price, rating, coordinates } = this.props.product;
 
         let position = [ 0, 0 ];
@@ -124,7 +125,9 @@ class Product extends Component {
             <div className="product">
                 <div className="product__back">
                     <i className="glyphicon glyphicon-arrow-left"></i>
-                    <div>Back to results</div>
+                    <Link to={backLink}>
+                        <div>Back to results</div>
+                    </Link>
                 </div>
                 <div className="product__top">
                     <div className="proudct__top__name">{ name }</div>
@@ -172,7 +175,8 @@ function mapStateToProps(state) {
     return {
         product: state.results.selectedItem || {}, // HACK
         showImages: state.product.showImages,
-        currentImage: state.product.currentImage
+        currentImage: state.product.currentImage,
+        version: state.search.version
     };
 }
 

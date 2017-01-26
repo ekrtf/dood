@@ -2,8 +2,10 @@ import _ from 'lodash';
 import * as types from '../actions/action-types';
 
 const initialState = {
+    version: null,
     slectedItem: {},
     isFetching: false,
+    isPosting: false,
     results: []
 };
 
@@ -14,9 +16,17 @@ const results = function(state, action) {
 
     switch(action.type) {
 
-        case types.VERSION_CHANGE:
+        case types.SET_VERSION:
+            // nuke results when switching version
+            if (state.version !== action.version) {
+                return _.assign({}, state, {
+                    results: [],
+                    selectedItem: {},
+                    version: action.version
+                });
+            }
             return _.assign({}, state, {
-                results: []
+                version: action.version
             });
 
         case types.SMART_SEARCH_SUCCESS:

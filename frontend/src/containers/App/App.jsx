@@ -1,16 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { HeaderBar } from '../../components';
-import { changeVersion } from '../../actions/results.actions';
 
 class App extends Component {
     constructor(props) {
         super(props);
-        this._handleChangeVersion = this._handleChangeVersion.bind(this);
-    }
-
-    _handleChangeVersion(e) {
-        this.props.changeVersion();
     }
 
     render() {
@@ -19,7 +13,7 @@ class App extends Component {
         return (
             <div className="main">
                 <div className="main__header">
-                    <HeaderBar handleChangeVersion={this._handleChangeVersion}/>
+                    <HeaderBar />
                 </div>
                 <div className="main__content">
                     {children}
