@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import Spinner from 'react-spinner';
 import { Results } from '../.';
 import { ResultItem } from '../../components';
 import { setVersion } from '../../actions/results.actions';
@@ -70,8 +71,11 @@ class Smart extends Component {
                                   placeholder="e.g. Cheap restaurant for a dinner with friends"
                                   onChange={(e) => this._handleInputChange(e)}
                         ></textarea>
-                        <div>
-                            Location: { userLocation || 'NA' }
+                        <div className="smart__input__form__location">
+                            <div>Location:</div>
+                            <div className="smart__input__form__location__spin">{ !userLocation && <Spinner />}</div>
+                            <div className="smart__input__form__location__loc">{ userLocation && userLocation }</div>
+                            <div className="smart__input__form__location__change">Change location</div>
                         </div>
                         <button onClick={(e) => this._doSmartSearch(e)}
                                 className="smart__input__form__button button big"
