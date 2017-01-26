@@ -7,13 +7,17 @@ import { setVersion } from '../../actions/results.actions';
 import {
     smartSearch,
     userInputChange,
-    getUserLocation
+    getUserLocation,
+    toggleLocationForm,
+    smartLocationChange
 } from '../../actions/search.actions';
 
 class Smart extends Component {
     constructor(props) {
         super(props);
         this._doSmartSearch = this._doSmartSearch.bind(this);
+        this._handleToggleLocation = this._handleToggleLocation.bind(this);
+        this._handleLocationChange = this._handleLocationChange.bind(this);
     }
 
     componentDidMount() {
@@ -36,6 +40,14 @@ class Smart extends Component {
                 }
             });
         });
+    }
+
+    _handleToggleLocation(e) {
+        this.props.toggleLocationForm();
+    }
+
+    _handleLocationChange(e) {
+        this.props.smartLocationChange(e.target.value);
     }
 
     _doSmartSearch(e) {
@@ -61,7 +73,7 @@ class Smart extends Component {
     }
 
     render() {
-        const { userInput, areResultsEmpty, userLocation } = this.props;
+        const { userInput, areResultsEmpty, userLocation, showLocationForm, toggleLocationForm } = this.props;
         return (
             <div className="smart">
                 <div className="smart__input">
@@ -73,9 +85,20 @@ class Smart extends Component {
                         ></textarea>
                         <div className="smart__input__form__location">
                             <div>Location:</div>
-                            <div className="smart__input__form__location__spin">{ !userLocation && <Spinner />}</div>
-                            <div className="smart__input__form__location__loc">{ userLocation && userLocation }</div>
-                            <div className="smart__input__form__location__change">Change location</div>
+                            <div className="smart__input__form__location__spin">
+                                { !userLocation && <Spinner />}
+                            </div>
+                            <div className="smart__input__form__location__loc">
+                                { userLocation && userLocation }
+                            </div>
+                            <div className="smart__input__form__location__change" onClick={(e) => this._handleToggleLocation(e)}>
+                                Change location
+                            </div>
+                        </div>
+                        <div className="smart__input__form__change">
+                            { showLocationForm &&
+                                <input type="text" placeholder="Enter location" onBlur={(e) => toggleLocationForm()} onChange={(e) => this._handleLocationChange(e)}/>
+                            }
                         </div>
                         <button onClick={(e) => this._doSmartSearch(e)}
                                 className="smart__input__form__button button big"
@@ -98,14 +121,16 @@ Smart.propTypes = {
     smartSearch: PropTypes.func.isRequired,
     areResultsEmpty: PropTypes.bool.isRequired,
     userLocation: PropTypes.string,
-    userInput: PropTypes.string
+    userInput: PropTypes.string,
+    showLocationForm: PropTypes.bool
 };
 
 function mapStateToProps(state) {
     return {
         areResultsEmpty: state.results.results.length === 0,
         userInput: state.search.userInput,
-        userLocation: state.search.userLocation
+        userLocation: state.search.userLocation,
+        showLocationForm: state.search.showLocationForm
     };
 }
 
@@ -122,6 +147,12 @@ function mapDispatchToProps(dispatch) {
         },
         setVersion: (version) => {
             dispatch(setVersion(version));
+        },
+        toggleLocationForm: () => {
+            dispatch(toggleLocationForm())
+        },
+        smartLocationChange: (location) => {
+            dispatch(smartLocationChange(location))
         }
     };
 }

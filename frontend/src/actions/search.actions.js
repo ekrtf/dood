@@ -1,6 +1,21 @@
 import * as types from './action-types';
 import http from '../utils/http';
 
+// "user click change location on smart search"
+export function toggleLocationForm() {
+    return {
+        type: types.TOGGLE_LOCATION
+    };
+}
+
+// "user enter location manually in search form"
+export function smartLocationChange(location) {
+    return {
+        type: types.SMART_LOCATION_CHANGE,
+        userLocation: location
+    };
+}
+
 // "server returns user location (i.e. user allowed browser to access location)"
 export function getUserLocation(browserCoords) {
     return (dispatch) => {

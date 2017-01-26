@@ -6,7 +6,8 @@ const initialState = {
     term: '',
     userInput: null,
     isPosting: false,
-    userLocation: null
+    userLocation: null,
+    showLocationForm: false
 };
 
 const search = function(state, action) {
@@ -15,6 +16,16 @@ const search = function(state, action) {
     }
 
     switch(action.type) {
+
+        case types.SMART_LOCATION_CHANGE:
+            return _.assign({}, state, {
+                userLocation: action.userLocation
+            });
+
+        case types.TOGGLE_LOCATION:
+            return _.assign({}, state, {
+                showLocationForm: !state.showLocationForm
+            });
 
         case types.TERM_CHANGE:
             return _.assign({}, state, {
