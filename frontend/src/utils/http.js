@@ -1,7 +1,9 @@
 import _ from 'lodash';
 import request from 'request-promise';
 
-const API_BASE = 'http://localhost:4000/api/v1';
+const API_BASE = __ENV__ === 'dev' ?
+    'http://localhost:4000/api/v1' :
+    'http://sample-env-1.spikburiub.us-west-2.elasticbeanstalk.com/api/v1';
 
 const http = {
     get: (url, params) => {

@@ -1,3 +1,5 @@
+const webpack = require('webpack');
+
 module.exports = {
     devtool: 'source-map',
     entry: [
@@ -72,5 +74,10 @@ module.exports = {
                 version: '15.0.1'
             }
         }
-    }
+    },
+    plugins: [
+        new webpack.DefinePlugin({
+            '__ENV__': JSON.stringify(process.env.ENV || 'dev')
+        })
+    ]
 };

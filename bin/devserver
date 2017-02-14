@@ -27,7 +27,7 @@ webpackConfig.plugins = [
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin()
-];
+].concat(webpackConfig.plugins);
 
 console.info('starting webpack compilation...');
 var app = express();
