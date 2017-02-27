@@ -28,20 +28,7 @@ $item-radius: 0.375em;
 	width: 40%;
 	input {
 		height: 100%;
-	}
-}
-
-.clone__form__item--datepicker {
-	@extend .clone__form__item;
-	width: 20%;
-	span {
-		height: 100%;
-		border-radius: $item-radius;
-	}
-	input {
-		border-top-left-radius: $item-radius !important;
-		border-bottom-left-radius: $item-radius !important;
-		height: 103%;
+		width: 100%;
 	}
 }
 

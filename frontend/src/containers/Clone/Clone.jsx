@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { FormControl } from 'react-bootstrap';
 import { Link } from 'react-router';
 import { Results } from '../.';
 import { setVersion } from '../../actions/results.actions';
@@ -39,13 +38,13 @@ class Clone extends Component {
             <div className="clone">
                 <div className="clone__form">
                     <div className="clone__form__item--destination">
-                        <FormControl type="text" placeholder="What are you looking for?" onChange={(e) => this._handleTermChange(e)} />
+                        <input type="text" placeholder="What are you looking for?" onChange={(e) => this._handleTermChange(e)} />
                     </div>
                     <div className="clone__form__item--destination">
-                        <FormControl type="text" placeholder="Destination" onChange={(e) => this._handleDestinationChange(e)} />
+                        <input type="text" placeholder="Destination" onChange={(e) => this._handleDestinationChange(e)} />
                     </div>
                     <div className="clone__form__item">
-                        <button onClick={(e) => this._handleSubmit(e)} className="button big">Search</button>
+                        <button onClick={(e) => this._handleSubmit(e)}>Search</button>
                     </div>
                 </div>
                 <div className="clone__output">
