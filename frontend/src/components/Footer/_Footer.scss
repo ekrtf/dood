@@ -2,4 +2,24 @@
 	height: 100%; // height set in _App.scss
 	width: 100%;
 	background: $darkish-pink;
+	display: flex;
+	align-items: center;
+	color: $white;
+}
+
+.footer__content {
+	margin-left: 106px;
+}
+
+.footer__content__item {
+	margin: 10px 0;
+	.thanks {
+		color: $light-burgundy;
+	}
+}
+
+.footer__content__divider {
+	height: 3px;
+	width: 30px;
+	background: $white;
 }

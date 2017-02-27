@@ -18,9 +18,9 @@ class App extends Component {
                 <div className="main__content">
                     {children}
                 </div>
-                <div className="main__footer">
+                <footer className="main__footer">
                     <Footer />
-                </div>
+                </footer>
             </div>
         );
     }

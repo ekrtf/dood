@@ -16,8 +16,9 @@ render(
             <Route path="/" component={App}>
                 <IndexRoute component={Home} />
                 <Route path="/clone" component={Clone} />
-                <Route path="/results/:resultId" component={Product} />
+                <Route path="/about" component={About} />
                 <Route path="/ml" component={Smart} />
+                <Route path="/results/:resultId" component={Product} />
                 <Route path="/feedback" component={Feedback} />
             </Route>
         </Router>
