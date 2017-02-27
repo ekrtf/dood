@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Spinner from 'react-spinner';
-import { Results } from '../.';
+import { Results, Suggestions } from '../.';
 import { ResultItem } from '../../components';
 import { setVersion } from '../../actions/results.actions';
 import {
@@ -77,14 +77,14 @@ class Smart extends Component {
         return (
             <div className="smart">
                 <div className="smart__input">
-                    <h2>What are you in the mood for?</h2>
+                    <h4 className="smart__input__header">What are you in the mood for?</h4>
                     <div className="smart__input__form">
-                        <textarea className="smart__input__form__textarea"
+                        <input className="smart__input__form__textarea"
                                   placeholder="e.g. Cheap restaurant for a dinner with friends"
                                   onChange={(e) => this._handleInputChange(e)}
-                        ></textarea>
+                        ></input>
                         <div className="smart__input__form__location">
-                            <div>Location:</div>
+                            <div>Searching location:</div>
                             <div className="smart__input__form__location__spin">
                                 { !userLocation && <Spinner />}
                             </div>
@@ -92,7 +92,7 @@ class Smart extends Component {
                                 { userLocation && userLocation }
                             </div>
                             <div className="smart__input__form__location__change" onClick={(e) => this._handleToggleLocation(e)}>
-                                Change location
+                                (Change location)
                             </div>
                         </div>
                         <div className="smart__input__form__change">
@@ -101,14 +101,24 @@ class Smart extends Component {
                             }
                         </div>
                         <button onClick={(e) => this._doSmartSearch(e)}
-                                className="smart__input__form__button button big"
-                        >Be smart and save me some scrolling time</button>
+                                className="smart__input__form__button"
+                        >
+                            Save me some scrolling time
+                            <i className="em em-sunglasses"></i>
+                        </button>
                     </div>
+                </div>
+
+                <div className="smart__suggestions">
+                    {areResultsEmpty &&
+                        <h4 className="smart__output__title">Not sure? Here are some suggestions</h4>
+                    }
+                    <Suggestions />
                 </div>
 
                 <div className="smart__output">
                     {!areResultsEmpty &&
-                        <h2 className="smart__output__title">Here are the top 5 results just for you:</h2>
+                        <h4 className="smart__output__title">Here are the top 5 results just for you:</h4>
                     }
                     <Results />
                 </div>

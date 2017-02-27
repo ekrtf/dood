@@ -25,15 +25,15 @@ class Home extends Component {
                         <section className="home__content__section">
                             <h4 className="home__content__heading">What is this disseration about?</h4>
                             <p>
-                                Trying to find out if there is significant business value in enhancing your user 
+                                Trying to find out if there is significant business value in enhancing your user
                                 experience on travel websites (think Yelp) with machine learning techniques.
-                                Online businesses use it widely today to serve you ads for the product you just 
+                                Online businesses use it widely today to serve you ads for the product you just
                                 bought and collect large amount of information about you.
                             </p>
                             <p className="home__content__section">
-                                Trying to find out if there is significant business value in enhancing your user 
+                                Trying to find out if there is significant business value in enhancing your user
                                 experience on travel websites (think Yelp) with machine learning techniques.
-                                Online businesses use it widely today to serve you ads for the product you just 
+                                Online businesses use it widely today to serve you ads for the product you just
                                 bought and collect large amount of information about you.
                             </p>
                         </section>
@@ -42,7 +42,7 @@ class Home extends Component {
                         <section className="home__content__section">
                             <h4 className="home__content__heading">Why this experiment?</h4>
                             <p>
-                                To answer this question I need to collect data from real world users in 
+                                To answer this question I need to collect data from real world users in
                                 a real world situation. Measuring the performance of my proposed solution
                                 allows to draw conclusions about the relevance of such system.
                             </p>

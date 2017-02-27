@@ -6,3 +6,4 @@ export { default as Results } from './Results/Results';
 export { default as Clone } from './Clone/Clone';
 export { default as Feedback } from './Feedback/Feedback';
 export { default as Home } from './Home/Home';
+export { default as Suggestions } from './Suggestions/Suggestions';
