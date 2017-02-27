@@ -9,6 +9,13 @@ $content-width: 100%;
 $h1-color: #3d4449;
 $text-color: #7f888f;
 
+$dark: #311d3f;
+$darkish-pink: #e23e57;
+$light-burgundy: #88304e;
+$black: #333333;
+$grape-purple: #401936;
+$white: #ffffff;
+
 /**
  *
  * Global CSS
@@ -156,7 +163,6 @@ a, a:hover, a:visited, a:active, a:focus {
  * Imports
  */
 
-@import 'resources/styles/editorial-html5up';
 @import 'resources/styles/normalize';
 @import 'containers/App/App';
 @import 'containers/About/About';

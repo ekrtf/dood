@@ -3,38 +3,16 @@
     z-index: 10;
     width: $content-width;
     height: $headerbar-height;
-    border-bottom: 5px solid $main-color;
-    background: #ffffff;
+    background: $dark;
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 0 5%;
 }
 
 .headerbar__logo {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: center;
-    height: $headerbar-height;
-}
-
-.headerbar__logo__text {
     font-size: 34px;
     font-family: "Roboto Slab", serif;
     color: $h1-color;
     font-weight: bold;
-}
-
-.headerbar__menu {
-    height: $headerbar-height;
-    width: 200px;
-    margin-left: auto;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding-top: 11px;
-}
-
-.headerbar__menu__item {
-    color: #000000;
 }
