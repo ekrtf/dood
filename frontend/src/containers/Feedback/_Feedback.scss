@@ -1,25 +1,46 @@
 .feedback {
-    margin: 0 5%;
+    margin-top: $medium-space;
+    color: $grape-purple;
+}
 
+.feedback__greet {
+    font-size: 28px;
+    margin-bottom: $medium-space;
 }
 
 .feedback__prompt {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
 }
 
 .feedback__prompt__rating {
-    font-size: 40px;
+    margin-top: $medium-space;
+    margin-bottom: $large-space;
+}
+
+.feedback__prompt__rating__stars {
+    font-size: 30px;
+}
+
+.feedback__prompt__rating__scale {
+    font-size: 15px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .feedback__prompt__message {
+    width: 100%;
     height: 200px;
 }
 
 .feedback__email {
+    width: 100%;
     margin-top: 30px;
+}
+
+.feedback__email__input {
+    width: 100%;
 }
 
 .feedback__submit {

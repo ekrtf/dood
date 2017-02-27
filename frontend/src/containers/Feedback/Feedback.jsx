@@ -31,21 +31,26 @@ class Feedback extends Component {
     render() {
         const { rating, disableFinish } = this.props;
         return (
-            <div className="feedback">
-                <div className="feedback__greet">
-                    <h1>Thank you for participating in the research!</h1>
-                </div>
+            <div className="container feedback">
+                <div className="feedback__greet">Thank you for participating in the research!</div>
                 <div className="feedback__prompt">
-                    <h3>Please rate your overall experience:</h3>
+                    <h4>Please rate your overall experience</h4>
                     <div className="feedback__prompt__rating">
-                        <Rating
-                            start={0}
-                            stop={5}
-                            initialRate={rating}
-                            onChange={(e) => this._handleRatingChange(e)}
-                            empty="glyphicon glyphicon-star-empty"
-                            full="glyphicon glyphicon-star"
-                        />
+                        <div className="feedback__prompt__rating__stars">
+                            <Rating
+                                start={0}
+                                stop={5}
+                                initialRate={rating}
+                                onChange={(e) => this._handleRatingChange(e)}
+                                empty="glyphicon glyphicon-star-empty"
+                                full="glyphicon glyphicon-star"
+                            />
+                        </div>
+                        <div className="feedback__prompt__rating__scale">
+                            <i className="em em-shit"></i>
+                            <i className="em em-expressionless"></i>
+                            <i className="em em-boom"></i>
+                        </div>
                     </div>
                     <textarea className="feedback__prompt__message"
                         placeholder="Any additional comments?"
@@ -53,18 +58,20 @@ class Feedback extends Component {
                     ></textarea>
                 </div>
                 <div className="feedback__email">
-                    If you are curious about the results, enter your email here and
-                    results will be sent to you (nothing else, I promise).
+                    <p>If you are curious about the results, enter your email here and
+                    results will be sent to you (nothing else, I promise)</p>
                     <input type="text"
                         placeholder="name@howcoolareyou.com (optional)"
+                        className="feedback__email__input"
                         onChange={(e) => this._handleEmailChange(e)}
                     />
                 </div>
                 <div className="feedback__submit">
                     <button onClick={(e) => this._handleFinish(e)}
-                            className="button special big"
                             disabled={disableFinish}
-                    >Finish</button>
+                    >
+                        Finish
+                    </button>
                 </div>
             </div>
         );
