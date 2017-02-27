@@ -3,7 +3,7 @@ import * as types from '../actions/action-types';
 
 const initialState = {
     version: null,
-    slectedItem: {},
+    selectedItem: {},
     isFetching: false,
     isPosting: false,
     results: []

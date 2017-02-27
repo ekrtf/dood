@@ -27,39 +27,37 @@ class ResultItem extends Component {
         const result = this.props.result;
         const { resultId, name, price, rating, phone, location } = result;
         const categories = result.categories.map(c => c.title);
-        const numberOfReviews = result.review_count;
         const imageUrl = result.imageUrl;
 
         return (
-            <Link to={`/results/${resultId}`} onClick={(e) => this.selectItem(e)}>
-                <div className="ritem">
-                    <div className="ritem__image">
+            <div className="ritem">
+                <Link to={`/results/${resultId}`} onClick={(e) => this.selectItem(e)}>
+                    <div className="ritem__bg">
                         <img className="ritem__image__img" alt="pic" src={imageUrl} />
                     </div>
-                    <div className="ritem__info">
-                        <div className="ritem__info__name">{name}</div>
-                        { this._renderCategories() }
-                        <div>{price}</div>
-                        <Rating
-                            start={0}
-                            stop={5}
-                            readonly={true}
-                            initialRate={Number(rating)}
-                            empty="glyphicon glyphicon-star-empty"
-                            full="glyphicon glyphicon-star"
-                        />
-                        <div>{numberOfReviews} Reviews</div>
+                    <div className="ritem__overlay"></div>
+                    <div className="ritem__content">
+                        <div>
+                            <div className="ritem__content__name">{name}</div>
+                            <div className="ritem__content__price">{price}</div>
+                            <div className="ritem__content__categories">{ this._renderCategories() }</div>
+                        </div>
+                        <div>
+                            <div className="ritem__content__rating">
+                                <Rating
+                                    start={0}
+                                    stop={5}
+                                    readonly={true}
+                                    initialRate={Number(rating)}
+                                    empty="glyphicon glyphicon-star-empty"
+                                    full="glyphicon glyphicon-star"
+                                />
+                            </div>
+                            <div>{location.address1}</div>
+                        </div>
                     </div>
-                    <div className="ritem__contact">
-                        <div>{location.address1}</div>
-                        <div>{location.address2}</div>
-                        <div>{location.address3}</div>
-                        <div>{location.city}</div>
-                        <div>{location.country}</div>
-                        <div>{phone}</div>
-                    </div>
-                </div>
-            </Link>
+                </Link>
+            </div>
         );
     }
 }
