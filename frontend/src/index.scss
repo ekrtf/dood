@@ -12,6 +12,10 @@ $text-color: #7f888f;
 $h1-color: #3d4449;
 $main-color: #f56a6a;
 
+$small-space: 13px;
+$medium-space: 26px;
+$large-space: 52px;
+
 $dark: #311d3f;
 $darkish-pink: #e23e57;
 $light-burgundy: #88304e;
@@ -73,6 +77,10 @@ button {
 
     &:focus {
         outline: 0;
+    }
+
+    i {
+        margin-left: 5px;
     }
 }
 
@@ -151,6 +159,7 @@ button {
 @import 'containers/Product/Product';
 @import 'containers/Results/Results';
 @import 'containers/Clone/Clone';
+@import 'containers/Home/Home';
 @import 'containers/Feedback/Feedback';
 @import 'components/HeaderBar/HeaderBar';
 @import 'components/ResultItem/ResultItem';

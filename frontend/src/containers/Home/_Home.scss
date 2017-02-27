@@ -1,5 +1,18 @@
 .home {
-	// margin-top: 
+	margin-top: $large-space;
+}
+
+.home__content__section {
+	font-weight: lighter;
+   	margin-bottom: $medium-space;
+}
+
+.home__content__heading {
+	font-weight: normal;
+}
+
+.home__tldr {
+	margin: $large-space 0;
 }
 
 .home__start {
