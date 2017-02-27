@@ -57,9 +57,9 @@ class Product extends Component {
         if (!Array.isArray(categories)) return;
 
         const tags = categories.map((item, index) => {
-            return (<div key={index} className="product__categories__item">{item}</div>);
+            return (<div key={index} className="product__info__categories__item">{item}</div>);
         });
-        return (<div className="product__categories">{ tags }</div>);
+        return (<div className="product__info__categories">{ tags }</div>);
     }
 
     _renderReviews() {
@@ -67,20 +67,31 @@ class Product extends Component {
         if (!Array.isArray(reviews)) return; // some places don't have reviews
 
         const conversation = reviews.map((item, index) => {
-            // <img className="product__reviews__item__user__img" src={item.user.image_url} />
             return (
-                <div key={index} className="product__reviews__item">
-                    <blockquote>
-                        "{item.text}"
-                        {item.text.includes('...') && <a href={item.url} target="blank">Read more</a>}
-                    </blockquote>
-                    <div className="product__reviews__item__user">
-                        {item.user.name}
+                <div key={index} className="product__reviews__group__item">
+                    <div className="product__reviews__group__item__quote">{'"'}</div>
+                    <div className="product__reviews__group__item__text">
+                        {item.text + '"'}
+                    </div>
+                    <div className="product__reviews__group__item__userandmore">
+                        <div className="product__reviews__group__item__userandmore__user">
+                            &mdash; {item.user.name}
+                        </div>
+                        <div className="product__reviews__group__item__userandmore__more">
+                            {item.text.includes('...') &&
+                                <a href={item.url}
+                                   target="blank"
+                                   className="product__reviews__group__item__more"
+                                >
+                                    Read more
+                                </a>
+                            }
+                        </div>
                     </div>
                 </div>
             );
         });
-        return (<div className="product__reviews">{ conversation }</div>);
+        return (<div className="product__reviews__wrapper">{ conversation }</div>);
     }
 
     _renderGallery() {
@@ -114,7 +125,7 @@ class Product extends Component {
 
     render() {
         const backLink = '/' + this.props.version;
-        const { name, price, rating, coordinates } = this.props.product;
+        const { name, price, rating, coordinates, location } = this.props.product;
 
         let position = [ 0, 0 ];
         if (_.isObject(coordinates)) {
@@ -122,38 +133,64 @@ class Product extends Component {
         }
 
         return (
-            <div className="product">
+            <div className="product container">
+
                 <div className="product__back">
-                    <i className="glyphicon glyphicon-arrow-left"></i>
+                    <i className="em em-back"></i>
                     <Link to={backLink}>
                         <div>Back to results</div>
                     </Link>
                 </div>
+
                 <div className="product__top">
-                    <div className="proudct__top__name">{ name }</div>
+                    <div className="product__top__nameandrating">
+                        <h3 className="product__top__nameandrating__name">{ name }</h3>
+                        <div className="product__top__nameandrating__rating">
+                            <Rating
+                                start={0}
+                                stop={5}
+                                readonly={true}
+                                initialRate={rating}
+                                empty="glyphicon glyphicon-star-empty"
+                                full="glyphicon glyphicon-star"
+                            />
+                        </div>
+                    </div>
                     <div className="product__top__buttonbox">
                         <Link to="/feedback">
-                            <button className="button special" onClick={this.doSelectProduct}>Choose</button>
+                            <button onClick={this.doSelectProduct}>
+                                I choose this one
+                                <i className="em em---1"></i>
+                            </button>
                         </Link>
                     </div>
                 </div>
+
                 <div className="product__info">
                     <div>{ _.isArray(this.props.product.categories) && this._renderCategories() }</div>
+                    <div className="product__info__price">
+                        <div>{ price }</div>
+                    </div>
                 </div>
-                <div className="product__info--price">
-                    <Rating
-                        start={0}
-                        stop={5}
-                        readonly={true}
-                        initialRate={rating}
-                        empty="glyphicon glyphicon-star-empty"
-                        full="glyphicon glyphicon-star"
-                    />
-                    <div>{ price }</div>
-                </div>
+
                 { _.isArray(this.props.product.images) && this._renderGallery() }
-                { _.isArray(this.props.product.reviews) && this._renderReviews() }
+
+                <div className="product__reviews">
+                    <h4 className="product__heading">Reviews</h4>
+                    { _.isArray(this.props.product.reviews) && this._renderReviews() }
+                </div>
+
                 <div className="product__map">
+                    <h4 className="product__heading">Location</h4>
+                    <div className="product__map__location">
+                        { location &&
+                            <div>
+                                <span>{location.address1},&ensp;</span>
+                                <span>{location.city},&ensp;</span>
+                                <span>{location.country}</span>
+                            </div>
+                        }
+                    </div>
                     <Map ref="map" center={position} zoom={13}>
                         <TileLayer
                             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -166,6 +203,7 @@ class Product extends Component {
                         </Marker>
                     </Map>
                 </div>
+
             </div>
         );
     }

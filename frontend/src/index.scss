@@ -158,13 +158,6 @@ input, textarea {
     user-select: none;
 }
 
-@mixin h1 {
-    font-size: 1.75em;
-    font-weight: 700;
-    color: $h1-color;
-    font-family: "Roboto Slab", serif;
-}
-
 /**
  *
  * Imports
