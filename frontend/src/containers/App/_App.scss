@@ -14,9 +14,12 @@
 
 .main__content {
     padding-top: $headerbar-height;
-    // padding-bottom: $footer-height;
     width: $content-width;
     height: 100%;
+
+
+    background: url(resources/images/bitmap.png);
+    background-repeat: repeat;
 }
 
 .main__footer {
