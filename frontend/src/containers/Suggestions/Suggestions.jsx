@@ -10,7 +10,7 @@ class Suggestions extends Component {
 
     render() {
         return (
-            <div className="suggestions">
+            <div className="container suggestions">
             </div>
         );
     }

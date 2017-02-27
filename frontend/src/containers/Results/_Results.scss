@@ -1,11 +1,10 @@
 .results {
-    padding: 20px 0;
-    margin: 0 5%;
-    // width: 100%;
     display: flex;
     flex-flow: row wrap;
+    justify-content: space-between;
 }
 
 .results__item {
-    flex: 1 0 25%;
+    flex: 1 1 25%;
+    margin-bottom: 20px;
 }

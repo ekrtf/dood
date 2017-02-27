@@ -35,7 +35,7 @@ class Clone extends Component {
 
     render() {
         return (
-            <div className="clone">
+            <div className="container clone">
                 <div className="clone__form">
                     <div className="clone__form__item--destination">
                         <input type="text" placeholder="What are you looking for?" onChange={(e) => this._handleTermChange(e)} />

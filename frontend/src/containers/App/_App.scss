@@ -15,16 +15,12 @@
 .main__content {
     padding-top: $headerbar-height;
     width: $content-width;
-    // height: 100%;
-
-
+    min-height: calc(100% - 150px);
     background: url(resources/images/bitmap.png);
     background-repeat: repeat;
 }
 
 .main__footer {
     width: 100%;
-    // position: absolute;
-    // bottom: 0;
     height: $footer-height;
 }

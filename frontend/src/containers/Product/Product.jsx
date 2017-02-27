@@ -133,7 +133,7 @@ class Product extends Component {
         }
 
         return (
-            <div className="product container">
+            <div className="container product">
 
                 <div className="product__back">
                     <i className="em em-back"></i>

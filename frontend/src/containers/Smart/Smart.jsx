@@ -75,7 +75,7 @@ class Smart extends Component {
     render() {
         const { userInput, areResultsEmpty, userLocation, showLocationForm, toggleLocationForm } = this.props;
         return (
-            <div className="smart">
+            <div className="container smart">
                 <div className="smart__input">
                     <h4 className="smart__input__header">What are you in the mood for?</h4>
                     <div className="smart__input__form">
@@ -104,7 +104,7 @@ class Smart extends Component {
                                 className="smart__input__form__button"
                         >
                             Save me some scrolling time
-                            <i className="em em-sunglasses"></i>
+                            <i className="em em-confetti_ball"></i>
                         </button>
                     </div>
                 </div>
@@ -118,7 +118,7 @@ class Smart extends Component {
 
                 <div className="smart__output">
                     {!areResultsEmpty &&
-                        <h4 className="smart__output__title">Here are the top 5 results just for you:</h4>
+                        <h4 className="smart__output__title">Here are the top results, tailored for you</h4>
                     }
                     <Results />
                 </div>

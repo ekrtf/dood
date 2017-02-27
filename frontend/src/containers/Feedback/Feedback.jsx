@@ -61,7 +61,7 @@ class Feedback extends Component {
                     <p>If you are curious about the results, enter your email here and
                     results will be sent to you (nothing else, I promise)</p>
                     <input type="text"
-                        placeholder="name@howcoolareyou.com (optional)"
+                        placeholder="hola@me.com (optional)"
                         className="feedback__email__input"
                         onChange={(e) => this._handleEmailChange(e)}
                     />
@@ -71,6 +71,7 @@ class Feedback extends Component {
                             disabled={disableFinish}
                     >
                         Finish
+                        <i className="em em-pray"></i>
                     </button>
                 </div>
             </div>
