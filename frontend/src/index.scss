@@ -3,11 +3,14 @@
  * Variables
  */
 
-$main-color: #f56a6a;
 $headerbar-height: 75px;
+$footer-height: 150px;
+$content-padding: 106px;
 $content-width: 100%;
-$h1-color: #3d4449;
+
 $text-color: #7f888f;
+$h1-color: #3d4449;
+$main-color: #f56a6a;
 
 $dark: #311d3f;
 $darkish-pink: #e23e57;
@@ -48,40 +51,29 @@ a, a:hover, a:visited, a:active, a:focus {
     width: 100%;
 }
 
-.btn {
-    min-height: 34px;
-    font-size: 14px !important;
-    i {
-        margin-right: 5px;
+button {
+    cursor: pointer;
+    padding: 3px 24px;
+    border-radius: 50px;
+    background-color: $light-burgundy;
+    color: $white;
+    border: 1px solid $light-burgundy;
+    min-width: 150px;
+    padding: 12px 0;
+
+    &:hover {
+        color: $light-burgundy;
+        background-color: $white;
     }
-    &:focus {
-        outline: none;
-    }
+
     &:active {
-        outline: none;
+        background-color: $light-burgundy;
+        color: $white;
     }
-}
 
-.btn.active {
     &:focus {
-        outline: none;
+        outline: 0;
     }
-    &:active {
-        outline: none;
-    }
-}
-
-.btn-success {
-    background-color: #00802b;
-    border-color: #00802b;
-}
-
-.form-control {
-    min-height: 34px;
-}
-
-.popover-content td:hover {
-    background-color: darken(#ffffff, 10%);
 }
 
 // carousel
@@ -173,3 +165,4 @@ a, a:hover, a:visited, a:active, a:focus {
 @import 'containers/Feedback/Feedback';
 @import 'components/HeaderBar/HeaderBar';
 @import 'components/ResultItem/ResultItem';
+@import 'components/Footer/Footer';

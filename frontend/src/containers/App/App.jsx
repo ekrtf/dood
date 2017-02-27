@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { HeaderBar } from '../../components';
+import { HeaderBar, Footer } from '../../components';
 
 class App extends Component {
     constructor(props) {
@@ -17,6 +17,9 @@ class App extends Component {
                 </div>
                 <div className="main__content">
                     {children}
+                </div>
+                <div className="main__footer">
+                    <Footer />
                 </div>
             </div>
         );

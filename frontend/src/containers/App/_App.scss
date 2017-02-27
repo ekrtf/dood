@@ -14,8 +14,15 @@
 }
 
 .main__content {
-    position: absolute;
-    top: $headerbar-height;
+    padding-top: $headerbar-height;
+    padding-bottom: $footer-height;
     width: $content-width;
     height: 100%;
+}
+
+.main__footer {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    height: $footer-height;
 }
