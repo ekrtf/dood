@@ -8,5 +8,6 @@ app.load([
     'sYelp',
     'sFoursquare',
     'sWatson',
+    'sZomato',
     'sAnalytic'
 ]).then((hyper) => hyper.start());

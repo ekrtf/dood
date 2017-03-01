@@ -42,5 +42,8 @@
     "sFoursquare": {
         "clientId": "QFIFTFK21S5DCRDL3YY1VF0LBHVEOLHEZWUW235TBAHDTEME",
         "clientSecret": "Q42LB1SXYEI1LLRQKR0FC1GHT01DHFXA2KD4SF0QJZPGW15W"
+    },
+    "sZomato": {
+        "apiKey": "9756514d54c19b1841cb1f8713a35f24"
     }
 }

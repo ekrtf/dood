@@ -4,8 +4,6 @@
  * @description entry point of Foursquare API calls
  */
 
-const co = require('co');
-const uuid = require('uuid');
 const rp = require('request-promise');
 const _ = require('lodash');
 
