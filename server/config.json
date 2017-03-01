@@ -38,5 +38,9 @@
         "forecast": {
             "key": "95f0d13da1b7180723bb9c87d6c185b8"
         }
+    },
+    "sFoursquare": {
+        "clientId": "QFIFTFK21S5DCRDL3YY1VF0LBHVEOLHEZWUW235TBAHDTEME",
+        "clientSecret": "Q42LB1SXYEI1LLRQKR0FC1GHT01DHFXA2KD4SF0QJZPGW15W"
     }
 }

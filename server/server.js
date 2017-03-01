@@ -6,6 +6,7 @@ app.load([
     'sSearch',
     'sContext',
     'sYelp',
+    'sFoursquare',
     'sWatson',
     'sAnalytic'
 ]).then((hyper) => hyper.start());

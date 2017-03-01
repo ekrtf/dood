@@ -1,7 +1,7 @@
 /**
  * @module YelpService
  * @type adapter
- * @description entry point of yelp API calls
+ * @description entry point of Yelp API calls
  */
 
 const co = require('co');
