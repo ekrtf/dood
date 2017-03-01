@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Rating from 'react-rating';
 import { setRating, setEmail, setComment, submitFeedback } from '../../actions/product.actions';
+import { Link } from 'react-router';
 
 class Feedback extends Component {
     constructor(props) {
@@ -32,7 +33,7 @@ class Feedback extends Component {
         const { rating, disableFinish } = this.props;
         return (
             <div className="container feedback">
-                <div className="feedback__greet">Thank you for participating in the research!</div>
+                <div className="feedback__greet">Almost done!</div>
                 <div className="feedback__prompt">
                     <h4>Please rate your overall experience</h4>
                     <div className="feedback__prompt__rating">
@@ -67,12 +68,14 @@ class Feedback extends Component {
                     />
                 </div>
                 <div className="feedback__submit">
-                    <button onClick={(e) => this._handleFinish(e)}
-                            disabled={disableFinish}
-                    >
-                        Finish
-                        <i className="em em-pray"></i>
-                    </button>
+                    <Link to="/finish">
+                        <button onClick={(e) => this._handleFinish(e)}
+                                disabled={disableFinish}
+                        >
+                            Done
+                            <i className="em em-raised_hands"></i>
+                        </button>
+                    </Link>
                 </div>
             </div>
         );

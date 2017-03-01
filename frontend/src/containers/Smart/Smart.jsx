@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Spinner from 'react-spinner';
-import { Results, Suggestions } from '../.';
+import { Results } from '../.';
 import { ResultItem } from '../../components';
 import { setVersion } from '../../actions/results.actions';
 import {
@@ -113,7 +113,6 @@ class Smart extends Component {
                     {areResultsEmpty &&
                         <h4 className="smart__output__title">Not sure? Here are some suggestions</h4>
                     }
-                    <Suggestions />
                 </div>
 
                 <div className="smart__output">

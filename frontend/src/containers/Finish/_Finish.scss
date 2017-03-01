@@ -1,0 +1,29 @@
+.finish {
+    margin-top: $medium-space;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.finish__greet {
+    font-size: 28px;
+    margin-bottom: $medium-space;
+
+}
+
+.finish__info {
+	font-size: 20px;
+}
+
+.finish__info__strong {
+	color: $grape-purple;
+	font-weight: bold;
+}
+
+.finish__info__link {
+	color: $darkish-pink !important;
+	&:hover {
+		text-decoration: underline;
+	}
+}
