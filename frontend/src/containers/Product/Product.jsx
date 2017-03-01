@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
-import L from 'leaflet';
+import _ from 'lodash';
 import { connect } from 'react-redux';
 import Lightbox from 'react-images';
 import Rating from 'react-rating';
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import { Link } from 'react-router';
 import { toggleImages, selectImage, setChosenProduct } from '../../actions/product.actions';
-import _ from 'lodash';
-
-import iconUrl from '../../resources/images/marker-icon.png';
-import shadowUrl from '../../resources/images/marker-shadow.png';
-const icon = L.icon({ iconUrl, shadowUrl });
+import { Map } from '../../components';
 
 class Product extends Component {
     constructor(props) {
@@ -22,10 +17,6 @@ class Product extends Component {
         this.goToPrevious = this.goToPrevious.bind(this);
         this.goToNext = this.goToNext.bind(this);
         this.onClose = this.onClose.bind(this);
-    }
-
-    componentDidMount() {
-        this.refs.map.leafletElement.scrollWheelZoom.disable();
     }
 
     doSelectProduct() {
@@ -173,8 +164,6 @@ class Product extends Component {
                     </div>
                 </div>
 
-                { _.isArray(this.props.product.images) && this._renderGallery() }
-
                 <div className="product__reviews">
                     <h4 className="product__heading">Reviews</h4>
                     { _.isArray(this.props.product.reviews) && this._renderReviews() }
@@ -191,17 +180,9 @@ class Product extends Component {
                             </div>
                         }
                     </div>
-                    <Map ref="map" center={position} zoom={13}>
-                        <TileLayer
-                            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-                            url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
-                        />
-                        <Marker position={position} icon={icon}>
-                            <Popup>
-                                <span>{name}</span>
-                            </Popup>
-                        </Marker>
-                    </Map>
+
+                    <Map coords={position} />
+                    
                 </div>
 
             </div>

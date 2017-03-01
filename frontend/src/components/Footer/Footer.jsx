@@ -9,19 +9,19 @@ class Footer extends Component {
     render() {
         return (
             <div className="footer">
-            	<div className="footer__content container">
-            		<div className="footer__content__item">
-            			<IndexLink to="/about">About this dissertation</IndexLink>
-            		</div>
-            		<div className="footer__content__divider"></div>
-            		<div className="footer__content__item">
-            			Email me
-            		</div>
-            		<div className="footer__content__divider"></div>
-            		<div className="footer__content__item">
-            			Design by <a className="thanks" target="_blank" href="http://madeinalpha.com/">Made in Alpha</a>
-            		</div>
-            	</div>
+                <div className="footer__content container">
+                    <div className="footer__content__item">
+                        <IndexLink to="/about">About this dissertation</IndexLink>
+                    </div>
+                    <div className="footer__content__divider"></div>
+                    <div className="footer__content__item">
+                        Email me
+                    </div>
+                    <div className="footer__content__divider"></div>
+                    <div className="footer__content__item">
+                        Design by <a className="thanks" target="_blank" href="http://madeinalpha.com/">Made in Alpha</a>
+                    </div>
+                </div>
             </div>
         );
     }

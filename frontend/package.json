@@ -15,13 +15,11 @@
   },
   "dependencies": {
     "d3": "~3.5.17",
-    "leaflet": "~1.0.2",
     "moment": "~2.13.0",
     "react": "~15.0.1",
     "react-bootstrap": "~0.29.3",
     "react-dom": "~15.0.1",
     "react-images": "~0.5.2",
-    "react-leaflet": "~1.0.0",
     "react-rating": "~0.6.2",
     "react-redux": "~4.4.5",
     "react-router": "~2.0.0",

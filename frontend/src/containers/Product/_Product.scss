@@ -120,7 +120,8 @@
 .product__map {
     margin-top: $large-space;
     width: 100%;
-    height: 550px;
+    min-height: 200px;
+    margin-bottom: $medium-space;
     .leaflet-container {
         height: 400px;
         width: 100%;
