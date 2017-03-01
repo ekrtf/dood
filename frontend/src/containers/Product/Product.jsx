@@ -6,6 +6,7 @@ import Rating from 'react-rating';
 import { Link } from 'react-router';
 import { toggleImages, selectImage, setChosenProduct } from '../../actions/product.actions';
 import { Map } from '../../components';
+import { selectItem } from '../../actions/results.actions';
 
 class Product extends Component {
     constructor(props) {
@@ -17,6 +18,13 @@ class Product extends Component {
         this.goToPrevious = this.goToPrevious.bind(this);
         this.goToNext = this.goToNext.bind(this);
         this.onClose = this.onClose.bind(this);
+    }
+
+    componentWillMount() {
+        // fetch product if user navigates directly to this page
+        if (_.isEmpty(this.props.product)) {
+            this.props.fetchProduct(this.props.routeParams.resultId);
+        }
     }
 
     doSelectProduct() {
@@ -209,6 +217,9 @@ function mapDispatchToProps(dispatch) {
         },
         setChosenProduct: (product) => {
             dispatch(setChosenProduct(product));
+        },
+        fetchProduct: (resultId) => {
+            dispatch(selectItem(resultId));
         }
     };
 }

@@ -38,14 +38,6 @@ function ServerApp() {
  * @param {Array} list
  */
 ServerApp.prototype.load = function(list) {
-    const frontendService = {
-        name: 'frontendService',
-        routes: [{
-            static: '../../frontend/dist'
-        }]
-    };
-    list.unshift(frontendService);
-
     const preRouteService = {
         name: 'preRouteSetup',
         preRoutes: ($http) => {
