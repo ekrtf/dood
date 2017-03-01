@@ -9,6 +9,17 @@
     }
 }
 
+.ritem--wide {
+    width: 100%;
+    height: 300px;
+    position: relative;
+    color: $white;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
 .ritem__bg {
     position: absolute;
     width: 100%;
@@ -25,6 +36,11 @@
 
 .ritem__image__img {
     width: 240px;
+    height: 300px;
+}
+
+.ritem__image__img--wide {
+    width: 100%;
     height: 300px;
 }
 

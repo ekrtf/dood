@@ -9,7 +9,7 @@ class Footer extends Component {
     render() {
         return (
             <div className="footer">
-            	<div className="footer__content">
+            	<div className="footer__content container">
             		<div className="footer__content__item">
             			<IndexLink to="/about">About this dissertation</IndexLink>
             		</div>
@@ -25,10 +25,11 @@ class Footer extends Component {
             </div>
         );
     }
+
 }
 
 Footer.propTypes = {
-
+    screen: PropTypes.object.isRequired
 };
 
 export default Footer;

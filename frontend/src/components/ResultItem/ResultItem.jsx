@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import Rating from 'react-rating';
 
@@ -25,15 +25,18 @@ class ResultItem extends Component {
 
     render() {
         const result = this.props.result;
+        const isWide = this.props.isWide;
         const { resultId, name, price, rating, phone, location } = result;
         const categories = result.categories.map(c => c.title);
         const imageUrl = result.imageUrl;
 
         return (
-            <div className="ritem">
+            <div className={isWide ? 'ritem--wide' : 'ritem'}>
                 <Link to={`/results/${resultId}`} onClick={(e) => this.selectItem(e)}>
                     <div className="ritem__bg">
-                        <img className="ritem__image__img" alt="pic" src={imageUrl} />
+                        <img className={isWide ? 'ritem__image__img--wide' : 'ritem__image__img'}
+                             alt="pic"
+                             src={imageUrl} />
                     </div>
                     <div className="ritem__overlay"></div>
                     <div className="ritem__content">
@@ -61,5 +64,9 @@ class ResultItem extends Component {
         );
     }
 }
+
+ResultItem.propTypes = {
+    isWide: PropTypes.bool.isRequired
+};
 
 export default ResultItem;

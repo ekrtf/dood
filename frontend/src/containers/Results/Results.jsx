@@ -12,18 +12,21 @@ class Results extends Component {
 
     _renderResult(result, index) {
         const { doSelectItem } = this.props;
+        const isExtraSmall = this.props.screen.mediaType === 'extraSmall';
+
         return (
             <div key={index} className="results__item">
-                <ResultItem index={index} result={result} onSelect={doSelectItem}/>
+                <ResultItem index={index} result={result} isWide={isExtraSmall} onSelect={doSelectItem}/>
             </div>
         );
     }
 
     render() {
         const { isPosting, results } = this.props;
+        const isExtraSmall = this.props.screen.mediaType === 'extraSmall';
 
         return (
-            <div className="results">
+            <div className={isExtraSmall ? 'results--small' : 'results'}>
                 { isPosting && (<div>Loading...</div>) }
                 { !isPosting && Array.isArray(results) && results.map(this._renderResult) }
             </div>
@@ -33,13 +36,15 @@ class Results extends Component {
 
 Results.propTypes = {
     isPosting: PropTypes.bool.isRequired,
-    results: PropTypes.array.isRequired
+    results: PropTypes.array.isRequired,
+    screen: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state) {
     return {
         isPosting: state.search.isPosting,
-        results: state.results.results
+        results: state.results.results,
+        screen: state.screen
     };
 }
 

@@ -24,23 +24,22 @@
 .smart__input__form__location {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    max-width: 310px;
     height: 50px;
     color: $light-burgundy;
 }
 
 .smart__input__form__location__spin {
     align-self: flex-end;
-    margin-left: 5px;
 }
 
 .smart__input__form__location__loc {
-    margin-left: 5px;
     font-weight: bold;
 }
 
 .smart__input__form__location__change {
     color: $light-burgundy;
-    margin-left: 10px;
     &:hover {
         cursor: pointer;
         text-decoration: underline;
@@ -54,6 +53,7 @@
 
 .smart__input__form__button {
     width: 250px;
+    margin-bottom: $medium-space;
 }
 
 .smart__output {

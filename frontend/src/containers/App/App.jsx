@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { HeaderBar, Footer } from '../../components';
 
@@ -8,7 +8,7 @@ class App extends Component {
     }
 
     render() {
-        const { location, children } = this.props;
+        const { location, children, screen } = this.props;
 
         return (
             <div className="main">
@@ -19,15 +19,22 @@ class App extends Component {
                     {children}
                 </div>
                 <footer className="main__footer">
-                    <Footer />
+                    <Footer screen={screen} />
                 </footer>
             </div>
         );
     }
+
 }
 
-function mapStateToProps() {
-    return {};
+App.propTypes = {
+    screen: PropTypes.object.isRequired
+};
+
+function mapStateToProps(state) {
+    return {
+        screen: state.screen
+    };
 }
 
 function mapDispatchToProps(dispatch) {
