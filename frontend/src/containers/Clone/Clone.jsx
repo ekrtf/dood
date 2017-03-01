@@ -37,13 +37,13 @@ class Clone extends Component {
         return (
             <div className="container clone">
                 <div className="clone__form">
-                    <div className="clone__form__item--destination">
+                    <div className="clone__form__item col-md-4">
                         <input type="text" placeholder="What are you looking for?" onChange={(e) => this._handleTermChange(e)} />
                     </div>
-                    <div className="clone__form__item--destination">
-                        <input type="text" placeholder="Destination" onChange={(e) => this._handleDestinationChange(e)} />
+                    <div className="clone__form__item col-md-4">
+                        <input type="text" placeholder="City" onChange={(e) => this._handleDestinationChange(e)} />
                     </div>
-                    <div className="clone__form__item">
+                    <div className="clone__form__item--submit col-md-4">
                         <button onClick={(e) => this._handleSubmit(e)}>Search</button>
                     </div>
                 </div>
