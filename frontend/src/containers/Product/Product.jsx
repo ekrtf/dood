@@ -203,7 +203,7 @@ function mapStateToProps(state) {
         product: state.results.selectedItem || {}, // HACK
         showImages: state.product.showImages,
         currentImage: state.product.currentImage,
-        version: state.search.version
+        version: state.results.version
     };
 }
 
