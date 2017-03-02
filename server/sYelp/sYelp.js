@@ -158,7 +158,7 @@ YelpService.prototype._normalizeYelpResult = function(item) {
         result.coordinates = JSON.stringify({ data: item.coordinates });
     }
     if (item.photos) {
-        result.images = _.map(item.photos, src => { src });
+        result.images = JSON.stringify({ data: _.map(item.photos, src => ({ src })) });
     }
     return result;
 };

@@ -38,7 +38,8 @@ SearchModel.prototype.$init = co.wrap(function*() {
  * * * * * * * * * */
 
 /**
- * Search from the clone version
+ * Search function for the clone version. It only queries Yelp.
+ *
  * @param  {Object} search  user input search
  * @return {Object} result  user results
  */
@@ -66,7 +67,8 @@ SearchModel.prototype.cloneSearch = co.wrap(function*(destination, term) {
 });
 
 /**
- * Search from the smart version
+ * Search from the smart version. It queries the web from various sources.
+ *
  * @param  {Object} userInput
  * @param  {String} location
  * @return {Object} result
@@ -79,11 +81,11 @@ SearchModel.prototype.smartSearch = co.wrap(function*(userInput, location) {
     };
 
     // if this search has already been done, return results
-    const existingSearchId = yield this._checkIfSearchExists(searchParams)
+    const existingSearchId = yield this._checkIfSearchExists(searchParams);
     if (_.isString(existingSearchId)) {
-        const existingResutls = yield this._getResults(existingSearchId);
-        if (!_.isEmpty(existingResutls.results)) {
-            return existingResutls;
+        const existingResults = yield this._getResults(existingSearchId);
+        if (!_.isEmpty(existingResults.results)) {
+            return existingResults;
         }
     }
 
@@ -91,10 +93,9 @@ SearchModel.prototype.smartSearch = co.wrap(function*(userInput, location) {
     const searchId = uuid.v4();
     yield this._createSearch(searchId, searchParams, 'ml');
 
-    // TODO: query sources and save results
-    // const results = yield this._searchWeb(searchParams)
-    const yelpResults = yield this._searchYelp(searchParams);
-    yield this._saveResults(searchId, yelpResults);
+    // query sources and save results
+    const results = yield this._searchSources(searchParams);
+    yield this._saveResults(searchId, results);
     
     const response = yield this._getResults(searchId);
     return {
@@ -104,14 +105,36 @@ SearchModel.prototype.smartSearch = co.wrap(function*(userInput, location) {
 });
 
 SearchModel.prototype.getItemDetails = co.wrap(function*(itemId) {
+    // find item source name and id
     const sqlResponse = yield this.db('Results')
         .where('resultId', itemId)
-        .select('idInSource');
+        .select('sourceName', 'idInSource');
 
-    const resultDetails = yield this._getYelpBusinessDetails(sqlResponse[0].idInSource);
-    yield this._extendResult(itemId, resultDetails);
-    const rawResult = yield this.db('Results').where('resultId', itemId);
-    return parseJsonColumns(rawResult[0]);
+    const sourceName = sqlResponse[0].sourceName;
+    const idInSource = sqlResponse[0].idInSource;
+
+    // get details from source
+    let resultDetails = null;
+    switch (sourceName) {
+        case 'Yelp':
+            resultDetails = yield this._getYelpBusinessDetails(idInSource);
+            break;
+        case 'Foursquare':
+            resultDetails = yield this._getFoursquareVenueDetails(idInSource);
+            break;
+        default:
+            throw {
+                code: 400,
+                message: 'Cannot find item details from its source'
+            };
+    }
+
+    // save details in db
+    yield this._updateResults(itemId, resultDetails);
+
+    // return result details from db
+    const dbResult = yield this.db('Results').where('resultId', itemId);
+    return parseJsonColumns(dbResult[0]);
 });
 
 SearchModel.prototype.saveChoice = function(searchId, resultId) {
@@ -127,6 +150,23 @@ SearchModel.prototype.saveChoice = function(searchId, resultId) {
  * Private Functions
  *
  * * * * * * * * * */
+
+/**
+ * Query sources
+ * @param  {Object}  search
+ * @return {Object} query
+ */
+SearchModel.prototype._searchSources = co.wrap(function*(searchParams) {
+    const results = yield Promise.all([
+        this._searchYelp(searchParams),
+        this._searchFoursquare(searchParams)
+    ]);
+
+    // TODO remove duplicates
+    // TODO: if food, search ZOMATO
+
+    return results[0].slice(0, 4).concat(results[1].slice(0, 4));
+});
 
 /**
  * Check if the results exist in DB
@@ -173,14 +213,12 @@ SearchModel.prototype._saveResults = function(searchId, results) {
  * @param  {Array}  results
  * @return {Object} query
  */
-SearchModel.prototype._extendResult = function(resultId, resultDetails) {
+SearchModel.prototype._updateResults = function(resultId, resultDetails) {
+    console.log(resultDetails)
     return this.db('Results')
         .where('resultId', resultId)
-        .update({
-            reviews: resultDetails.reviews,
-            images: resultDetails.images,
-            coordinates: resultDetails.coordinates
-        });
+        .update(resultDetails);
+
 };
 
 /**
@@ -265,6 +303,13 @@ SearchModel.prototype._getWatsonKeywords = function(search) {
     return this.$services.find('sWatson').post('/api/v1/watson/keywords', query);
 };
 
+SearchModel.prototype._searchFoursquare = function(query) {
+    return this.$services.find('sFoursquare').post('/api/v1/foursquare', query)
+        .then(response => {
+            return response;
+        });
+};
+
 SearchModel.prototype._searchYelp = function(query) {
     return this.$services.find('sYelp').post('/api/v1/yelp/query', query)
         .then((response) => {
@@ -276,5 +321,9 @@ SearchModel.prototype._searchYelp = function(query) {
 };
 
 SearchModel.prototype._getYelpBusinessDetails = function(yelpBusinessId) {
-    return this.$services.find('sYelp').get('/api/v1/yelp/details/' + yelpBusinessId);
+    return this.$services.find('sYelp').get(`/api/v1/yelp/details/${yelpBusinessId}`);
+};
+
+SearchModel.prototype._getFoursquareVenueDetails = function(foursquareVenueId) {
+    return this.$services.find('sFoursquare').get(`/api/v1/foursquare/details/${foursquareVenueId}`);
 };

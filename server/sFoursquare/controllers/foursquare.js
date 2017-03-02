@@ -13,14 +13,18 @@ function FoursquareCtrl() {}
  * * * * * * * * * */
 
 FoursquareCtrl.prototype.searchFoursquare = function($input, $error, $done, $service) {
-    const { destination, term } = $input.body;
+    const { location, term } = $input.body;
 
-    $service.searchFoursquare(destination, term)
+    $service.searchFoursquare(location, term)
         .then($done)
         .catch(function(e) {
             console.log(e);
             $error();
         });
+};
+
+FoursquareCtrl.prototype.getFoursquareVenueDetails = function($input, $error, $done, $service) {
+
 };
 
 FoursquareCtrl.prototype.getFoursquareCategories = function($input, $error, $done, $service) {

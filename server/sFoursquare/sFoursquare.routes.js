@@ -3,7 +3,14 @@ module.exports = [
         api: '/api/v1/foursquare',
         controller: 'foursquare',
         method: {
-            get: 'searchFoursquare'
+            post: 'searchFoursquare'
+        }
+    },
+    {
+        api: '/api/v1/foursquare/details/:venueId',
+        controller: 'foursquare',
+        method: {
+            get: 'getFoursquareVenueDetails'
         }
     },
     {

@@ -42,6 +42,7 @@ module.exports = function(config) {
             result.json('categories').notNullable();
             result.json('images');
             result.json('reviews');
+            result.json('description');
             result.json('addressLine').notNullable();
             result.json('addressDisplay').notNullable();
             result.timestamp('createdAt').notNullable();
