@@ -6,6 +6,7 @@ export function submitFeedback() {
     return (dispatch, getState) => {
         const state = getState();
         const feedback = {
+            searchId: getState().search.searchId,
             rating: state.product.rating,
             comment: state.product.comment,
             email: state.product.email,

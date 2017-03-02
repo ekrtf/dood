@@ -41,11 +41,11 @@ AnalyticModel.prototype.$init = co.wrap(function*() {
  * @param  {Object} feedback
  * @return {Promise}
  */
-AnalyticModel.prototype.logFeedback = function(feedback) {
+AnalyticModel.prototype.logFeedback = function(searchId, feedback) {
     const self = this;
     return self.db('Feedback').insert({
         feedbackId: uuid.v4(),
-        searchId: 'TODO',
+        searchId: searchId,
         comment: feedback.comment,
         version: feedback.version,
         email: feedback.email,
