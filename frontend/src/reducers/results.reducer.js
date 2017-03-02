@@ -31,7 +31,7 @@ const results = function(state, action) {
 
         case types.SMART_SEARCH_SUCCESS:
             return _.assign({}, state, {
-                results: action.results.slice(0, 4) // display only top 5
+                results: action.results
             });
 
         case types.POST_SEARCH_SUCCESS:

@@ -7,7 +7,8 @@ const initialState = {
     userInput: null,
     isPosting: false,
     userLocation: null,
-    showLocationForm: false
+    showLocationForm: false,
+    searchId: null
 };
 
 const search = function(state, action) {
@@ -58,7 +59,8 @@ const search = function(state, action) {
 
         case types.POST_SEARCH_SUCCESS:
             return _.assign({}, state, {
-                isPosting: false
+                isPosting: false,
+                searchId: action.searchId
             });
 
         case types.POST_SEARCH_FAILURE:
@@ -73,7 +75,8 @@ const search = function(state, action) {
 
         case types.SMART_SEARCH_SUCCESS:
             return _.assign({}, state, {
-                isPosting: false
+                isPosting: false,
+                searchId: action.searchId
             });
 
         case types.SMART_SEARCH_FAILURE:

@@ -1,10 +1,16 @@
 module.exports = [
-    // Clone endpoints
     {
         api: '/api/v1/search',
         controller: 'search',
         method: {
             post: 'cloneSearch'
+        }
+    },
+    {
+        api: '/api/v1/smart-search',
+        controller: 'search',
+        method: {
+            post: 'smartSearch'
         }
     },
     {
@@ -14,13 +20,11 @@ module.exports = [
             get: 'getItemDetails'
         }
     },
-
-    // ML endpoints
     {
-        api: '/api/v1/smart-search',
+        api: '/api/v1/search/choice',
         controller: 'search',
         method: {
-            post: 'smartSearch'
+            post: 'saveChoice'
         }
     }
 ];

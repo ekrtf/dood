@@ -40,7 +40,7 @@ const product = function(state, action) {
                 disableFinish: false
             });
 
-        case types.SET_CHOSEN_PRODUCT:
+        case types.SET_CHOSEN_PRODUCT_REQUEST:
             return _.assign({}, state, {
                 chosenProduct: action.product
             });

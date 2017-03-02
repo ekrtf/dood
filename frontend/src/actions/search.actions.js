@@ -90,10 +90,11 @@ function postSearchRequest(searchParams) {
     };
 }
 
-function postSearchSuccess(results) {
+function postSearchSuccess(response) {
     return {
         type: types.POST_SEARCH_SUCCESS,
-        results
+        results: response.results,
+        searchId: response.searchId
     };
 }
 
@@ -126,10 +127,11 @@ function smartSearchRequest() {
     };
 }
 
-function smartSearchSuccess(results) {
+function smartSearchSuccess(response) {
     return {
         type: types.SMART_SEARCH_SUCCESS,
-        results
+        results: response.results,
+        searchId: response.searchId
     };
 }
 

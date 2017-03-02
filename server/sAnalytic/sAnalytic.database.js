@@ -15,7 +15,7 @@ module.exports = function(config) {
     return co(function*() {
         yield db.schema.createTableIfNotExists('Feedback', (feedback) => {
             feedback.text('feedbackId').primary().notNullable();
-            feedback.string('searchId'); // .references('Searches')
+            feedback.string('searchId').references('searchId').inTable('Searches');
             feedback.string('comment');
             feedback.string('version'); // 'ml' or 'clone'
             feedback.integer('rating').notNullable();

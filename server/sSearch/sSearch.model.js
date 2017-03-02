@@ -59,7 +59,7 @@ SearchModel.prototype.cloneSearch = co.wrap(function*(destination, term) {
 
     // record search
     const searchId = uuid.v4();
-    yield this._createSearch(searchId, searchParams);
+    yield this._createSearch(searchId, searchParams, 'clone');
 
     // query yelp and save results
     const yelpResults = yield this._searchYelp(searchParams);
@@ -89,13 +89,17 @@ SearchModel.prototype.smartSearch = co.wrap(function*(userInput, location) {
 
     // record search
     const searchId = uuid.v4();
-    yield this._createSearch(searchId, searchParams);
+    yield this._createSearch(searchId, searchParams, 'ml');
 
     // query yelp and save results
     const yelpResults = yield this._searchYelp(searchParams);
     yield this._saveResults(searchId, 'Yelp', yelpResults);
     
-    return this._getResults(searchId);
+    const response = yield this._getResults(searchId);
+    return {
+        searchId: response.searchId,
+        results: response.results.slice(0, 6) // display top 6 only
+    };
 });
 
 SearchModel.prototype.getItemDetails = co.wrap(function*(itemId) {
@@ -109,9 +113,17 @@ SearchModel.prototype.getItemDetails = co.wrap(function*(itemId) {
     return stringifyJsonColumns(rawResult[0]);
 });
 
+SearchModel.prototype.saveChoice = function(searchId, resultId) {
+    return this.db('Searches')
+        .where('searchId', searchId)
+        .update({
+            choice: resultId
+        });
+};
+
 /* * * * * * * * * *
  *
- * Helper Functions
+ * Private Functions
  *
  * * * * * * * * * */
 
@@ -130,9 +142,10 @@ SearchModel.prototype._checkIfSearchExists = co.wrap(function*(searchParams) {
  * @param  {Array}  search
  * @return {Object} query
  */
-SearchModel.prototype._createSearch = function(searchId, searchParams) {
+SearchModel.prototype._createSearch = function(searchId, searchParams, version) {
     return this.db('Searches').insert({
         searchId: searchId,
+        version: version,
         location: searchParams.location,
         term: searchParams.term,
         createdAt: Date.now()
@@ -186,7 +199,10 @@ SearchModel.prototype._extendResult = function(resultId, resultDetails) {
 SearchModel.prototype._getResults = function(searchId) {
     return this.db.select('*').from('Results').where('searchId', searchId)
         .then((response) => {
-            return _.map(response, stringifyJsonColumns);
+            return {
+                searchId: searchId,
+                results: _.map(response, stringifyJsonColumns)
+            };
         });
 };
 

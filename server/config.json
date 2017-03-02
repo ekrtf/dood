@@ -11,7 +11,7 @@
         "database": {
             "client": "sqlite",
             "connection": {
-                "filename": "sSearch.sqlite"
+                "filename": "dood.sqlite"
             }
         }
     },
@@ -19,7 +19,7 @@
         "database": {
             "client": "sqlite",
             "connection": {
-                "filename": "sAnalytic.sqlite"
+                "filename": "dood.sqlite"
             }
         }
     },

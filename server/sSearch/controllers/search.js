@@ -45,6 +45,23 @@ SearchCtrl.prototype.smartSearch = function($input, $error, $done, searchModel) 
         });
 };
 
+SearchCtrl.prototype.saveChoice = function($input, $error, $done, searchModel) {
+    const searchId = $input.body.searchId;
+    const resultId = $input.body.resultId;
+
+    searchModel.saveChoice(searchId, resultId)
+        .then(() => {
+            $done({
+                code: 200,
+                message: 'Choice saved successfully'
+            });
+        })
+        .catch(function(e) {
+            console.log(e);
+            $error();
+        });
+};
+
 /* * * * * * * * * *
  *
  * Helper functions

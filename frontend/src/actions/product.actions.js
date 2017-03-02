@@ -15,7 +15,7 @@ export function submitFeedback() {
         return http.post('/analytic/feedback', feedback)
             .then(response => dispatch(postFeedbackSuccess(response)))
             .catch(e => dispatch(postFeedbackFailure(e)));
-	};
+    };
 }
 
 function postFeedbackRequest(feedback) {
@@ -53,32 +53,59 @@ export function selectImage(imageIndex) {
 
 // "user chooses a venue"
 export function setChosenProduct(product) {
+    return (dispatch, getState) => {
+        dispatch(postChosenProductRequest(product));
+        const data = {
+            resultId: product.resultId,
+            searchId: getState().search.searchId
+        };
+        return http.post('/search/choice', data)
+            .then(response => dispatch(postChosenProductSuccess(response)))
+            .catch(e => dispatch(postChosenProductFailure(e)));
+    };
+}
+
+function postChosenProductRequest(product) {
     return {
-        type: types.SET_CHOSEN_PRODUCT,
+        type: types.SET_CHOSEN_PRODUCT_REQUEST,
         product
+    };
+}
+
+function postChosenProductSuccess(res) {
+    return {
+        type: types.SET_CHOSEN_PRODUCT_SUCCESS,
+        response: res
+    };
+}
+
+function postChosenProductFailure(e) {
+    return {
+        type: types.SET_CHOSEN_PRODUCT_FAILURE,
+        error: e
     };
 }
 
 // "user sets the feedback rating"
 export function setRating(rating) {
-	return {
-		type: types.SET_RATING,
-		rating
-	};
+    return {
+        type: types.SET_RATING,
+        rating
+    };
 }
 
 // "user sets the feedback comment"
 export function setComment(comment) {
-	return {
-		type: types.SET_COMMENT,
-		comment
-	};
+    return {
+        type: types.SET_COMMENT,
+        comment
+    };
 }
 
 // "user sets the feedback email"
 export function setEmail(email) {
-	return {
-		type: types.SET_EMAIL,
-		email
-	};
+    return {
+        type: types.SET_EMAIL,
+        email
+    };
 }
