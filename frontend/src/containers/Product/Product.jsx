@@ -74,7 +74,7 @@ class Product extends Component {
                     </div>
                     <div className="product__reviews__group__item__userandmore">
                         <div className="product__reviews__group__item__userandmore__user">
-                            &mdash; {item.user.name}
+                            &mdash; {item.author}
                         </div>
                         <div className="product__reviews__group__item__userandmore__more">
                             {item.text.includes('...') &&
@@ -124,7 +124,7 @@ class Product extends Component {
 
     render() {
         const backLink = '/' + this.props.version;
-        const { name, price, rating, coordinates, location } = this.props.product;
+        const { name, price, rating, coordinates, addressDisplay } = this.props.product;
 
         let position = [ 0, 0 ];
         if (_.isObject(coordinates)) {
@@ -180,13 +180,7 @@ class Product extends Component {
                 <div className="product__map">
                     <h4 className="product__heading">Location</h4>
                     <div className="product__map__location">
-                        { location &&
-                            <div>
-                                <span>{location.address1},&ensp;</span>
-                                <span>{location.city},&ensp;</span>
-                                <span>{location.country}</span>
-                            </div>
-                        }
+                        { addressDisplay && <div>{addressDisplay}</div> }
                     </div>
 
                     <Map coords={position} />

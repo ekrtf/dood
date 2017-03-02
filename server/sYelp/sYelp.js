@@ -7,6 +7,7 @@
 const co = require('co');
 const uuid = require('uuid');
 const rp = require('request-promise');
+const _ = require('lodash');
 
 module.exports = YelpService;
 
@@ -18,6 +19,7 @@ module.exports = YelpService;
 
 function YelpService($config) {
     this.config = $config;
+    this.sourceName = 'Yelp';
     this.accessHeader = null;
     this.tokenDeathDay = null;
 }
@@ -39,55 +41,49 @@ YelpService.prototype.$init = co.wrap(function*() {
  * * * * * * * * * */
 
 YelpService.prototype.searchYelp = co.wrap(function*(location, term) {
-    const options = {
+    yield this._checkAuthentication();
+
+    const yelpResponse = yield rp({
+        method: 'GET',
         uri: 'https://api.yelp.com/v3/businesses/search',
         qs: { location, term },
         headers: this.accessHeader,
         json: true
-    };
+    });
 
-    yield this._checkAuthentication();
-
-    return rp(options)
-        .then(function(res) {
-            return res.businesses;
-        })
-        .catch(console.log);
+    return _.map(yelpResponse.businesses, biz => this._normalizeYelpResult(biz));
 });
 
 YelpService.prototype.getYelpBusinessDetails = co.wrap(function*(yelpBusinessId) {
+    yield this._checkAuthentication();
+
     const options = {
+        method: 'GET',
         uri: `https://api.yelp.com/v3/businesses/${ yelpBusinessId }`,
         headers: this.accessHeader,
         json: true
     };
-
-    yield this._checkAuthentication();
-
     const calls = yield Promise.all([
         rp(options),
         this.getYelpBusinessReviews(yelpBusinessId)
     ]);
 
-    let result = _normalizeYelpResult(calls[0]);
-    result.reviews = calls[1];
+    let result = this._normalizeYelpResult(calls[0]);
+    result.reviews = JSON.stringify({ data: calls[1] });
     return result;
 });
 
 YelpService.prototype.getYelpBusinessReviews = co.wrap(function*(yelpBusinessId) {
-    const options = {
+    yield this._checkAuthentication();
+
+    const yelpResponse = yield rp({
+        method: 'GET',
         uri: `https://api.yelp.com/v3/businesses/${ yelpBusinessId }/reviews`,
         headers: this.accessHeader,
         json: true
-    };
+    });
 
-    yield this._checkAuthentication();
-
-    return rp(options)
-        .then(function(res) {
-            return res.reviews;
-        })
-        .catch(console.log);
+    return this._normalizeYelpReviews(yelpResponse.reviews);
 });
 
 /* * * * * * * * * *
@@ -133,8 +129,42 @@ YelpService.prototype._checkAuthentication = co.wrap(function*() {
     return Promise.resolve();
 });
 
-function _normalizeYelpResult(item) {
-    item.resultId = uuid.v4();
-    item.images = item.photos.map((src) => ({ src }));
-    return item;
-}
+YelpService.prototype._normalizeYelpResult = function(item) {
+    let result = _.omit(item, [
+        'is_closed',
+        'url',
+        'display_phone',
+        'phone',
+        'distance',
+        'review_count',
+        'image_url',
+        'categories',
+        'location',
+        'is_claimed',
+        'id'
+    ]);
+
+    result.resultId = uuid.v4();
+    result.idInSource = item.id;
+    result.imageUrl = item.image_url;
+    result.sourceName = this.sourceName;
+    result.categories = JSON.stringify({ data: _.map(item.categories, c => c.title) });
+    result.addressLine = item.location.address1;
+    result.addressDisplay = `${item.location.address1}, ${item.location.city}, ${item.location.country}`;
+
+    if (item.coordinates) {
+        result.coordinates = JSON.stringify({ data: item.coordinates });
+    }
+    if (item.photos) {
+        result.images = _.map(item.photos, src => { src });
+    }
+    return result;
+};
+
+YelpService.prototype._normalizeYelpReviews = function(reviews) {
+    return _.map(reviews, review => ({
+        url: review.url,
+        author: review.user.name,
+        text: review.text
+    }));
+};

@@ -26,7 +26,7 @@ class ResultItem extends Component {
     render() {
         const result = this.props.result;
         const isWide = this.props.isWide;
-        const { resultId, name, price, rating, phone, location } = result;
+        const { resultId, name, price, rating, phone, addressLine } = result;
         const categories = result.categories.map(c => c.title);
         const imageUrl = result.imageUrl;
 
@@ -56,7 +56,7 @@ class ResultItem extends Component {
                                     full="glyphicon glyphicon-star"
                                 />
                             </div>
-                            <div>{location.address1}</div>
+                            <div>{addressLine}</div>
                         </div>
                     </div>
                 </Link>

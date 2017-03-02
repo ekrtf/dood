@@ -5,7 +5,6 @@ const co = require('co');
 const levenshtein = require('fast-levenshtein');
 const uuid = require('uuid');
 
-let logger = null;
 let config = null;
 
 module.exports = SearchModel;
@@ -16,12 +15,10 @@ module.exports = SearchModel;
  *
  * * * * * * * * * */
 
-function SearchModel($services, $logger, $config) {
+function SearchModel($services, $config) {
     this.db = null;
     this.$services = $services;
-
     config = $config;
-    logger = $logger;
 }
 
 /* * * * * * * * * *
@@ -63,7 +60,7 @@ SearchModel.prototype.cloneSearch = co.wrap(function*(destination, term) {
 
     // query yelp and save results
     const yelpResults = yield this._searchYelp(searchParams);
-    yield this._saveResults(searchId, 'Yelp', yelpResults);
+    yield this._saveResults(searchId, yelpResults);
 
     return this._getResults(searchId);
 });
@@ -84,16 +81,20 @@ SearchModel.prototype.smartSearch = co.wrap(function*(userInput, location) {
     // if this search has already been done, return results
     const existingSearchId = yield this._checkIfSearchExists(searchParams)
     if (_.isString(existingSearchId)) {
-        return this._getResults(existingSearchId);
+        const existingResutls = yield this._getResults(existingSearchId);
+        if (!_.isEmpty(existingResutls.results)) {
+            return existingResutls;
+        }
     }
 
     // record search
     const searchId = uuid.v4();
     yield this._createSearch(searchId, searchParams, 'ml');
 
-    // query yelp and save results
+    // TODO: query sources and save results
+    // const results = yield this._searchWeb(searchParams)
     const yelpResults = yield this._searchYelp(searchParams);
-    yield this._saveResults(searchId, 'Yelp', yelpResults);
+    yield this._saveResults(searchId, yelpResults);
     
     const response = yield this._getResults(searchId);
     return {
@@ -103,14 +104,14 @@ SearchModel.prototype.smartSearch = co.wrap(function*(userInput, location) {
 });
 
 SearchModel.prototype.getItemDetails = co.wrap(function*(itemId) {
-    const sourceId = yield this.db('Results')
+    const sqlResponse = yield this.db('Results')
         .where('resultId', itemId)
-        .select('sourceId');
+        .select('idInSource');
 
-    const resultDetails = yield this._getYelpBusinessDetails(sourceId[0].sourceId);
+    const resultDetails = yield this._getYelpBusinessDetails(sqlResponse[0].idInSource);
     yield this._extendResult(itemId, resultDetails);
     const rawResult = yield this.db('Results').where('resultId', itemId);
-    return stringifyJsonColumns(rawResult[0]);
+    return parseJsonColumns(rawResult[0]);
 });
 
 SearchModel.prototype.saveChoice = function(searchId, resultId) {
@@ -157,21 +158,12 @@ SearchModel.prototype._createSearch = function(searchId, searchParams, version) 
  * @param  {Array}  results
  * @return {Object} query
  */
-SearchModel.prototype._saveResults = function(searchId, sourceName, results) {
-    const resultsPromises = results.map((item) => {
-        return this.db('Results').insert({
-            resultId: uuid.v4(),
-            sourceId: item.id,
+SearchModel.prototype._saveResults = function(searchId, results) {
+    const resultsPromises = _.map(results, item => {
+        return this.db('Results').insert(_.merge(item, {
             createdAt: Date.now(),
-            name: item.name,
-            price: item.price,
-            rating: item.rating,
-            imageUrl: item.image_url,
-            location: JSON.stringify({ data: item.location}),
-            categories: JSON.stringify({ data: item.categories }),
-            sourceName,
             searchId
-        });
+        }));
     });
     return Promise.all(resultsPromises);
 };
@@ -185,9 +177,9 @@ SearchModel.prototype._extendResult = function(resultId, resultDetails) {
     return this.db('Results')
         .where('resultId', resultId)
         .update({
-            reviews: JSON.stringify({ data: resultDetails.reviews }),
-            images: JSON.stringify({ data: resultDetails.images }),
-            coordinates: JSON.stringify({ data: resultDetails.coordinates })
+            reviews: resultDetails.reviews,
+            images: resultDetails.images,
+            coordinates: resultDetails.coordinates
         });
 };
 
@@ -201,7 +193,7 @@ SearchModel.prototype._getResults = function(searchId) {
         .then((response) => {
             return {
                 searchId: searchId,
-                results: _.map(response, stringifyJsonColumns)
+                results: _.map(response, parseJsonColumns)
             };
         });
 };
@@ -241,8 +233,7 @@ SearchModel.prototype._createKeyword = function(userInput, keyword) {
     });
 };
 
-function stringifyJsonColumns(result) {
-    result.location = JSON.parse(result.location).data;
+function parseJsonColumns(result) {
     result.categories = JSON.parse(result.categories).data;
 
     if (result.reviews) {

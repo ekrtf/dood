@@ -1,0 +1,46 @@
+{
+  "resultId": "e010b493-2d0c-4672-a1a5-7b4a3a87c4e4",
+  "searchId": "cf5bde73-d0d9-4dc5-ba27-089d562f8af7",
+  "sourceId": "home-house-london-2",
+  "sourceName": "Yelp",
+  "imageUrl": "https://s3-media4.fl.yelpcdn.com/bphoto/YbbEJxvWvCOMMPsYLtYCEg/o.jpg",
+  "name": "Home House",
+  "price": "£££",
+  "rating": 4.5,
+  "coordinates": {
+    "longitude": -0.15665305008251,
+    "latitude": 51.516150244144
+  },
+  "categories": [
+    {
+      "title": "Hotels"
+    },
+    {
+      "title": "Dance Clubs"
+    },
+    {
+      "title": "British"
+    }
+  ],
+  "images": [
+    {
+      "src": "https://s3-media4.fl.yelpcdn.com/bphoto/YbbEJxvWvCOMMPsYLtYCEg/o.jpg"
+    },
+    {
+      "src": "https://s3-media1.fl.yelpcdn.com/bphoto/oagg3tNUKt6wDM584E5F0Q/o.jpg"
+    },
+    {
+      "src": "https://s3-media4.fl.yelpcdn.com/bphoto/faRR2ZZRzJgJxTEut5VEew/o.jpg"
+    }
+  ],
+  "reviews": [
+    {
+      "author": "Fire Cracker L.",
+      "url": "https://www.yelp.com/biz/home-house-london-2?hrid=X8Y4rjx3VxJQZDCgu9u4uQ&ad…pi_v3&utm_medium=api_v3_business_reviews&utm_source=eJEgUTjJxSJZcG1GwnivDg",
+      "text": "I love the artwork, the age of the place, the winding turns and twists it takes to get everywhere, and even the ambiance one of the old time special members..."
+    }
+  ],
+  "addressLine": "20 Portman Square",
+  "addressDisplay": "20 Portman Square, London, GB",
+  "createdAt": 1488451396332
+}

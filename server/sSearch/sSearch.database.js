@@ -32,17 +32,18 @@ module.exports = function(config) {
         yield db.schema.createTableIfNotExists('Results', (result) => {
             result.text('resultId').notNullable().primary();
             result.string('searchId').notNullable().references('searchId').inTable('Searches');
-            result.string('sourceId').notNullable();
+            result.string('idInSource').notNullable();
             result.string('sourceName').notNullable();
-            result.string('imageUrl');
-            result.string('name');
-            result.string('price');
-            result.integer('rating');
+            result.string('imageUrl').notNullable();
+            result.string('name').notNullable();
+            result.string('price').notNullable();
+            result.integer('rating').notNullable();
             result.json('coordinates');
-            result.json('categories');
+            result.json('categories').notNullable();
             result.json('images');
             result.json('reviews');
-            result.json('location');
+            result.json('addressLine').notNullable();
+            result.json('addressDisplay').notNullable();
             result.timestamp('createdAt').notNullable();
         });
 

@@ -49,7 +49,6 @@ FoursquareService.prototype.searchFoursquare = function(location, term) {
 
     return rp(options)
         .then(function(results) {
-            console.log(results)
             return results;
         })
         .catch(console.log);

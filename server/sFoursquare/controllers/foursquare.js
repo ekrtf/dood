@@ -24,7 +24,6 @@ FoursquareCtrl.prototype.searchFoursquare = function($input, $error, $done, $ser
 };
 
 FoursquareCtrl.prototype.getFoursquareCategories = function($input, $error, $done, $service) {
-    console.log('hello')
     $service.getFoursquareCategories()
         .then($done)
         .catch(function(e) {
