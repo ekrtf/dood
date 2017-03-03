@@ -18,6 +18,7 @@ class Smart extends Component {
         this._doSmartSearch = this._doSmartSearch.bind(this);
         this._handleToggleLocation = this._handleToggleLocation.bind(this);
         this._handleLocationChange = this._handleLocationChange.bind(this);
+        this._getButtonClass = this._getButtonClass.bind(this);
     }
 
     componentDidMount() {
@@ -51,11 +52,7 @@ class Smart extends Component {
     }
 
     _doSmartSearch(e) {
-        if (!this.props.userInput || !this.props.userLocation) {
-            // TODO: error message
-        } else {
-            this.props.smartSearch(this.props.userInput, this.props.userLocation);
-        }
+        this.props.smartSearch(this.props.userInput, this.props.userLocation);
     }
 
     _handleInputChange(e) {
@@ -70,6 +67,13 @@ class Smart extends Component {
                 <ResultItem index={index} result={result} onSelect={doSelectItem}/>
             </div>
         );
+    }
+
+    _getButtonClass() {
+        if (!this.props.userInput || !this.props.userLocation) {
+            return 'smart__input__form__button--disabled';
+        }
+        return 'smart__input__form__button';
     }
 
     render() {
@@ -101,7 +105,7 @@ class Smart extends Component {
                             }
                         </div>
                         <button onClick={(e) => this._doSmartSearch(e)}
-                                className="smart__input__form__button"
+                                className={this._getButtonClass()}
                         >
                             Save me some scrolling time
                             <i className="em em-confetti_ball"></i>

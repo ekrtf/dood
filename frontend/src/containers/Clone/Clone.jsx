@@ -15,6 +15,7 @@ class Clone extends Component {
         this._handleTermChange = this._handleTermChange.bind(this);
         this._handleDestinationChange = this._handleDestinationChange.bind(this);
         this._handleSubmit = this._handleSubmit.bind(this);
+        this._getButtonClass = this._getButtonClass.bind(this);
     }
 
     componentDidMount() {
@@ -22,6 +23,7 @@ class Clone extends Component {
     }
 
     _handleTermChange(e) {
+        console.log('handle term change', e.target.value)
         this.props.onSearchTermChange(e.target.value);
     }
 
@@ -31,6 +33,13 @@ class Clone extends Component {
 
     _handleSubmit(e) {
         this.props.onSearchSubmit();
+    }
+
+    _getButtonClass() {
+        if (!this.props.destination || !this.props.term) {
+            return 'clone__form__item--submit--disabled col-md-4';
+        }
+        return 'clone__form__item--submit col-md-4';
     }
 
     render() {
@@ -43,7 +52,7 @@ class Clone extends Component {
                     <div className="clone__form__item col-md-4">
                         <input type="text" placeholder="City" onChange={(e) => this._handleDestinationChange(e)} />
                     </div>
-                    <div className="clone__form__item--submit col-md-4">
+                    <div className={this._getButtonClass()}>
                         <button onClick={(e) => this._handleSubmit(e)}>Search</button>
                     </div>
                 </div>
@@ -58,7 +67,7 @@ class Clone extends Component {
 function mapStateToProps(state) {
     return {
         destination: state.search.destination,
-        term: state.search.fromDate,
+        term: state.search.term,
     };
 }
 

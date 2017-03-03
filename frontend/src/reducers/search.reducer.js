@@ -2,8 +2,8 @@ import _ from 'lodash';
 import * as types from '../actions/action-types';
 
 const initialState = {
-    destination: '',
-    term: '',
+    destination: null,
+    term: null,
     userInput: null,
     isPosting: false,
     userLocation: null,

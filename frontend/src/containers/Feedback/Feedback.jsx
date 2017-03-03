@@ -11,6 +11,7 @@ class Feedback extends Component {
         this._handleCommentChange = this._handleCommentChange.bind(this);
         this._handleEmailChange = this._handleEmailChange.bind(this);
         this._handleFinish = this._handleFinish.bind(this);
+        this._getButtonClass = this._getButtonClass.bind(this);
     }
 
     _handleRatingChange(rating) {
@@ -27,6 +28,13 @@ class Feedback extends Component {
 
     _handleFinish(e) {
         this.props.submitFeedback();
+    }
+
+    _getButtonClass() {
+        if (!this.props.rating || !this.props.comment) {
+            return 'feedback__submit--disabled';
+        }
+        return 'feedback__submit';
     }
 
     render() {
@@ -67,7 +75,7 @@ class Feedback extends Component {
                         onChange={(e) => this._handleEmailChange(e)}
                     />
                 </div>
-                <div className="feedback__submit">
+                <div className={this._getButtonClass()}>
                     <Link to="/finish">
                         <button onClick={(e) => this._handleFinish(e)}
                                 disabled={disableFinish}

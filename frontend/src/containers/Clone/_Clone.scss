@@ -28,6 +28,17 @@
     }
 }
 
+.clone__form__item--submit--disabled {
+    height: $headerbar-height;
+    display: flex;
+    button {
+        height: 42px;
+        margin-left: auto;
+        opacity: 0.5;
+        pointer-events: none;
+    }
+}
+
 .clone__output {
     width: 100%;
 }

@@ -141,7 +141,8 @@ YelpService.prototype._normalizeYelpResult = function(item) {
         'categories',
         'location',
         'is_claimed',
-        'id'
+        'id',
+        'price'
     ]);
 
     result.resultId = uuid.v4();
@@ -151,6 +152,7 @@ YelpService.prototype._normalizeYelpResult = function(item) {
     result.categories = JSON.stringify({ data: _.map(item.categories, c => c.title) });
     result.addressLine = item.location.address1;
     result.addressDisplay = `${item.location.address1}, ${item.location.city}, ${item.location.country}`;
+    result.price = item.price || 'NA';
 
     if (item.coordinates) {
         result.coordinates = JSON.stringify({ data: item.coordinates });

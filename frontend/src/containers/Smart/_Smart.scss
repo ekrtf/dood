@@ -56,6 +56,13 @@
     margin-bottom: $medium-space;
 }
 
+.smart__input__form__button--disabled {
+    width: 250px;
+    margin-bottom: $medium-space;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
 .smart__output {
 
 }
