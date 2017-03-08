@@ -15,7 +15,9 @@
 	margin: 10px 0;
 	.thanks {
 		color: $light-burgundy;
-		text-decoration: underline;
+		&:hover {
+			text-decoration: underline;
+		}
 	}
 }
 
