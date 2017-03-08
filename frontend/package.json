@@ -10,7 +10,7 @@
   "scripts": {
     "clean": "rm -rf node_modules dist",
     "prebuild": "rm -rf dist",
-    "build": "webpack --progress",
+    "build": "webpack --progress && cp ./src/resources/favicon.ico ./dist/favicon.ico",
     "dev": "node ../bin/devserver"
   },
   "dependencies": {
