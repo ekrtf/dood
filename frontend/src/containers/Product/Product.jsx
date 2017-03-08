@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import Lightbox from 'react-images';
+import Spinner from 'react-spinner';
 import Rating from 'react-rating';
 import { Link } from 'react-router';
 import { toggleImages, selectImage, setChosenProduct } from '../../actions/product.actions';
@@ -123,6 +124,7 @@ class Product extends Component {
     }
 
     render() {
+        const isFetching = this.props.isFetching;
         const backLink = '/' + this.props.version;
         const { name, price, rating, coordinates, addressDisplay } = this.props.product;
 
@@ -172,9 +174,19 @@ class Product extends Component {
                     </div>
                 </div>
 
+
+                { isFetching &&
+                    <div className="product__gallery--placeholder">
+                        <div className="product__spinner"><Spinner /></div>
+                    </div>
+                }
+                { !isFetching && Array.isArray(this.props.product.images) &&
+                    this._renderGallery() }
+
                 <div className="product__reviews">
                     <h4 className="product__heading">Reviews</h4>
-                    { _.isArray(this.props.product.reviews) && this._renderReviews() }
+                    { isFetching && (<div className="product__spinner"><Spinner /></div>) }
+                    { !isFetching && _.isArray(this.props.product.reviews) && this._renderReviews() }
                 </div>
 
                 <div className="product__map">
@@ -194,6 +206,7 @@ class Product extends Component {
 
 function mapStateToProps(state) {
     return {
+        isFetching: state.results.isFetching,
         product: state.results.selectedItem || {}, // HACK
         showImages: state.product.showImages,
         currentImage: state.product.currentImage,

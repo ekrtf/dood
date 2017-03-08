@@ -214,11 +214,15 @@ SearchModel.prototype._saveResults = function(searchId, results) {
  * @return {Object} query
  */
 SearchModel.prototype._updateResults = function(resultId, resultDetails) {
-    console.log(resultDetails)
     return this.db('Results')
         .where('resultId', resultId)
-        .update(resultDetails);
-
+        // TODO: change when yelp uses pick in normalize
+        .update(_.pick(resultDetails, [
+            'categories',
+            'coordinates',
+            'reviews',
+            'images'
+        ]));
 };
 
 /**

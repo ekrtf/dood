@@ -17,3 +17,14 @@
     margin-bottom: 20px;
     width: 100%;
 }
+
+.results__spinner {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: $medium-space;
+    .react-spinner {
+        width: 100px;
+        height: 100px;
+    }
+}

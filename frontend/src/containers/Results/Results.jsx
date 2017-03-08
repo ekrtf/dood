@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import Spinner from 'react-spinner';
 import { ResultItem } from '../../components';
 import { submitSearch } from '../../actions/search.actions';
 import { selectItem } from '../../actions/results.actions';
@@ -27,7 +28,7 @@ class Results extends Component {
 
         return (
             <div className={isExtraSmall ? 'results--small' : 'results'}>
-                { isPosting && (<div>Loading...</div>) }
+                { isPosting && (<div className="results__spinner"><Spinner /></div>) }
                 { !isPosting && Array.isArray(results) && results.map(this._renderResult) }
             </div>
         );

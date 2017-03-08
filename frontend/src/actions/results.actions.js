@@ -3,7 +3,11 @@ import http from '../utils/http';
 
 // "user selects result item"
 export function selectItem(itemId) {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const currentSelectedItem = getState().results.selectedItem;
+        if (itemId === currentSelectedItem.resultId) {
+            return dispatch(selectItemSuccess(currentSelectedItem));
+        }
         dispatch(selectItemRequest(itemId));
         return http.get('/search/details/' + itemId)
             .then(response => dispatch(selectItemSuccess(response)))
