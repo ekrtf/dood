@@ -15,6 +15,7 @@ class Product extends Component {
 
         this.doSelectProduct = this.doSelectProduct.bind(this);
 
+        this.onBackClick = this.onBackClick.bind(this);
         this.openGallery = this.openGallery.bind(this);
         this.goToPrevious = this.goToPrevious.bind(this);
         this.goToNext = this.goToNext.bind(this);
@@ -26,6 +27,10 @@ class Product extends Component {
         if (_.isEmpty(this.props.product)) {
             this.props.fetchProduct(this.props.routeParams.resultId);
         }
+    }
+
+    onBackClick() {
+        this.props.history.push('/' + this.props.version);
     }
 
     doSelectProduct() {
@@ -125,7 +130,6 @@ class Product extends Component {
 
     render() {
         const isFetching = this.props.isFetching;
-        const backLink = '/' + this.props.version;
         const { name, price, rating, coordinates, addressDisplay } = this.props.product;
 
         let position = [ 0, 0 ];
@@ -136,11 +140,9 @@ class Product extends Component {
         return (
             <div className="container product">
 
-                <div className="product__back">
+                <div className="product__back" onClick={(e) => this.onBackClick(e)}>
                     <i className="em em-back"></i>
-                    <Link to={backLink}>
-                        <div>Back to results</div>
-                    </Link>
+                    <div>Back to results</div>
                 </div>
 
                 <div className="product__top">
