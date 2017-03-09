@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { browserHistory } from 'react-router';
 
 class Home extends Component {
     constructor(props) {
@@ -14,7 +15,7 @@ class Home extends Component {
         };
 
         // randomly route the user to either version
-        this.props.history.push(randomHash[Math.floor(Math.random() * 2)]);
+        browserHistory.push(randomHash[Math.floor(Math.random() * 2)]);
     }
 
     render() {
@@ -78,8 +79,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return {
-    };
+    return {};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
