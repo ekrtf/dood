@@ -4,6 +4,7 @@ import Spinner from 'react-spinner';
 import { Results } from '../.';
 import { ResultItem } from '../../components';
 import { setVersion } from '../../actions/results.actions';
+import { isEmpty } from 'lodash';
 import {
     smartSearch,
     userInputChange,
@@ -140,7 +141,7 @@ Smart.propTypes = {
 
 function mapStateToProps(state) {
     return {
-        areResultsEmpty: state.results.results.length === 0,
+        areResultsEmpty: isEmpty(state.results.results),
         userInput: state.search.userInput,
         userLocation: state.search.userLocation,
         showLocationForm: state.search.showLocationForm

@@ -1,10 +1,19 @@
 'use strict';
 
 const _ = require('lodash');
+const { checkAccessToken } = require('./../../utils.js');
 
 module.exports = ContextCtrl;
 
 function ContextCtrl() {}
+
+/* * * * * * * * * *
+ *
+ * Pre Route
+ *
+ * * * * * * * * * */
+
+ContextCtrl.prototype.$preRoute = checkAccessToken;
 
 /* * * * * * * * * *
  *

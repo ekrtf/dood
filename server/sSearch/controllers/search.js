@@ -1,10 +1,19 @@
 'use strict';
 
 const _ = require('lodash');
+const { checkAccessToken } = require('./../../utils.js');
 
 module.exports = SearchCtrl;
 
 function SearchCtrl() {}
+
+/* * * * * * * * * *
+ *
+ * Pre Route
+ *
+ * * * * * * * * * */
+
+SearchCtrl.prototype.$preRoute = checkAccessToken;
 
 /* * * * * * * * * *
  *
@@ -74,3 +83,5 @@ function normalizeUserInput(input) {
     }
     return _.snakeCase(input);
 }
+
+const t = new SearchCtrl()

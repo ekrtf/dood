@@ -1,10 +1,19 @@
 'use strict';
 
 const _ = require('lodash');
+const { checkAccessToken } = require('./../../utils.js');
 
 module.exports = AnalyticCtrl;
 
 function AnalyticCtrl() {}
+
+/* * * * * * * * * *
+ *
+ * Pre Route
+ *
+ * * * * * * * * * */
+
+AnalyticCtrl.prototype.$preRoute = checkAccessToken;
 
 /* * * * * * * * * *
  *

@@ -8,6 +8,7 @@
 const _ = require('lodash');
 const hyper = require('hyper.io');
 const config = require('./config.json');
+const helmet = require('helmet');
 
 module.exports = ServerApp;
 
@@ -38,10 +39,11 @@ function ServerApp() {
  * @param {Array} list
  */
 ServerApp.prototype.load = function(list) {
+    const self = this;
     const preRouteService = {
         name: 'preRouteSetup',
-        preRoutes: ($http) => {
-            this.addCORS($http.app());
+        preRoutes: function($http) {
+            self.addSecurity($http.app());
         }
     };
     list.unshift(preRouteService);
@@ -61,12 +63,15 @@ ServerApp.prototype.start = function(list) {
  * Add headers so client can connect to this service
  * @param {Object} app
  */
-ServerApp.prototype.addCORS = function(app) {
+ServerApp.prototype.addSecurity = function(app) {
+    const self = this;
     const origin = this._options.env === 'dev' ? 'http://localhost:4001' : 'http://localhost:4000';
+
+    app.use(helmet());
     app.use(function(req, res, next) {
         res.setHeader('Access-Control-Allow-Origin', origin);
         res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-        res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,x-access-token');
+        res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type,x-access-token,Authorization');
         res.setHeader('Access-Control-Allow-Credentials', true);
         next();
     });
