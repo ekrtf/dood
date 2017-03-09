@@ -46,5 +46,8 @@
     },
     "sZomato": {
         "apiKey": "9756514d54c19b1841cb1f8713a35f24"
+    },
+    "sGooglePlaces": {
+        "apiKey": "AIzaSyBTUge9awC7NP_B488VOaiOeezbXC2Vlpo"
     }
 }

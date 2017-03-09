@@ -8,7 +8,8 @@ const initialState = {
     isPosting: false,
     userLocation: null,
     showLocationForm: false,
-    searchId: null
+    searchId: null,
+    locationPredictions: null
 };
 
 const search = function(state, action) {
@@ -18,7 +19,12 @@ const search = function(state, action) {
 
     switch(action.type) {
 
-        case types.SMART_LOCATION_CHANGE:
+        case types.LOCATION_AUTOCOMPLETE_SUCCESS:
+            return _.assign({}, state, {
+                locationPredictions: action.locationPredictions
+            });
+
+        case types.SET_LOCATION:
             return _.assign({}, state, {
                 userLocation: action.userLocation
             });

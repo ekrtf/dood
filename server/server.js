@@ -9,6 +9,7 @@ app.load([
     'sFoursquare',
     'sWatson',
     'sZomato',
+    'sGooglePlaces',
     'sAnalytic',
     'sWebApp'
 ]).then((hyper) => hyper.start());

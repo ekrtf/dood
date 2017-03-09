@@ -8,11 +8,42 @@ export function toggleLocationForm() {
     };
 }
 
-// "user enter location manually in search form"
-export function smartLocationChange(location) {
+// "user selected a location in the typeahead"
+export function setUserLocation(userLocation) {
     return {
-        type: types.SMART_LOCATION_CHANGE,
-        userLocation: location
+        type: types.SET_LOCATION,
+        userLocation
+    };
+}
+
+// "user types in location input"
+export function locationChange(input) {
+    return (dispatch) => {
+        dispatch(locationAutocompleteRequest(input));
+        return http.get('/places/autocomplete', { input })
+            .then(res => dispatch(locationAutocompleteSuccess(res)))
+            .catch(e => dispatch(locationAutocompleteFailure(e)));
+    };
+}
+
+function locationAutocompleteRequest(input) {
+    return {
+        type: types.LOCATION_AUTOCOMPLETE_REQUEST,
+        locationInput: input
+    };
+}
+
+function locationAutocompleteSuccess(predictions) {
+    return {
+        type: types.LOCATION_AUTOCOMPLETE_SUCCESS,
+        locationPredictions: predictions
+    };
+}
+
+function locationAutocompleteFailure(e) {
+    return {
+        type: types.LOCATION_AUTOCOMPLETE_FAILURE,
+        error: e
     };
 }
 
@@ -53,6 +84,7 @@ export function termChange(term) {
     };
 }
 
+// TODO: soon deprecated
 // "user types in destination input"
 export function destinationChange(destination) {
     return {

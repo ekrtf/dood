@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { IndexLink } from 'react-router';
 
+// !!WARNING!! 
+// TODO: hide this
 const key = 'AIzaSyDqG4iWfxl1E2VAUK-0anXvxO_GcoBEQSU';
 
 class Map extends Component {

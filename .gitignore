@@ -6,6 +6,7 @@ frontend/dist/
 dist
 *.docx
 *.sqlite
+server/config.json
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

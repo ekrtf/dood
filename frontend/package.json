@@ -24,6 +24,7 @@
     "react-redux": "~4.4.5",
     "react-router": "~2.0.0",
     "react-spinner": "~0.2.6",
+    "react-typeahead": "^2.0.0-alpha.5",
     "redux": "~3.5.2",
     "redux-logger": "~2.6.1",
     "redux-responsive": "^4.1.1",
