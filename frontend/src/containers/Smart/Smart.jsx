@@ -23,7 +23,7 @@ class Smart extends Component {
     }
 
     componentDidMount() {
-        this.props.setVersion('ml');
+        this.props.setVersion('smart');
         if (!this.props.userLocation) {
             this.getUserLocation();
         }

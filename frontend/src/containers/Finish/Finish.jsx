@@ -8,9 +8,9 @@ class Finish extends Component {
     }
 
     render() {
-        const versionStr = this.props.version === 'ml' ? ' smart' : ' clone';
-        const other = versionStr === ' smart' ? ' clone' : ' smart';
-        const otherLink = other === ' smart' ? '/ml' : '/clone';
+        const versionStr = ' ' + this.props.version;
+        const other = this.props.version === 'smart' ? ' clone' : ' smart';
+        const otherLink = other.replace(' ', '/');
 
         return (
             <div className="finish container">

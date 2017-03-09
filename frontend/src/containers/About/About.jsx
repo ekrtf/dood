@@ -10,7 +10,7 @@ class About extends Component {
     _handleGetStarted(e) {
         const randomHash = {
             0: '/clone',
-            1: '/ml'
+            1: '/smart'
         };
 
         // randomly route the user to either version

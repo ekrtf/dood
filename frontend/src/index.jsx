@@ -17,7 +17,7 @@ render(
                 <IndexRoute component={Home} />
                 <Route path="/clone" component={Clone} />
                 <Route path="/about" component={About} />
-                <Route path="/ml" component={Smart} />
+                <Route path="/smart" component={Smart} />
                 <Route path="/results/:resultId" component={Product} />
                 <Route path="/feedback" component={Feedback} />
                 <Route path="/finish" component={Finish} />
