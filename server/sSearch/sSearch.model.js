@@ -110,6 +110,13 @@ SearchModel.prototype.getItemDetails = co.wrap(function*(itemId) {
         .where('resultId', itemId)
         .select('sourceName', 'idInSource');
 
+    if (_.isEmpty(sqlResponse)) {
+        throw {
+            code: 500,
+            message: 'Internal server error'
+        };
+    }
+
     const sourceName = sqlResponse[0].sourceName;
     const idInSource = sqlResponse[0].idInSource;
 

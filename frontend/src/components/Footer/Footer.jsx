@@ -15,7 +15,7 @@ class Footer extends Component {
                     </div>
                     <div className="footer__content__divider"></div>
                     <div className="footer__content__item">
-                        Email me
+                        Say hi or report bug
                     </div>
                     <div className="footer__content__divider"></div>
                     <div className="footer__content__item">

@@ -60,6 +60,7 @@ FoursquareService.prototype.searchFoursquare = co.wrap(function*(location, term)
 
     for (let i = 0; i < venues.length; i++) {
         const venue = venues[i];
+        if (venue.imageUrl) continue;
         venue.imageUrl = yield this._getFoursquareImageUrl(venue.idInSource);
     }
 
@@ -109,7 +110,7 @@ FoursquareService.prototype._getFoursquareImageUrl = function(foursquareVenueId)
     }).then(res => {
         const photoObj = _.get(res, '.response.photos.items[0]');
         if (photoObj) {
-            return photoObj.prefix + photoObj.suffix.split('/')[1];
+            return photoObj.prefix + '300x300/' + photoObj.suffix.split('/')[1];
         } else {
             return 'http://il8.picdn.net/shutterstock/videos/7476982/thumb/1.jpg';
         }
@@ -151,12 +152,16 @@ FoursquareService.prototype._normalizeFoursquareResult = function(item) {
         result.rating = 0; // TODO: unavailable rating case
     }
 
+    if (item.bestPhoto) {
+        result.imageUrl = item.bestPhoto.prefix + item.bestPhoto.suffix.split('/')[1]
+    }
+
     if (item.photos) {
-        const rawPhotos = _.get(item.photos, '.group[0].items');
+        const rawPhotos = _.get(item.photos, '.groups[0].items');
         if (rawPhotos.length) {
             result.images = JSON.stringify({
                 data: _.map(rawPhotos, p => ({
-                    src: p.prefix + p.suffic.split('/')[1]
+                    src: p.prefix + '300x300/' + p.suffix.split('/')[1]
                 }))
             });
         }
@@ -166,10 +171,10 @@ FoursquareService.prototype._normalizeFoursquareResult = function(item) {
         result.description = item.description;
     }
 
-    if (item.tips) {
+    if (item.tips && !_.isEmpty(item.tips.groups)) {
         // foursquare clusters tips per user type: friends, folowing, self and others
         const tips = _.find(item.tips.groups, { type: 'others' });
-        if (tips.items.length) {
+        if (!_.isEmpty(tips.items)) {
             result.reviews = JSON.stringify({
                 data: _.map(tips.items, t => ({
                     text: t.text,

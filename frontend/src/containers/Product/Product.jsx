@@ -24,7 +24,7 @@ class Product extends Component {
 
     componentWillMount() {
         // fetch product if user navigates directly to this page
-        if (_.isEmpty(this.props.product)) {
+        if (_.isEmpty(this.props.product) && !this.props.isFetching) {
             this.props.fetchProduct(this.props.routeParams.resultId);
         }
     }

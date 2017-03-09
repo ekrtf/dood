@@ -130,19 +130,9 @@ YelpService.prototype._checkAuthentication = co.wrap(function*() {
 });
 
 YelpService.prototype._normalizeYelpResult = function(item) {
-    let result = _.omit(item, [
-        'is_closed',
-        'url',
-        'display_phone',
-        'phone',
-        'distance',
-        'review_count',
-        'image_url',
-        'categories',
-        'location',
-        'is_claimed',
-        'id',
-        'price'
+    let result = _.pick(item, [
+        'name',
+        'rating'
     ]);
 
     result.resultId = uuid.v4();
