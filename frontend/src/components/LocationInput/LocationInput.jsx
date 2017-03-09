@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { IndexLink } from 'react-router';
 import { Typeahead } from 'react-typeahead';
+import { isFunction } from 'lodash';
 
 class LocationInput extends Component {
     constructor(props) {
@@ -13,7 +14,9 @@ class LocationInput extends Component {
             e.preventDefault();
             e.stopPropagation();
         } else {
-            this.props.onBlur();
+            if (isFunction(this.props.onBlur)) {
+                this.props.onBlur();
+            }
         }
     }
 

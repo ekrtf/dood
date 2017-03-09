@@ -43,11 +43,8 @@ SearchModel.prototype.$init = co.wrap(function*() {
  * @param  {Object} search  user input search
  * @return {Object} result  user results
  */
-SearchModel.prototype.cloneSearch = co.wrap(function*(destination, term) {
-    const searchParams = {
-        location: destination,
-        term
-    };
+SearchModel.prototype.cloneSearch = co.wrap(function*(location, term) {
+    const searchParams = { location, term };
 
     // if this search has already been done, return results
     const existingSearchId = yield this._checkIfSearchExists(searchParams)

@@ -117,7 +117,7 @@ class Smart extends Component {
                                   onChange={(e) => this._handleInputChange(e)}
                         ></input>
                         <div className={this._getLocationClass()}>
-                            <div>Searching location:</div>
+                            <div>Searching in:</div>
                             <div className="smart__input__form__location__spin">
                                 { !showLocationForm && !userLocation && <Spinner />}
                             </div>
@@ -125,7 +125,7 @@ class Smart extends Component {
                                 { !showLocationForm && userLocation && userLocation }
                             </div>
                             <div className="smart__input__form__location__change" onClick={(e) => this._toggleLocationForm(e)}>
-                                { !showLocationForm && '(Change location)' }
+                                { !showLocationForm && '(Change city)' }
                             </div>
                             { showLocationForm &&
                                 <div className="smart__input__form__location__input">

@@ -2,12 +2,12 @@ import _ from 'lodash';
 import * as types from '../actions/action-types';
 
 const initialState = {
-    destination: null,
     term: null,
     userInput: null,
     isPosting: false,
     userLocation: null,
     showLocationForm: false,
+    showSuggestions: false,
     searchId: null,
     locationPredictions: null
 };
@@ -29,6 +29,11 @@ const search = function(state, action) {
                 userLocation: action.userLocation
             });
 
+        case types.TOGGLE_SUGGESTIONS:
+            return _.assign({}, state, {
+                showSuggestions: !state.showSuggestions
+            });
+
         case types.TOGGLE_LOCATION:
             return _.assign({}, state, {
                 showLocationForm: !state.showLocationForm
@@ -37,11 +42,6 @@ const search = function(state, action) {
         case types.TERM_CHANGE:
             return _.assign({}, state, {
                 term: action.term
-            });
-
-        case types.DESTINATION_CHANGE:
-            return _.assign({}, state, {
-                destination: action.destination
             });
 
         case types.USER_LOCATION_SUCCESS:
@@ -58,9 +58,7 @@ const search = function(state, action) {
 
         case types.POST_SEARCH_REQUEST:
             return _.assign({}, state, {
-                isPosting: true,
-                destination: action.destination,
-                term: action.term
+                isPosting: true
             });
 
         case types.POST_SEARCH_SUCCESS:

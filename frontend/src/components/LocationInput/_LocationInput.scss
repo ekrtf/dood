@@ -4,7 +4,7 @@
     z-index: 10;
     .typeahead-selector {
         position: absolute;
-        width: 300px;
+        width: 100%;
         border: 1px solid;
         border-top-style: hidden;
         background: #ffffff;
@@ -24,7 +24,7 @@
 
             a {
                 padding-left: 20px;
-                width: 300px;
+                width: 100%;
                 height: $large-space;
                 display: flex;
                 align-items: center

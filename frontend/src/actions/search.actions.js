@@ -8,6 +8,13 @@ export function toggleLocationForm() {
     };
 }
 
+// "user blurs on location input on clone search"
+export function toggleSuggestions() {
+    return {
+        type: types.TOGGLE_SUGGESTIONS
+    };
+}
+
 // "user selected a location in the typeahead"
 export function setUserLocation(userLocation) {
     return {
@@ -84,15 +91,6 @@ export function termChange(term) {
     };
 }
 
-// TODO: soon deprecated
-// "user types in destination input"
-export function destinationChange(destination) {
-    return {
-        type: types.DESTINATION_CHANGE,
-        destination
-    };
-}
-
 // "user types in textarea"
 export function userInputChange(userInput) {
     return {
@@ -107,7 +105,7 @@ export function submitSearch() {
         const state = getState();
         const searchParams = {
             term: state.search.term,
-            destination: state.search.destination
+            location: state.search.userLocation
         };
         dispatch(postSearchRequest(searchParams));
         return http.post('/search', searchParams)

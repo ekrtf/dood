@@ -22,9 +22,9 @@ SearchCtrl.prototype.$preRoute = checkAccessToken;
  * * * * * * * * * */
 
 SearchCtrl.prototype.cloneSearch = function($input, $error, $done, searchModel) {
-    const { destination, term } = $input.body;
+    const { location, term } = $input.body;
 
-    searchModel.cloneSearch(destination, term)
+    searchModel.cloneSearch(location, term)
         .then($done)
         .catch(function(e) {
             console.log(e);
