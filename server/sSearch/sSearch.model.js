@@ -75,10 +75,7 @@ SearchModel.prototype.cloneSearch = co.wrap(function*(destination, term) {
  */
 SearchModel.prototype.smartSearch = co.wrap(function*(userInput, location) {
     const keyword = yield this._getKeywords(userInput);
-    const searchParams = {
-        term: keyword,
-        location
-    };
+    const searchParams = { term: keyword, location };
 
     // if this search has already been done, return results
     const existingSearchId = yield this._checkIfSearchExists(searchParams);
@@ -254,18 +251,25 @@ SearchModel.prototype._getResults = function(searchId) {
  */
 SearchModel.prototype._getKeywords = co.wrap(function*(userInput) {
     const dbQuery = yield this.db('keywords').where({ userInput }).select('keyword');
-    const keyword = _.get(dbQuery, '[0].keyword', undefined);
     
     // if the keyword is in the db, return it
-    if (_.isString(keyword)) {
-        return keyword;
+    if (!_.isEmpty(dbQuery)) {
+        return _.map(dbQuery, q => q.keyword).toString();
     }
 
     // otherwise query Watson
     const watsonKeywords = yield this._getWatsonKeywords(userInput);
-    const savedKeyword = watsonKeywords[0].text
-    yield this._createKeyword(userInput, savedKeyword);
-    return savedKeyword;
+    // reject relevance < 0.6
+    const accurateKeywords = _.chain(watsonKeywords)
+        .reject(k => k.relevance < 0.6)
+        .map(k => k.text)
+        .value();
+
+    // save keywords in db
+    const keywordPromises = _.map(accurateKeywords, k => this._createKeyword(userInput, k));
+    yield Promise.all(keywordPromises);
+
+    return accurateKeywords.toString();
 });
 
 /**
