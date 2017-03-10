@@ -18,7 +18,7 @@ class Footer extends Component {
                         Say hi or report bug
                     </div>
                     <div className="footer__content__divider"></div>
-                    <div className="footer__content__item">
+                    <div className="footer__content__item--thanks">
                         Design by <a className="thanks" target="_blank" href="http://madeinalpha.com/">Made in Alpha</a>
                     </div>
                 </div>

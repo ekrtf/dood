@@ -1,28 +1,37 @@
 .footer {
-	height: 100%; // height set in _App.scss
-	width: 100%;
-	background: $darkish-pink;
-	display: flex;
-	align-items: center;
-	color: $white;
+    height: 100%; // height set in _App.scss
+    width: 100%;
+    background: $darkish-pink;
+    display: flex;
+    align-items: center;
+    color: $white;
 }
 
 .footer__content {
-	// margin-left: 106px;
+    // margin-left: 106px;
 }
 
 .footer__content__item {
-	margin: 10px 0;
-	.thanks {
-		color: $light-burgundy;
-		&:hover {
-			text-decoration: underline;
-		}
-	}
+    margin: 10px 0;
+    &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+    }
+}
+
+.footer__content__item--thanks {
+    margin: 10px 0;
+    .thanks {
+       color: $light-burgundy;
+        &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+        }
+    }   
 }
 
 .footer__content__divider {
-	height: 3px;
-	width: 30px;
-	background: $white;
+    height: 3px;
+    width: 30px;
+    background: $white;
 }
