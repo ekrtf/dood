@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
+import { isEmpty } from 'lodash';
 import { Results } from '../.';
 import { LocationInput } from '../../components';
 import { setVersion } from '../../actions/results.actions';
@@ -29,6 +30,13 @@ class Clone extends Component {
         this.props.setVersion('clone');
     }
 
+    _handleKeyPress(e) {
+        const { term, userLocation } = this.props;
+        if (e.key === 'Enter' && !isEmpty(userLocation) && !isEmpty(term)) {
+            this.props.onSearchSubmit();
+        }
+    }
+
     _handleTermChange(e) {
         this.props.onSearchTermChange(e.target.value);
     }
@@ -41,7 +49,11 @@ class Clone extends Component {
     }
 
     _selectLocation(location) {
-        this.props.setUserLocation(location);
+        const { setUserLocation, userLocation, term, onSearchSubmit } = this.props;
+        setUserLocation(location);
+        if (!isEmpty(userLocation) && !isEmpty(term)) {
+            onSearchSubmit();
+        }
     }
 
     _handleBlur(e) {

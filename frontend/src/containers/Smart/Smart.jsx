@@ -23,6 +23,7 @@ class Smart extends Component {
         this._getButtonClass = this._getButtonClass.bind(this);
         this._getLocationClass = this._getLocationClass.bind(this);
         this._selectLocation = this._selectLocation.bind(this);
+        this._handleKeyPress = this._handleKeyPress.bind(this);
     }
 
     componentDidMount() {
@@ -52,6 +53,13 @@ class Smart extends Component {
         });
     }
 
+    _handleKeyPress(e) {
+        const { userInput, userLocation } = this.props;
+        if (e.key === 'Enter' && !isEmpty(userLocation) && !isEmpty(userInput)) {
+            this.props.smartSearch(userInput, userLocation);
+        }
+    }
+
     _toggleLocationForm(e) {
         this.props.toggleLocationForm();
 
@@ -68,8 +76,19 @@ class Smart extends Component {
     }
 
     _selectLocation(location) {
-        this.props.setUserLocation(location);
-        this.props.toggleLocationForm();
+        const {
+            setUserLocation,
+            toggleLocationForm,
+            userLocation,
+            userInput,
+            smartSearch
+        } = this.props;
+
+        setUserLocation(location);
+        toggleLocationForm();
+        if (!isEmpty(userLocation) && !isEmpty(userInput)) {
+            smartSearch(userInput, userLocation);
+        }
     }
 
     _doSmartSearch(e) {
@@ -115,6 +134,7 @@ class Smart extends Component {
                         <input className="smart__input__form__textarea"
                                   placeholder="e.g. Cheap restaurant for a dinner with friends"
                                   onChange={(e) => this._handleInputChange(e)}
+                                  onKeyPress={(e) => this._handleKeyPress(e)}
                         ></input>
                         <div className={this._getLocationClass()}>
                             <div>Searching in:</div>
@@ -135,6 +155,7 @@ class Smart extends Component {
                                         onBlur={(e) => this._toggleLocationForm(e)}
                                         onKeyUp={(e) => this._handleLocationChange(e)}
                                         onOptionSelected={(val) => this._selectLocation(val)}
+                                        onKeyPress={(e) => this._handleKeyPress(e)}
                                     />
                                 </div>
                             }
