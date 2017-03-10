@@ -9,7 +9,7 @@
     "convert": "cd bin && node convert",
     "report": "pandoc -s -S *.md > MASTER.docx",
     "lint": "node_modules/.bin/eslint **/**/*.js",
-    "start": "cd server && node ./server.js"
+    "start": "cd server && node ./index.js"
   },
   "engines": {
     "npm": "~3.10.3",

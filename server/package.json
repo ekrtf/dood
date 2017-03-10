@@ -2,7 +2,7 @@
   "name": "dood-server",
   "version": "0.0.1",
   "description": "backend for dissertation project",
-  "main": "./server.js",
+  "main": "./index.js",
   "private": true,
   "engine": {
     "node": "5.0.0"
