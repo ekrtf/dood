@@ -11,11 +11,9 @@ class Footer extends Component {
             <div className="footer">
                 <div className="footer__content container">
                     <div className="footer__content__item">
-                        <IndexLink to="/about">About this dissertation</IndexLink>
-                    </div>
-                    <div className="footer__content__divider"></div>
-                    <div className="footer__content__item">
-                        Say hi or report bug
+                        <a href="mailto:emile@kratiroff.com?Subject=Dood%20feedback" target="_top">
+                            Say hi or report bug
+                        </a>
                     </div>
                     <div className="footer__content__divider"></div>
                     <div className="footer__content__item--thanks">

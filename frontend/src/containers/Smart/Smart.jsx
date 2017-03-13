@@ -169,11 +169,13 @@ class Smart extends Component {
                     </div>
                 </div>
 
+                { false &&
                 <div className="smart__suggestions">
                     {areResultsEmpty &&
                         <h4 className="smart__output__title">Not sure? Here are some suggestions</h4>
                     }
                 </div>
+                }
 
                 <div className="smart__output">
                     {!areResultsEmpty &&
