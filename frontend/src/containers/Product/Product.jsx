@@ -29,6 +29,11 @@ class Product extends Component {
         }
     }
 
+    componentDidMount() {
+        // scroll to top of page
+        window.scrollTo(0, 0);
+    }
+
     onBackClick() {
         this.props.history.push('/' + this.props.version);
     }

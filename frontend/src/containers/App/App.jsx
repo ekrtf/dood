@@ -11,7 +11,7 @@ class App extends Component {
         const { location, children, screen } = this.props;
 
         return (
-            <div className="main">
+            <div className="main" id="main-container">
                 <div className="main__header">
                     <HeaderBar />
                 </div>
