@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * @module ServerApp
+ * @module Server
  * @description main server for dood app
  */
 
@@ -10,7 +10,7 @@ const hyper = require('hyper.io');
 const config = require('./config.json');
 const helmet = require('helmet');
 
-module.exports = ServerApp;
+module.exports = Server;
 
 /* * * * * * * * * *
  *
@@ -18,7 +18,7 @@ module.exports = ServerApp;
  *
  * * * * * * * * * */
 
-function ServerApp() {
+function Server() {
     this._name = config.name || 'server';
     this._options = {
         'env': process.env.ENV || config.env || 'prod',
@@ -38,7 +38,7 @@ function ServerApp() {
  * Load microservices
  * @param {Array} list
  */
-ServerApp.prototype.load = function(list) {
+Server.prototype.load = function(list) {
     const self = this;
     const preRouteService = {
         name: 'preRouteSetup',
@@ -63,12 +63,4 @@ ServerApp.prototype.load = function(list) {
     list.unshift(preRouteService);
 
     return this._server.load(list);
-};
-
-/**
- * Start server
- * @param {Array} list  list of all mircoservices from server.app.js
- */
-ServerApp.prototype.start = function(list) {
-    return this._server.start();
 };

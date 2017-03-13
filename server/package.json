@@ -16,6 +16,7 @@
     "googlemaps": "~1.1.3",
     "googleplaces": "~0.6.0",
     "helmet": "^3.4.1",
+    "https": "^1.0.0",
     "hyper.io": "~0.6.5",
     "knex": "~0.12.6",
     "lodash": "~3.10.1",
