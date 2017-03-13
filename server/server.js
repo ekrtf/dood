@@ -43,6 +43,7 @@ ServerApp.prototype.load = function(list) {
     const preRouteService = {
         name: 'preRouteSetup',
         preRoutes: function($http) {
+            const app = $http.app();
             const origin = self._options.env === 'dev' ?
                 'http://localhost:4001' :
                 'http://localhost:4000';

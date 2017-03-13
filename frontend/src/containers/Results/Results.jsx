@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import Spinner from 'react-spinner';
+import { isArray, isEmpty } from 'lodash';
 import { ResultItem } from '../../components';
 import { submitSearch } from '../../actions/search.actions';
 import { selectItem } from '../../actions/results.actions';
@@ -29,7 +30,13 @@ class Results extends Component {
         return (
             <div className={isExtraSmall ? 'results--small' : 'results'}>
                 { isPosting && (<div className="results__spinner"><Spinner /></div>) }
-                { !isPosting && Array.isArray(results) && results.map(this._renderResult) }
+                { !isPosting && isArray(results) && results.map(this._renderResult) }
+                { !isPosting && isArray(results) && isEmpty(results) &&
+                    <div className="results__empty">
+                        Whoops! Looks like I cannot find results for your query. Please
+                        try changing parameters.
+                    </div>
+                }
             </div>
         );
     }
@@ -37,8 +44,8 @@ class Results extends Component {
 
 Results.propTypes = {
     isPosting: PropTypes.bool.isRequired,
-    results: PropTypes.array.isRequired,
-    screen: PropTypes.object.isRequired
+    screen: PropTypes.object.isRequired,
+    results: PropTypes.array,
 };
 
 function mapStateToProps(state) {

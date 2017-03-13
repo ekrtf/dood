@@ -6,7 +6,7 @@ const initialState = {
     selectedItem: {},
     isFetching: false,
     isPosting: false,
-    results: []
+    results: null
 };
 
 const results = function(state, action) {
@@ -20,7 +20,7 @@ const results = function(state, action) {
             // nuke results when switching version
             if (state.version !== action.version) {
                 return _.assign({}, state, {
-                    results: [],
+                    results: null,
                     selectedItem: {},
                     version: action.version
                 });
