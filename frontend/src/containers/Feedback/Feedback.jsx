@@ -55,11 +55,6 @@ class Feedback extends Component {
                                 full="glyphicon glyphicon-star"
                             />
                         </div>
-                        <div className="feedback__prompt__rating__scale">
-                            <i className="em em-shit"></i>
-                            <i className="em em-expressionless"></i>
-                            <i className="em em-boom"></i>
-                        </div>
                     </div>
                     <textarea className="feedback__prompt__message"
                         placeholder="Any additional comments?"
