@@ -64,7 +64,7 @@ class Product extends Component {
     }
 
     _renderCategories() {
-        const categories = this.props.product.categories.map(c => c.title);
+        const categories = this.props.product.categories
         if (!Array.isArray(categories)) return;
 
         const tags = categories.map((item, index) => {
