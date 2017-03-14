@@ -26,10 +26,18 @@ class Results extends Component {
     render() {
         const { isPosting, results } = this.props;
         const isExtraSmall = this.props.screen.mediaType === 'extraSmall';
+        const isSmart = this.props.version === 'smart';
 
         return (
             <div className={isExtraSmall ? 'results--small' : 'results'}>
-                { isPosting && (<div className="results__spinner"><Spinner /></div>) }
+                { isPosting && 
+                    <div>
+                        <div className="results__spinner">
+                            <Spinner />
+                        </div>
+                        <div>Getting results from {isSmart ? 'Yelp, Foursquare, Zomato, Google Places' : 'Yelp'}</div>
+                    </div>
+                }
                 { !isPosting && isArray(results) && results.map(this._renderResult) }
                 { !isPosting && isArray(results) && isEmpty(results) &&
                     <div className="results__empty">
@@ -45,14 +53,16 @@ class Results extends Component {
 Results.propTypes = {
     isPosting: PropTypes.bool.isRequired,
     screen: PropTypes.object.isRequired,
-    results: PropTypes.array,
+    version: PropTypes.string.isRequired,
+    results: PropTypes.array
 };
 
 function mapStateToProps(state) {
     return {
         isPosting: state.search.isPosting,
         results: state.results.results,
-        screen: state.screen
+        screen: state.screen,
+        version: state.results.version
     };
 }
 

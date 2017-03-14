@@ -77,10 +77,8 @@ ZomatoService.prototype.searchZomato = function(location, term) {
                 .catch(console.log);
         }
 
-        return {
-            code: 204,
-            message: 'No content found'
-        };
+        // if nothing found (the city is not supported) then return empty array
+        return [];
     });
 };
 
