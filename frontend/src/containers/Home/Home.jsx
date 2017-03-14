@@ -36,10 +36,12 @@ class Home extends Component {
                                 businesses to predict our consumption behaviours an target advertising accordingly. That is
                                 a very lucrative practice, so much that by itself, it keeps some businesses alive (Facebook for example).`}
                             </p>
+                            <br/>
                             <p>
                                 {`I think businesses could create even more value if customer data and prediction technology were used primarily to
                                 enhance our own experience with their services. This experiment is designed to verify that hypothesis.`}
                             </p>
+                            <br/>
                             <p className="home__content__section--important">
                                 {`DISCLAIMER: this is a dissertation experiment, not an enterprise product. There will be bugs, there will be failures.
                                 If you're nice you can report bugs using the link in the footer. In any case, I apologies for any frustration this app
@@ -64,7 +66,7 @@ class Home extends Component {
                         </section>
                         <section className="home__content__section--important">
                             <h4 className="home__content__heading">What you need to do</h4>
-                            <table className="table">
+                            <table className="table-condensed">
                                 <tbody>
                                     <tr>
                                         <td className="home__content__table__num">Scenario:</td>

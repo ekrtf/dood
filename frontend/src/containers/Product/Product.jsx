@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import Lightbox from 'react-images';
@@ -106,6 +106,7 @@ class Product extends Component {
     }
 
     _renderGallery() {
+        const isExtraSmall = this.props.screen.mediaType === 'extraSmall';
         const images = this.props.product.images;
         if (!Array.isArray(images)) return;
 
@@ -116,7 +117,7 @@ class Product extends Component {
         });
 
         return (
-            <div className="product__gallery">
+            <div className={isExtraSmall ? 'product__gallery--small' : 'product__gallery'}>
                 <Coverflow height="350" width="100%"
                     displayQuantityOfSide={1}
                     navigation={false}
@@ -132,6 +133,7 @@ class Product extends Component {
 
     render() {
         const isFetching = this.props.isFetching;
+        const isExtraSmall = this.props.screen.mediaType === 'extraSmall';
         const { name, price, rating, coordinates, addressDisplay } = this.props.product;
 
         let position = [ 0, 0 ];
@@ -142,13 +144,22 @@ class Product extends Component {
         return (
             <div className="container product">
 
-                <div className="product__back" onClick={(e) => this.onBackClick(e)}>
+                { isExtraSmall &&
+                    <div className="product__buttonbox--small" onClick={this.doSelectProduct}>
+                        <Link to="/feedback">
+                            I choose this one
+                            <i className="em em---1"></i>
+                        </Link>
+                    </div>
+                }
+
+                <div className={isExtraSmall ? 'product__back--small' : 'product__back'} onClick={(e) => this.onBackClick(e)}>
                     <i className="em em-back"></i>
                     <div>Back to results</div>
                 </div>
 
-                <div className="product__top">
-                    <div className="product__top__nameandrating">
+                <div className={isExtraSmall ? 'product__top--small' : 'product__top'}>
+                    <div className={isExtraSmall ? 'product__top__nameandrating--small' : 'product__top__nameandrating'}>
                         <h3 className="product__top__nameandrating__name">{ name }</h3>
                         <div className="product__top__nameandrating__rating">
                             <Rating
@@ -161,7 +172,7 @@ class Product extends Component {
                             />
                         </div>
                     </div>
-                    <div className="product__top__buttonbox">
+                    <div className={isExtraSmall ? 'product__top__buttonbox--hidden' : 'product__top__buttonbox'}>
                         <Link to="/feedback">
                             <button onClick={this.doSelectProduct}>
                                 I choose this one
@@ -208,13 +219,18 @@ class Product extends Component {
     }
 }
 
+Product.propTypes = {
+    screen: PropTypes.object.isRequired
+};
+
 function mapStateToProps(state) {
     return {
         isFetching: state.results.isFetching,
         product: state.results.selectedItem || {}, // HACK
         showImages: state.product.showImages,
         currentImage: state.product.currentImage,
-        version: state.results.version
+        version: state.results.version,
+        screen: state.screen
     };
 }
 
