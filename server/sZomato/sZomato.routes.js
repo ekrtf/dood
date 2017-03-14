@@ -5,5 +5,12 @@ module.exports = [
         method: {
             get: 'searchZomato'
         }
+    },
+    {
+        api: '/api/v1/zomato/details/:restaurantId',
+        controller: 'zomato',
+        method: {
+            get: 'getZomatoRestaurantDetails'
+        }
     }
 ];

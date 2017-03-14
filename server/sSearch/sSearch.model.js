@@ -123,6 +123,14 @@ SearchModel.prototype.getItemDetails = co.wrap(function*(itemId) {
         case 'Foursquare':
             resultDetails = yield this._getFoursquareVenueDetails(idInSource);
             break;
+        case 'Zomato':
+            // HACK. While I wait for zomato to give me partner access to photos and reviews
+            // getZomatoRestaurantDetails only returns reviews. Construct the detailed product here.
+            const reviews = yield this._getZomatoRestaurantDetails(idInSource);
+            const item = yield this.db('Results').where('resultId', itemId);
+            resultDetails = item[0];
+            resultDetails.reviews = JSON.stringify({ data: reviews });
+            break;
         default:
             throw {
                 code: 400,
@@ -188,7 +196,6 @@ SearchModel.prototype._searchSources = co.wrap(function*(searchParams) {
     filtered = _.flatten(filtered);
 
     // TODO remove duplicates
-    console.log('FILTERED RESULTS: ', JSON.stringify(filtered, null, 2))
     return filtered;
 });
 
@@ -365,4 +372,8 @@ SearchModel.prototype._getYelpBusinessDetails = function(yelpBusinessId) {
 
 SearchModel.prototype._getFoursquareVenueDetails = function(foursquareVenueId) {
     return this.$services.find('sFoursquare').get(`/api/v1/foursquare/details/${foursquareVenueId}`);
+};
+
+SearchModel.prototype._getZomatoRestaurantDetails = function(zomatoRestaurantId) {
+    return this.$services.find('sZomato').get(`/api/v1/zomato/details/${zomatoRestaurantId}`)
 };

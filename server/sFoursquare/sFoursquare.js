@@ -158,7 +158,7 @@ FoursquareService.prototype._normalizeFoursquareResult = function(item) {
 
     if (item.photos) {
         const rawPhotos = _.get(item.photos, '.groups[0].items');
-        if (rawPhotos.length) {
+        if (!_.isEmpty(rawPhotos)) {
             result.images = JSON.stringify({
                 data: _.map(rawPhotos, p => ({
                     src: p.prefix + '300x300/' + p.suffix.split('/')[1]

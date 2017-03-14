@@ -23,3 +23,17 @@ ZomatoCtrl.prototype.searchZomato = function($input, $error, $done, $service) {
             $error();
         });
 };
+
+/**
+ * GET /api/v1/zomato/details/:restaurantId
+ */
+ZomatoCtrl.prototype.getZomatoRestaurantDetails = function($input, $error, $done, $service) {
+    const restaurantId = $input.params.restaurantId;
+
+    $service.getZomatoRestaurantDetails(restaurantId)
+        .then($done)
+        .catch(function(e) {
+            console.error(e);
+            $error();
+        });
+};

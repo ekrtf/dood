@@ -84,6 +84,22 @@ ZomatoService.prototype.searchZomato = function(location, term) {
     });
 };
 
+ZomatoService.prototype.getZomatoRestaurantDetails = function(restaurantId) {
+    const self = this;
+    const options = {
+        uri: 'https://developers.zomato.com/api/v2.1/reviews',
+        headers: self.baseHeader,
+        qs: { res_id: restaurantId },
+        json: true
+    };
+
+    return rp(options)
+        .then(function(res) {
+            return self._normalizeZomatoReviews(res.user_reviews);
+        })
+        .catch(console.log);
+};
+
 /* * * * * * * * * *
  *
  * Private Functions
@@ -140,4 +156,11 @@ ZomatoService.prototype._normalizeZomatoRestaurant = function(item) {
     result.categories = JSON.stringify({ data: categories });
 
     return result;
+};
+
+ZomatoService.prototype._normalizeZomatoReviews = function(reviews) {
+    return _.map(reviews, r => ({
+        author: r.review.user.name,
+        text: r.review.review_text
+    }));
 };

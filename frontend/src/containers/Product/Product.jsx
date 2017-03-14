@@ -89,7 +89,7 @@ class Product extends Component {
                             &mdash; {item.author}
                         </div>
                         <div className="product__reviews__group__item__userandmore__more">
-                            {item.text.includes('...') &&
+                            {item.text.includes('...') && item.url &&
                                 <a href={item.url}
                                    target="blank"
                                    className="product__reviews__group__item__more"
