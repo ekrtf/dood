@@ -158,15 +158,42 @@ SearchModel.prototype.saveChoice = function(searchId, resultId) {
  * @return {Object} query
  */
 SearchModel.prototype._searchSources = co.wrap(function*(searchParams) {
-    const results = yield Promise.all([
-        this._searchYelp(searchParams),
-        this._searchFoursquare(searchParams)
-    ]);
+    const self = this;
+    let sources = [
+        '_searchYelp',
+        '_searchFoursquare'
+    ];
 
+    // query Zomato only for food related queries
+    const searchKeywords = searchParams.term.split(',');
+    const foodLexicalField = [
+        'restaurant',
+        'dinner',
+        'lunch',
+        'breakfast',
+        'brunch',
+        'food',
+        'munchies',
+        'bytes',
+        'eat'
+    ];
+    const isFood = !_.isEmpty(_.intersection(searchKeywords, foodLexicalField));
+    if (isFood) {
+        sources.push('_searchZomato');
+    }
+
+    const results = yield Promise.all(_.map(sources, s => self[s](searchParams)));
+
+
+    const filtered = results[0].slice(0, 3).concat(results[1].slice(0, 3));
+    if (isFood) {
+        console.log(results[2])
+        // filtered.concat(results[2].slice(0, 2));
+    }
+    
     // TODO remove duplicates
-    // TODO: if food, search ZOMATO
-
-    return results[0].slice(0, 4).concat(results[1].slice(0, 4));
+    
+    return filtered;
 });
 
 /**
@@ -330,6 +357,10 @@ SearchModel.prototype._searchYelp = function(query) {
             }
             return response;
         });
+};
+
+SearchModel.prototype._searchZomato = function(query) {
+    return this.$services.find('sZomato').get('/api/v1/zomato/search', { query });
 };
 
 SearchModel.prototype._getYelpBusinessDetails = function(yelpBusinessId) {
