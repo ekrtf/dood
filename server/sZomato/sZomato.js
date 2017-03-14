@@ -5,6 +5,7 @@
  */
 
 const co = require('co');
+const uuid = require('uuid');
 const rp = require('request-promise');
 const _ = require('lodash');
 
@@ -17,6 +18,7 @@ module.exports = ZomatoService;
  * * * * * * * * * */
 
 function ZomatoService($config) {
+    this.sourceName = 'Zomato';
     this.baseHeader = {
         'user-key': $config.apiKey
     };
@@ -68,7 +70,9 @@ ZomatoService.prototype.searchZomato = function(location, term) {
 
             return rp(options)
                 .then(function(res) {
-                    return res.restaurants;
+                    return _.map(res.restaurants, r =>
+                        self._normalizeZomatoRestaurant(r.restaurant)
+                    );
                 })
                 .catch(console.log);
         }
@@ -114,3 +118,26 @@ ZomatoService.prototype._getZomatoCityId = function(cityName) {
         .catch(console.log);
 };
 
+ZomatoService.prototype._normalizeZomatoRestaurant = function(item) {
+    let result = {};
+
+    result.resultId = uuid.v4();
+    result.name = item.name;
+    result.idInSource = item.id;
+    result.imageUrl = item.featured_image;
+    result.sourceName = this.sourceName;
+    result.rating = item.user_rating.aggregate_rating;
+    result.price = Array(item.price_range).join(item.currency).toString() || 'NA';
+    result.addressDisplay = item.location.address;
+    result.addressLine = item.location.locality_verbose || 'Everywhere';
+    result.coordinates = JSON.stringify({ data: {
+        latitude: item.location.latitude,
+        longitude: item.location.longitude
+    }});
+
+    const categories = item.cuisines.split(',');
+    categories.unshift('Restaurant');
+    result.categories = JSON.stringify({ data: categories });
+
+    return result;
+};

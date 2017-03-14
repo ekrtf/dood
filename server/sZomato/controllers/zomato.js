@@ -15,7 +15,6 @@ function ZomatoCtrl() {}
  */
 ZomatoCtrl.prototype.searchZomato = function($input, $error, $done, $service) {
     let { location, term } = $input.query;
-    console.log(location, term)
 
     $service.searchZomato(location, term)
         .then($done)

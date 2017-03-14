@@ -184,15 +184,11 @@ SearchModel.prototype._searchSources = co.wrap(function*(searchParams) {
 
     const results = yield Promise.all(_.map(sources, s => self[s](searchParams)));
 
+    let filtered = _.map(results, r => r.slice(0, 3));
+    filtered = _.flatten(filtered);
 
-    const filtered = results[0].slice(0, 3).concat(results[1].slice(0, 3));
-    if (isFood) {
-        console.log(results[2])
-        // filtered.concat(results[2].slice(0, 2));
-    }
-    
     // TODO remove duplicates
-    
+    console.log('FILTERED RESULTS: ', JSON.stringify(filtered, null, 2))
     return filtered;
 });
 
