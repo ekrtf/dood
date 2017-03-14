@@ -16,6 +16,9 @@
 .home__content__section--important {
 	// color: $darkish-pink;
 	font-weight: bold;
+	tr {
+		border-style: hidden;
+	}
 }
 
 .home__content__heading {

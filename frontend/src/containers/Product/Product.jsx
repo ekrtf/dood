@@ -5,6 +5,7 @@ import Lightbox from 'react-images';
 import Spinner from 'react-spinner';
 import Rating from 'react-rating';
 import { Link } from 'react-router';
+import Coverflow from 'react-coverflow';
 import { toggleImages, selectImage, setChosenProduct } from '../../actions/product.actions';
 import { Map } from '../../components';
 import { selectItem } from '../../actions/results.actions';
@@ -108,29 +109,25 @@ class Product extends Component {
         const images = this.props.product.images;
         if (!Array.isArray(images)) return;
 
-		const gallery = images.map((item, index) => {
-			return (
-				<a key={index} onClick={(e) => this.openGallery(index, e)}>
-					<img className="product__gallery__image" src={item.src} />
-				</a>
-			);
-		});
+        const gallery = images.map((item, index) => {
+            return (
+                <img className="product__gallery__image" src={item.src} />
+            );
+        });
 
-		return (
-			<div className="product__gallery">
-                { gallery }
-                <Lightbox
-                    images={this.props.product.images}
-                    currentImage={this.props.currentImage}
-                    isOpen={this.props.showImages}
-                    onClickPrev={this.goToPrevious}
-                    onClickNext={this.goToNext}
-                    onClose={this.onClose}
-                    enableKeyboardInput={true}
-                    showThumbnails={true}
-                />
+        return (
+            <div className="product__gallery">
+                <Coverflow height="350" width="100%"
+                    displayQuantityOfSide={1}
+                    navigation={false}
+                    enableScroll={false}
+                    clickable={true}
+                    active={(images.length - 1)/2}
+                >
+                    {gallery}
+                </Coverflow>
             </div>
-		);
+        );
     }
 
     render() {

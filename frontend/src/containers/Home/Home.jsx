@@ -41,7 +41,7 @@ class Home extends Component {
                                 enhance our own experience with their services. This experiment is designed to verify that hypothesis.`}
                             </p>
                             <p className="home__content__section--important">
-                                {`DISCLAIMER: this is a dissertation experiment, not en enterprise product. There will be bugs, there will be failures.
+                                {`DISCLAIMER: this is a dissertation experiment, not an enterprise product. There will be bugs, there will be failures.
                                 If you're nice you can report bugs using the link in the footer. In any case, I apologies for any frustration this app
                                 may cause.`}
                             </p>
@@ -64,7 +64,7 @@ class Home extends Component {
                         </section>
                         <section className="home__content__section--important">
                             <h4 className="home__content__heading">What you need to do</h4>
-                            <table>
+                            <table className="table">
                                 <tbody>
                                     <tr>
                                         <td className="home__content__table__num">Scenario:</td>
