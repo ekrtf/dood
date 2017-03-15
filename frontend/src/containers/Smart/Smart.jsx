@@ -131,11 +131,11 @@ class Smart extends Component {
                 <div className="smart__input">
                     <h4 className="smart__input__header">What are you in the mood for?</h4>
                     <div className="smart__input__form">
-                        <input className="smart__input__form__textarea"
-                                  placeholder="e.g. Cheap restaurant for a dinner with friends"
+                        <textarea className="smart__input__form__textarea"
+                                  placeholder="e.g. Restaurant not too expensive for a dinner with friends with music and there is a vegan with us"
                                   onChange={(e) => this._handleInputChange(e)}
                                   onKeyPress={(e) => this._handleKeyPress(e)}
-                        ></input>
+                        ></textarea>
                         <div className={this._getLocationClass()}>
                             <div>Searching in:</div>
                             <div className="smart__input__form__location__spin">

@@ -19,10 +19,12 @@
 }
 
 .results__spinner {
+    margin-top: $large-space;
     width: 100%;
-    display: flex;
-    align-items: center;
-    margin-top: $medium-space;
+    text-align: center;
+}
+
+.results__spinner__container {
     .react-spinner {
         width: 100px;
         height: 100px;

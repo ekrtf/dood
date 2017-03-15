@@ -112,13 +112,15 @@ class Product extends Component {
 
         const gallery = images.map((item, index) => {
             return (
-                <img className="product__gallery__image" src={item.src} />
+                <img key={index} className="product__gallery__image" src={item.src} />
             );
         });
 
+        const width = this.refs.productContainer.clientWidth;
+
         return (
             <div className={isExtraSmall ? 'product__gallery--small' : 'product__gallery'}>
-                <Coverflow height="350" width="100%"
+                <Coverflow height="350" width={width + 'px'}
                     displayQuantityOfSide={1}
                     navigation={false}
                     enableScroll={false}
@@ -142,7 +144,7 @@ class Product extends Component {
         }
 
         return (
-            <div className="container product">
+            <div className="container product" ref="productContainer">
 
                 { isExtraSmall &&
                     <div className="product__buttonbox--small" onClick={this.doSelectProduct}>

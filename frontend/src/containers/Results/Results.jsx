@@ -31,8 +31,8 @@ class Results extends Component {
         return (
             <div className={isExtraSmall ? 'results--small' : 'results'}>
                 { isPosting && 
-                    <div>
-                        <div className="results__spinner">
+                    <div className="results__spinner">
+                        <div className="results__spinner__container">
                             <Spinner />
                         </div>
                         <div>Getting results from {isSmart ? 'Yelp, Foursquare, Zomato, Google Places' : 'Yelp'}</div>
