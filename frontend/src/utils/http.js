@@ -5,7 +5,7 @@ const TOKEN = 'b350bbb9-0c95-4679-bbb9-1e4a7f524b0e';
 
 const API_BASE = __ENV__ === 'dev' ?
     'http://localhost:4000/api/v1' :
-    'http://doodexperience.com/api/v1';
+    'https://wwww.doodexperience.com/api/v1';
 
 const baseHeader = {
     'Authorization': `Bearer ${TOKEN}`
