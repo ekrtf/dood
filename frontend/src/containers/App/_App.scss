@@ -15,7 +15,7 @@
 .main__content {
     padding-top: $headerbar-height;
     width: $content-width;
-    min-height: calc(100% - 125px);
+    min-height: calc(100% - 150px); // <---- KEEP IN SYNC WITH $footer-height
     background: url(resources/images/bitmap.png);
     background-repeat: repeat;
 }

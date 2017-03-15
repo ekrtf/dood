@@ -1,18 +1,19 @@
-.home {
+.about {
 	margin-top: $medium-space;
 	color: $grape-purple;
 }
 
-.home__content__section {
+.about__content__section {
 	font-weight: lighter;
    	margin-bottom: $medium-space;
 }
 
-.home__content__section--title {
+.about__content__section--title {
    	margin-bottom: $medium-space;
+	text-align: center;
 }
 
-.home__content__section--important {
+.about__content__section--important {
 	// color: $darkish-pink;
 	font-weight: bold;
 	tr {
@@ -20,24 +21,24 @@
 	}
 }
 
-.home__content__heading {
+.about__content__heading {
 	font-weight: normal;
 }
 
-.home__tldr {
+.about__tldr {
 	margin: $large-space 0;
 }
 
-.home__start {
+.about__start {
 	width: 100%;
 	margin-bottom: $large-space;
 }
 
-.home__content__table__num {
+.about__content__table__num {
 	width: 15%;
 	text-align: right;
 }
 
-.home__content__table__rule {
+.about__content__table__rule {
 	padding-left: 10px;
 }

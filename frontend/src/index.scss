@@ -4,7 +4,7 @@
  */
 
 $headerbar-height: 75px;
-$footer-height: 125px;
+$footer-height: 150px;
 $content-padding: 106px;
 $content-width: 100%;
 
@@ -166,6 +166,7 @@ input, textarea {
 @import 'resources/styles/normalize';
 @import 'containers/App/App';
 @import 'containers/Smart/Smart';
+@import 'containers/About/About';
 @import 'containers/Product/Product';
 @import 'containers/Results/Results';
 @import 'containers/Clone/Clone';

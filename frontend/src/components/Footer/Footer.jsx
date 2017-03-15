@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { IndexLink } from 'react-router';
+import { Link } from 'react-router';
 
 class Footer extends Component {
     constructor(props) {
@@ -10,6 +10,12 @@ class Footer extends Component {
         return (
             <div className="footer">
                 <div className="footer__content container">
+                    <div className="footer__content__item">
+                        <Link to="/about">
+                            About this dissertation
+                        </Link>
+                    </div>
+                    <div className="footer__content__divider"></div>
                     <div className="footer__content__item">
                         <a href="mailto:emile@kratiroff.com?Subject=Dood%20feedback" target="_top">
                             Say hi or report bug
