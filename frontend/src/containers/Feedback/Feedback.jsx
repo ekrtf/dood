@@ -17,6 +17,8 @@ class Feedback extends Component {
     componentDidMount() {
         // scroll to top of page
         window.scrollTo(0, 0);
+        // reset rating
+        this.props.setRating(null);
     }
 
     _handleRatingChange(rating) {
