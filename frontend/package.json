@@ -20,6 +20,7 @@
     "react-bootstrap": "~0.29.3",
     "react-coverflow": "~0.2.3",
     "react-dom": "~15.0.1",
+    "react-ga": "^2.1.2",
     "react-images": "~0.5.2",
     "react-rating": "~0.6.2",
     "react-redux": "~4.4.5",
