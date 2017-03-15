@@ -14,6 +14,11 @@ class Feedback extends Component {
         this._getButtonClass = this._getButtonClass.bind(this);
     }
 
+    componentDidMount() {
+        // scroll to top of page
+        window.scrollTo(0, 0);
+    }
+
     _handleRatingChange(rating) {
         this.props.setRating(rating);
     }
