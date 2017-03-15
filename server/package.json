@@ -1,6 +1,6 @@
 {
   "name": "dood-server",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "backend for dissertation project",
   "main": "./index.js",
   "private": true,
