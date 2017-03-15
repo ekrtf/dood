@@ -24,7 +24,7 @@ class Results extends Component {
     }
 
     render() {
-        const { isPosting, results } = this.props;
+        const { isPosting, results, hasSearchFailed } = this.props;
         const isExtraSmall = this.props.screen.mediaType === 'extraSmall';
         const isSmart = this.props.version === 'smart';
 
@@ -39,10 +39,10 @@ class Results extends Component {
                     </div>
                 }
                 { !isPosting && isArray(results) && results.map(this._renderResult) }
-                { !isPosting && isArray(results) && isEmpty(results) &&
+                { !isPosting && hasSearchFailed &&
                     <div className="results__empty">
-                        Whoops! Looks like I cannot find results for your query. Please
-                        try changing parameters.
+                        {`Whoops! Looks like I can't find anything matching your request. Please
+                        try something else.`}
                     </div>
                 }
             </div>
@@ -62,7 +62,8 @@ function mapStateToProps(state) {
         isPosting: state.search.isPosting,
         results: state.results.results,
         screen: state.screen,
-        version: state.results.version
+        version: state.results.version,
+        hasSearchFailed: state.search.hasSearchFailed
     };
 }
 

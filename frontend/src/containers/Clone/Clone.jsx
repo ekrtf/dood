@@ -93,7 +93,7 @@ class Clone extends Component {
                         <button onClick={(e) => this._handleSubmit(e)}>Search</button>
                     </div>
                 </div>
-                <div className="clone__output">
+                <div className="container clone__output">
                     <Results />
                 </div>
             </div>
