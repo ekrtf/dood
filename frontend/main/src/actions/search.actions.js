@@ -139,6 +139,10 @@ function postSearchFailure(error) {
 export function smartSearch() {
     return (dispatch, getState) => {
         const state = getState();
+
+        // do not search twice at a time
+        if (state.search.isPosting) return;
+
         const params = {
             search: state.search.userInput,
             location: state.search.userLocation
@@ -161,6 +165,7 @@ function smartSearchSuccess(response) {
     return {
         type: types.SMART_SEARCH_SUCCESS,
         results: response.results,
+        keywords: response.keywords,
         searchId: response.searchId
     };
 }

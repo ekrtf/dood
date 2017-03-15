@@ -24,6 +24,9 @@ export const TOGGLE_LOCATION = 'TOGGLE_LOCATION';
 export const TOGGLE_SUGGESTIONS = 'TOGGLE_SUGGESTIONS';
 export const SET_LOCATION = 'SET_LOCATION';
 
+/** Keywords actions */
+export const REMOVE_KEYWORD = 'REMOVE_KEYWORD';
+
 /** Results actions */
 export const SELECT_ITEM_REQUEST = 'SELECT_ITEM_REQUEST';
 export const SELECT_ITEM_SUCCESS = 'SELECT_ITEM_SUCCESS';

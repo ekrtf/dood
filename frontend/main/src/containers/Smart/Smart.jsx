@@ -1,10 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { isEmpty, debounce } from 'lodash';
 import Spinner from 'react-spinner';
 import { Results } from '../.';
 import { ResultItem, LocationInput } from '../../components';
 import { setVersion } from '../../actions/results.actions';
-import { isEmpty } from 'lodash';
+import { removeKeyword } from '../../actions/keywords.actions';
 import {
     smartSearch,
     userInputChange,
@@ -17,13 +19,14 @@ import {
 class Smart extends Component {
     constructor(props) {
         super(props);
-        this._doSmartSearch = this._doSmartSearch.bind(this);
+        this.autoSearch = debounce(this.autoSearch, 1000);
         this._toggleLocationForm = this._toggleLocationForm.bind(this);
         this._handleLocationChange = this._handleLocationChange.bind(this);
         this._getButtonClass = this._getButtonClass.bind(this);
         this._getLocationClass = this._getLocationClass.bind(this);
         this._selectLocation = this._selectLocation.bind(this);
         this._handleKeyPress = this._handleKeyPress.bind(this);
+        this._handleRemoveKeyword = this._handleRemoveKeyword.bind(this);
     }
 
     componentDidMount() {
@@ -33,6 +36,13 @@ class Smart extends Component {
         }
         if (this.props.showLocationForm === true) {
             this.props.toggleLocationForm();
+        }
+    }
+
+    autoSearch() {
+        const { userInput, userLocation } = this.props;
+        if (!isEmpty(userLocation) && !isEmpty(userInput)) {
+            this.props.smartSearch(userInput, userLocation);
         }
     }
 
@@ -91,22 +101,10 @@ class Smart extends Component {
         }
     }
 
-    _doSmartSearch(e) {
-        this.props.smartSearch(this.props.userInput, this.props.userLocation);
-    }
-
     _handleInputChange(e) {
         const input = e.target.value;
         this.props.userInputChange(input);
-    }
-
-    _renderResult(result, index) {
-        const { doSelectItem } = this.props;
-        return (
-            <div key={index} className="results__item">
-                <ResultItem index={index} result={result} onSelect={doSelectItem}/>
-            </div>
-        );
+        this.autoSearch();
     }
 
     _getButtonClass() {
@@ -122,6 +120,41 @@ class Smart extends Component {
             return 'smart__input__form__location--wide';
         }
         return 'smart__input__form__location'
+    }
+
+    _handleRemoveKeyword(keywordId) {
+        this.props.removeKeyword(keywordId);
+        this.autoSearch();
+    }
+
+    _renderKeywords() {
+        if (!this.props.keywords) return;
+
+        let workingKeywords = this.props.keywords;
+        // make sure map runs if single keyword
+        if (typeof workingKeywords === 'string') {
+            workingKeywords = [ workingKeywords ];
+        }
+
+        const tooltip = (<Tooltip id="tooltip">Remove</Tooltip>);
+        const keywords = workingKeywords.map((k, i) => (
+            <div key={i} className="smart__keywords__button">
+                <div className="smart__keywords__button__content">
+                    <div className="smart__keywords__button__content__l">{k}</div>
+                    <div className="smart__keywords__button__content__x" onClick={(e) => this._handleRemoveKeyword(i)}>
+                        <OverlayTrigger placement="top" overlay={tooltip}>
+                            <i className="em em-x"></i>
+                        </OverlayTrigger>
+                    </div>
+                </div>
+            </div>
+        ));
+
+        return (
+            <div className="smart__keywords">
+                {keywords}
+            </div>
+        );
     }
 
     render() {
@@ -160,12 +193,7 @@ class Smart extends Component {
                                 </div>
                             }
                         </div>
-                        <button onClick={(e) => this._doSmartSearch(e)}
-                                className={this._getButtonClass()}
-                        >
-                            Save me some scrolling time
-                            <i className="em em-confetti_ball"></i>
-                        </button>
+                        {this._renderKeywords()}
                     </div>
                 </div>
 
@@ -205,7 +233,8 @@ function mapStateToProps(state) {
         userLocation: state.search.userLocation,
         showLocationForm: state.search.showLocationForm,
         screen: state.screen,
-        locationPredictions: state.search.locationPredictions
+        locationPredictions: state.search.locationPredictions,
+        keywords: state.keywords.words
     };
 }
 
@@ -224,13 +253,16 @@ function mapDispatchToProps(dispatch) {
             dispatch(setVersion(version));
         },
         toggleLocationForm: () => {
-            dispatch(toggleLocationForm())
+            dispatch(toggleLocationForm());
         },
         locationChange: (input) => {
-            dispatch(locationChange(input))
+            dispatch(locationChange(input));
         },
         setUserLocation: (location) => {
             dispatch(setUserLocation(location));
+        },
+        removeKeyword: (keywordId) => {
+            dispatch(removeKeyword(keywordId));
         }
     };
 }

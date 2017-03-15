@@ -71,8 +71,9 @@ SearchModel.prototype.cloneSearch = co.wrap(function*(location, term) {
  * @return {Object} result
  */
 SearchModel.prototype.smartSearch = co.wrap(function*(userInput, location) {
-    const keyword = yield this._getKeywords(userInput);
-    const searchParams = { term: keyword, location };
+    const keywords = yield this._getKeywords(userInput);
+    const frontendKeywords = _.includes(keywords, ',') ? keywords.split(',') : keywords;
+    const searchParams = { term: keywords, location };
 
     // record search
     const searchId = uuid.v4();
@@ -82,19 +83,22 @@ SearchModel.prototype.smartSearch = co.wrap(function*(userInput, location) {
     const existingSearchId = yield this._checkIfSearchExists(searchId, searchParams);
     if (_.isString(existingSearchId)) {
         const existingResults = yield this._getResults(existingSearchId);
-        if (!_.isEmpty(existingResults.results)) {
-            return existingResults;
-        }
+        return {
+            searchId: existingResults.searchId,
+            results: existingResults.results.slice(0, 6), // display top 6 only
+            keywords: frontendKeywords
+        };
     }
 
     // query sources and save results
     const results = yield this._searchSources(searchParams);
     yield this._saveResults(searchId, results);
-    
+
     const response = yield this._getResults(searchId);
     return {
         searchId: response.searchId,
-        results: response.results.slice(0, 6) // display top 6 only
+        results: response.results.slice(0, 6), // display top 6 only
+        keywords: frontendKeywords
     };
 });
 
@@ -296,7 +300,7 @@ SearchModel.prototype._getResults = function(searchId) {
  */
 SearchModel.prototype._getKeywords = co.wrap(function*(userInput) {
     const dbQuery = yield this.db('keywords').where({ userInput }).select('keyword');
-    
+
     // if the keyword is in the db, return it
     if (!_.isEmpty(dbQuery)) {
         return _.map(dbQuery, q => q.keyword).toString();
