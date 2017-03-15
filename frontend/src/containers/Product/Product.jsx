@@ -209,7 +209,9 @@ class Product extends Component {
                 <div className="product__map">
                     <h4 className="product__heading">Location</h4>
                     <div className="product__map__location">
-                        { addressDisplay && <div>{addressDisplay}</div> }
+                        { addressDisplay && !addressDisplay.includes('undefined') && !addressDisplay.includes('null') &&
+                            <div>{addressDisplay}</div>
+                        }
                     </div>
 
                     <Map coords={position} />
