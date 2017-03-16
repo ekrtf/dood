@@ -46,7 +46,7 @@ Server.prototype.load = function(list) {
             const app = $http.app();
             const origin = self._options.env === 'dev' ?
                 'http://localhost:4001' :
-                'http://localhost:4000';
+                'https://www.doodexperience.com';
 
             app.use(helmet());
             app.use(function(req, res, next) {
@@ -56,6 +56,7 @@ Server.prototype.load = function(list) {
                 res.setHeader('Access-Control-Allow-Headers',
                     'X-Requested-With,content-type,x-access-token,Authorization');
                 res.setHeader('Access-Control-Allow-Credentials', true);
+                res.setHeader('X-Forwarded-Proto', 'https');
                 next();
             });
         }
