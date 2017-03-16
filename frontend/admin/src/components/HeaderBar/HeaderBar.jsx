@@ -8,6 +8,20 @@ class HeaderBar extends Component {
 		this._setVersion = this._setVersion.bind(this);
 	}
 
+	getSmartClass() {
+		if (this.props.version === 'smart') {
+			return 'headerbar__tab--selected';
+		}
+		return 'headerbar__tab';
+	}
+
+	getCloneClass() {
+		if (this.props.version === 'clone') {
+			return 'headerbar__tab--selected';
+		}
+		return 'headerbar__tab';
+	}
+
 	_setVersion(version) {
 		this.props.setVersion(version);
 		this.props.fetchFeedback(version);
@@ -16,16 +30,15 @@ class HeaderBar extends Component {
     render() {
         return (
             <div className="headerbar">
-                <div className="headerbar__logo">
-                    <div onClick={() => this._setVersion('smart')}>Smart</div>
-                    <div onClick={() => this._setVersion('clone')}>Clone</div>
-                </div>
+                <div className={this.getSmartClass()} onClick={() => this._setVersion('smart')}>Smart</div>
+                <div className={this.getCloneClass()} onClick={() => this._setVersion('clone')}>Clone</div>
             </div>
         );
     }
 }
 
 HeaderBar.propTypes = {
+	version: PropTypes.string.isRequired,
 	setVersion: PropTypes.func.isRequired,
 	fetchFeedback: PropTypes.func.isRequired
 };
