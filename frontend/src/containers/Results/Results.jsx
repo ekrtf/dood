@@ -53,7 +53,7 @@ class Results extends Component {
 Results.propTypes = {
     isPosting: PropTypes.bool.isRequired,
     screen: PropTypes.object.isRequired,
-    version: PropTypes.string.isRequired,
+    version: PropTypes.string,
     results: PropTypes.array
 };
 
