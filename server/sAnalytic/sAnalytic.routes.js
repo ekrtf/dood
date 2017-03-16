@@ -5,5 +5,12 @@ module.exports = [
         method: {
             post: 'logFeedback'
         }
+    },
+    {
+        api: '/api/v1/analytic/feedback/fetch/:version',
+        controller: 'analytic',
+        method: {
+            get: 'getFeedback'
+        }
     }
 ];

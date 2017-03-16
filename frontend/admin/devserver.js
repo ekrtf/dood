@@ -3,14 +3,14 @@
 'use strict';
 
 var webpack = require('webpack');
-var webpackDevMiddleware = require("webpack-dev-middleware");
+var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
-var express = require('../server/node_modules/express');
-var webpackConfig = require('../frontend/webpack.config.js');
+var express = require('../../server/node_modules/express');
+var webpackConfig = require('./webpack.config.js');
 
-var PORT = 4001;
+var PORT = 4002;
 var OPTIONS = {
-    contentBase: '../frontend/src',
+    contentBase: './src',
     hot: true,
     noInfo: true,
     headers: { 'X-Custom-Header': 'yes' },
@@ -20,7 +20,7 @@ var OPTIONS = {
 webpackConfig.entry = [
     'webpack-hot-middleware/client?http://localhost:' + PORT,
     'webpack/hot/only-dev-server',
-    '../frontend/src/index.jsx'
+    './src/index.jsx'
 ];
 
 webpackConfig.plugins = [

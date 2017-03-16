@@ -54,6 +54,10 @@ AnalyticModel.prototype.logFeedback = function(searchId, feedback) {
     });
 };
 
+AnalyticModel.prototype.fetchFeedback = function(version) {
+    return this.db('Searches').where({ version });
+};
+
 /* * * * * * * * * *
  *
  * Calls to external services

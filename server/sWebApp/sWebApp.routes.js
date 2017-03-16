@@ -1,5 +1,12 @@
 module.exports = [
     {
+        api: '/admin/login',
+        controller: 'web',
+        method: {
+            post: 'adminLogin'
+        }
+    },
+    {
         api: '/',
         controller: 'web',
         method: {
@@ -49,11 +56,20 @@ module.exports = [
         }
     },
     {
-        static: '../../frontend/dist'
+        static: [
+            {
+                from: '../../frontend/main/dist',
+                to: '/main'
+            },
+            {
+                from: '../../frontend/admin/dist',
+                to: '/admin'
+            }
+        ]
     },
     {
         default: {
-            static: '../../frontend/dist/index.html'
+            static: '../../frontend/main/dist/index.html'
         }
     }
 ]

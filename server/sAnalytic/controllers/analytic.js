@@ -32,3 +32,14 @@ AnalyticCtrl.prototype.logFeedback = function($input, $error, $done, analyticMod
             $error();
         });
 };
+
+AnalyticCtrl.prototype.getFeedback = function($input, $error, $done, analyticModel) {
+    const version = $input.params.version;
+
+    analyticModel.getFeedback(version)
+        .then($done)
+        .catch(function(e) {
+            console.log(e);
+            $error();
+        });
+};

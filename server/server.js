@@ -50,7 +50,7 @@ Server.prototype.load = function(list) {
 
             app.use(helmet());
             app.use(function(req, res, next) {
-                res.setHeader('Access-Control-Allow-Origin', origin);
+                res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4002');
                 res.setHeader('Access-Control-Allow-Methods',
                     'GET, POST, PUT, DELETE');
                 res.setHeader('Access-Control-Allow-Headers',

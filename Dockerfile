@@ -3,6 +3,8 @@ FROM node:boron
 # Create app directory
 RUN mkdir -p /usr/src/app
 RUN mkdir -p /usr/src/app/frontend
+RUN mkdir -p /usr/src/app/frontend/main
+RUN mkdir -p /usr/src/app/frontend/admin
 RUN mkdir -p /usr/src/app/server
 WORKDIR /usr/src/app
 
@@ -11,8 +13,10 @@ COPY package.json /usr/src/app/
 RUN npm install
 
 # Install frontend dependencies
-COPY frontend/package.json /usr/src/app/frontend
-RUN cd frontend && npm install
+COPY frontend/main/package.json /usr/src/app/main/frontend
+RUN cd frontend/main && npm install
+COPY frontend/admin/package.json /usr/src/app/admin/frontend
+RUN cd frontend/admin && npm install
 
 # Install server dependencies
 COPY server/package.json /usr/src/app/server
@@ -24,8 +28,9 @@ COPY . /usr/src/app
 # Set ENV to production
 ENV ENV 'prod'
 
-# Build fronend
-RUN cd frontend && npm run build
+# Build fronends
+RUN cd frontend/main && npm run build
+RUN cd frontend/admin && npm run build
 
 EXPOSE 4000
 
