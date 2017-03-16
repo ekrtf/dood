@@ -41,16 +41,13 @@ class App extends Component {
                     <div className="main__content">
                         {children}
                     </div>
-                    <footer className="main__footer">
-                        <Footer screen={screen} />
-                    </footer>
                 </div>
             );
         } else {
             return (
-                <div className="main" id="main-container">
+                <div className="main--login" id="main-container">
                     <input type="text" onChange={(e) => this._usernameChange(e)}/>
-                    <input type="text" onChange={(e) => this._pwChange(e)}/>
+                    <input type="password" onChange={(e) => this._pwChange(e)}/>
                     <button onClick={(e) => this._login(e)}>Login</button>
                 </div>
             );

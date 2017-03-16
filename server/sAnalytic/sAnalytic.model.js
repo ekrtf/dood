@@ -42,8 +42,7 @@ AnalyticModel.prototype.$init = co.wrap(function*() {
  * @return {Promise}
  */
 AnalyticModel.prototype.logFeedback = function(searchId, feedback) {
-    const self = this;
-    return self.db('Feedback').insert({
+    return this.db('Feedback').insert({
         feedbackId: uuid.v4(),
         searchId: searchId,
         comment: feedback.comment,
@@ -54,9 +53,9 @@ AnalyticModel.prototype.logFeedback = function(searchId, feedback) {
     });
 };
 
-AnalyticModel.prototype.fetchFeedback = function(version) {
+AnalyticModel.prototype.getFeedback = co.wrap(function*(version) {
     return this.db('Searches').where({ version });
-};
+});
 
 /* * * * * * * * * *
  *

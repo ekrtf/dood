@@ -5,8 +5,8 @@ import http from '../utils/http';
 export function fetchFeedback(version) {
     return (dispatch) => {
         dispatch(fetchFeedbackRequest(version));
-        return http.get(`/analytics/feedback/fetch/${version}`)
-            .then(res => dispatch(fetchFeedbackSuccess(res)))
+        return http.get(`/analytic/feedback/fetch/${version}`)
+            .then(res => dispatch(fetchFeedbackSuccess(res, version)))
             .catch(e => dispatch(fetchFeedbackFailure(e)));
     };
 }

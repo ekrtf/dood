@@ -56,7 +56,6 @@ Server.prototype.load = function(list) {
                 res.setHeader('Access-Control-Allow-Headers',
                     'X-Requested-With,content-type,x-access-token,Authorization');
                 res.setHeader('Access-Control-Allow-Credentials', true);
-                res.setHeader('X-Forwarded-Proto', 'https');
                 next();
             });
         }
