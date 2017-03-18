@@ -41,10 +41,10 @@ class Home extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            { map(feedback, (f, i) => 
+                            { map(feedback, (f, i) =>
                                 <tr key={i} className="home__feedback__item">
                                     <td className="home__feedback__item__date">
-                                        {moment.unix(f.createdAt).format('DD-MM-YYYY')}
+                                        {moment(f.createdAt).format('DD-MM-YYYY')}
                                     </td>
                                     <td className="home__feedback__item__comment">
                                         <div>{f.comment}</div>
