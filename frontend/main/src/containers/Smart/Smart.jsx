@@ -124,7 +124,13 @@ class Smart extends Component {
 
     _handleRemoveKeyword(keywordId) {
         this.props.removeKeyword(keywordId);
-        this.autoSearch();
+
+        // HACK. wait for keywords state to be updated before posting new search
+        setTimeout(() => {
+            if (!isEmpty(this.props.userLocation)) {
+                this.props.smartSearch(this.props.keywords.toString(), this.props.userLocation);
+            }
+        }, 300);
     }
 
     _renderKeywords() {
@@ -142,9 +148,11 @@ class Smart extends Component {
                 <div className="smart__keywords__button__content">
                     <div className="smart__keywords__button__content__l">{k}</div>
                     <div className="smart__keywords__button__content__x" onClick={(e) => this._handleRemoveKeyword(i)}>
-                        <OverlayTrigger placement="top" overlay={tooltip}>
-                            <i className="em em-x"></i>
-                        </OverlayTrigger>
+                        { workingKeywords.length > 1 &&
+                            <OverlayTrigger placement="top" overlay={tooltip}>
+                                <i className="em em-x"></i>
+                            </OverlayTrigger>
+                        }
                     </div>
                 </div>
             </div>
@@ -240,8 +248,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        smartSearch: () => {
-            dispatch(smartSearch());
+        smartSearch: (search, location) => {
+            dispatch(smartSearch(search, location));
         },
         userInputChange: (input) => {
             dispatch(userInputChange(input));

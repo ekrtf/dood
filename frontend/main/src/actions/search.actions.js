@@ -136,20 +136,15 @@ function postSearchFailure(error) {
 }
 
 // "user submits SMART search"
-export function smartSearch() {
+export function smartSearch(search, location) {
     return (dispatch, getState) => {
-        const state = getState();
-
         // do not search twice at a time
-        if (state.search.isPosting) return;
+        if (getState().search.isPosting) return;
 
-        const params = {
-            search: state.search.userInput,
-            location: state.search.userLocation
-        };
+        console.log(search, location)
 
         dispatch(smartSearchRequest());
-        return http.post('/smart-search', params)
+        return http.post('/smart-search', { search, location })
             .then(response => dispatch(smartSearchSuccess(response)))
             .catch(e => dispatch(smartSearchFailure(e)));
     };
