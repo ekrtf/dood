@@ -10,20 +10,34 @@ class Home extends Component {
     }
 
     render() {
-        const { feedback } = this.props;
+        const { feedback, averageRating, numberOfSearches, numberOfSearchesWithChoice } = this.props;
         return (
-            <div className="container home">
-                <div className="home__size">
-
+            <div className="home">
+                <div className="home__item">
+                    <h4>Total number of searches</h4>
+                    <div>{numberOfSearches}</div>
                 </div>
-                <div className="home__feedback">
+                <div className="home__item">
+                    <h4>Total number successful searches</h4>
+                    <div>{numberOfSearchesWithChoice}</div>
+                </div>
+                <div className="home__item">
+                    <h4>Comversion rate</h4>
+                    <div>{numberOfSearchesWithChoice/numberOfSearches}</div>
+                </div>
+                <div className="home__item">
+                    <h4>Average rating</h4>
+                    <div>{averageRating}</div>
+                </div>
+                <div className="home__item">
                     <h4>Feedback</h4>
                     <table className="table-stripped">
                         <thead>
                             <tr>
-                                <th>Date</th>
-                                <th>Comment</th>
-                                <th>Email</th>
+                                <th className="home__feedback__item__date">Date</th>
+                                <th className="home__feedback__item__comment">Comment</th>
+                                <th className="home__feedback__item__rating">Rating</th>
+                                <th className="home__feedback__item__email">Email</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -34,6 +48,9 @@ class Home extends Component {
                                     </td>
                                     <td className="home__feedback__item__comment">
                                         {f.comment}
+                                    </td>
+                                    <td className="home__feedback__item__rating">
+                                        {f.rating}
                                     </td>
                                     <td className="home__feedback__item__email">
                                         {f.email || 'no email'}
@@ -51,7 +68,10 @@ class Home extends Component {
 
 function mapStateToProps(state) {
     return {
-        feedback: state.main.feedback
+        feedback: state.main.feedback,
+        averageRating: state.main.averageRating,
+        numberOfSearches: state.main.numberOfSearches,
+        numberOfSearchesWithChoice: state.main.numberOfSearchesWithChoice
     };
 }
 

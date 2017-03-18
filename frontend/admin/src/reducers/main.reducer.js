@@ -1,4 +1,4 @@
-import { assign, isEmpty } from 'lodash';
+import { assign, isEmpty, get } from 'lodash';
 import * as types from '../actions/action-types';
 
 const initialState = {
@@ -6,8 +6,12 @@ const initialState = {
     username: null,
     pw: null,
     isFetching: false,
+    isLoggedIn: false,
+
     feedback: null,
-    isLoggedIn: false
+    averageRating: null,
+    numberOfSearches: null,
+    numberOfSearchesWithChoice: null
 };
 
 const main = function(state, action) {
@@ -29,7 +33,11 @@ const main = function(state, action) {
 
     	case types.SET_VERSION:
     		return assign({}, state, {
-    			version: action.version
+    			version: action.version,
+                feedback: null,
+                averageRating: null,
+                numberOfSearches: null,
+                numberOfSearchesWithChoice: null
     		});
 
     	case types.FETCH_FEEDBACK_REQUEST:
@@ -39,7 +47,10 @@ const main = function(state, action) {
 
     	case types.FETCH_FEEDBACK_SUCCESS:
     		return assign({}, state, {
-    			feedback: action.feedback
+    			feedback: action.feedback.feedback,
+                averageRating: action.feedback.averageRating[0]['avg("rating")'],
+                numberOfSearches: action.feedback.numberOfSearches[0][`count("${state.version}")`],
+                numberOfSearchesWithChoice: action.feedback.numberOfSearchesWithChoice
     		});
 
         case types.LOGIN_SUCCESS:

@@ -53,8 +53,13 @@ AnalyticModel.prototype.logFeedback = function(searchId, feedback) {
     });
 };
 
-AnalyticModel.prototype.getFeedback = co.wrap(function*(version) {
-    return this.db.select('*').from('Feedback').where({ version });
+AnalyticModel.prototype.getAnalytics = co.wrap(function*(version) {
+    return {
+        feedback: yield this.db.select('*').from('Feedback').where({ version }),
+        averageRating: yield this.db('Feedback').where({ version }).avg('rating'),
+        numberOfSearches: yield this._getTotalSearches(version),
+        numberOfSearchesWithChoice: yield this._getChoiceSearches(version)
+    };
 });
 
 /* * * * * * * * * *
@@ -63,3 +68,10 @@ AnalyticModel.prototype.getFeedback = co.wrap(function*(version) {
  *
  * * * * * * * * * */
 
+AnalyticModel.prototype._getTotalSearches = function(version) {
+    return this.$services.find('sSearch').get(`/api/v1/search/count/all/${version}`);
+};
+
+AnalyticModel.prototype._getChoiceSearches = function(version) {
+    return this.$services.find('sSearch').get(`/api/v1/search/count/choice/${version}`);
+};

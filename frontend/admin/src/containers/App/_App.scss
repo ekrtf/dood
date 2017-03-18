@@ -14,6 +14,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background: url(resources/images/bitmap.png);
+    background-repeat: repeat;
     input {
         margin-bottom: $medium-space;
     }

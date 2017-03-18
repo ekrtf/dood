@@ -33,10 +33,10 @@ AnalyticCtrl.prototype.logFeedback = function($input, $error, $done, analyticMod
         });
 };
 
-AnalyticCtrl.prototype.getFeedback = function($input, $error, $done, analyticModel) {
+AnalyticCtrl.prototype.getAnalytics = function($input, $error, $done, analyticModel) {
     const version = $input.params.version;
 
-    analyticModel.getFeedback(version)
+    analyticModel.getAnalytics(version)
         .then($done)
         .catch(function(e) {
             console.log(e);

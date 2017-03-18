@@ -26,5 +26,19 @@ module.exports = [
         method: {
             post: 'saveChoice'
         }
+    },
+    {
+        api: '/api/v1/search/count/all/:version',
+        controller: 'internal',
+        method: {
+            get: 'getAllSearches'
+        }
+    },
+    {
+        api: '/api/v1/search/count/choice/:version',
+        controller: 'internal',
+        method: {
+            get: 'getChoiceSearches'
+        }
     }
 ];

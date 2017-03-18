@@ -1,9 +1,30 @@
 .home {
-	margin-top: $medium-space;
+	margin: $medium-space;
 	color: $grape-purple;
 	table {
 		width: 100%;
 	}
 }
 
+.home__item {
+	background: darken(#ffffff, 4%);
+	padding: 10px;
+	margin: 20px 0;
+	box-shadow: 0 2px 1px #777;
+	h4 {
+		color: $darkish-pink;
+	}
+}
 
+.home__feedback__item__date {
+	width: 15%;
+}
+.home__feedback__item__comment {
+	width: 40%;
+}
+.home__feedback__item__rating {
+	width: 10%;
+}
+.home__feedback__item__email {
+	width: 30%;
+}

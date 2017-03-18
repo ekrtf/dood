@@ -83,5 +83,3 @@ function normalizeUserInput(input) {
     }
     return _.snakeCase(input);
 }
-
-const t = new SearchCtrl()
