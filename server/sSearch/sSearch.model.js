@@ -46,15 +46,15 @@ SearchModel.prototype.$init = co.wrap(function*() {
 SearchModel.prototype.cloneSearch = co.wrap(function*(location, term) {
     const searchParams = { location, term };
 
-    // if this search has already been done, return results
-    const existingSearchId = yield this._checkIfSearchExists(searchParams)
-    if (_.isString(existingSearchId)) {
-        return this._getResults(existingSearchId);
-    }
-
     // record search
     const searchId = uuid.v4();
     yield this._createSearch(searchId, searchParams, 'clone');
+
+    // if this search has already been done, return results
+    const existingSearchId = yield this._checkIfSearchExists(searchId, searchParams);
+    if (_.isString(existingSearchId)) {
+        return this._getResults(existingSearchId);
+    }
 
     // query yelp and save results
     const yelpResults = yield this._searchYelp(searchParams);
@@ -74,18 +74,18 @@ SearchModel.prototype.smartSearch = co.wrap(function*(userInput, location) {
     const keyword = yield this._getKeywords(userInput);
     const searchParams = { term: keyword, location };
 
+    // record search
+    const searchId = uuid.v4();
+    yield this._createSearch(searchId, searchParams, 'ml');
+
     // if this search has already been done, return results
-    const existingSearchId = yield this._checkIfSearchExists(searchParams);
+    const existingSearchId = yield this._checkIfSearchExists(searchId, searchParams);
     if (_.isString(existingSearchId)) {
         const existingResults = yield this._getResults(existingSearchId);
         if (!_.isEmpty(existingResults.results)) {
             return existingResults;
         }
     }
-
-    // record search
-    const searchId = uuid.v4();
-    yield this._createSearch(searchId, searchParams, 'ml');
 
     // query sources and save results
     const results = yield this._searchSources(searchParams);
@@ -200,13 +200,21 @@ SearchModel.prototype._searchSources = co.wrap(function*(searchParams) {
 });
 
 /**
- * Check if the results exist in DB
+ * Check if the results exist in DB for a search different than the current one
  * @param  {Object}  search
  * @return {Object} query
  */
-SearchModel.prototype._checkIfSearchExists = co.wrap(function*(searchParams) {
-    const search = yield this.db('Searches').where(searchParams).select('searchId');
-    return _.get(search, '[0].searchId', undefined);
+SearchModel.prototype._checkIfSearchExists = co.wrap(function*(currentSearchId, searchParams) {
+    const searches = yield this.db('Searches').where(searchParams).select('searchId');
+    const otherSearches = _.filter(searches, s => s.searchId !== currentSearchId);
+    // return the first other search or undefined if it doesn't exist
+    if (!_.isEmpty(otherSearches)) {
+        return otherSearches[0].searchId;
+    } else {
+        return {
+            message: 'No search exists for the given params'
+        };
+    }
 });
 
 /**
