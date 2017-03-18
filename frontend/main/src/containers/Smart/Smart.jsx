@@ -6,7 +6,11 @@ import Spinner from 'react-spinner';
 import { Results } from '../.';
 import { ResultItem, LocationInput } from '../../components';
 import { setVersion } from '../../actions/results.actions';
-import { removeKeyword } from '../../actions/keywords.actions';
+import {
+    removeKeyword,
+    postUserDate,
+    getWeatherKeywords
+} from '../../actions/keywords.actions';
 import {
     smartSearch,
     userInputChange,
@@ -31,6 +35,7 @@ class Smart extends Component {
 
     componentDidMount() {
         this.props.setVersion('smart');
+        this.props.postUserDate();
         if (!this.props.userLocation) {
             this.getUserLocation();
         }
@@ -205,14 +210,6 @@ class Smart extends Component {
                     </div>
                 </div>
 
-                { false &&
-                <div className="smart__suggestions">
-                    {areResultsEmpty &&
-                        <h4 className="smart__output__title">Not sure? Here are some suggestions</h4>
-                    }
-                </div>
-                }
-
                 <div className="smart__output">
                     {!areResultsEmpty &&
                         <h4 className="smart__output__title">Here are the top results, tailored for you</h4>
@@ -268,9 +265,16 @@ function mapDispatchToProps(dispatch) {
         },
         setUserLocation: (location) => {
             dispatch(setUserLocation(location));
+            dispatch(getWeatherKeywords(location));
         },
         removeKeyword: (keywordId) => {
             dispatch(removeKeyword(keywordId));
+        },
+        postUserKeywords: () => {
+            dispatch(postUserKeywords());
+        },
+        postUserDate: () => {
+            dispatch(postUserDate());
         }
     };
 }

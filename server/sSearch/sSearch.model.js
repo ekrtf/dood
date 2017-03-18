@@ -77,7 +77,7 @@ SearchModel.prototype.smartSearch = co.wrap(function*(userInput, location) {
 
     // record search
     const searchId = uuid.v4();
-    yield this._createSearch(searchId, searchParams, 'ml');
+    yield this._createSearch(searchId, searchParams, 'smart');
 
     // if this search has already been done, return results
     const existingSearchId = yield this._checkIfSearchExists(searchId, searchParams);

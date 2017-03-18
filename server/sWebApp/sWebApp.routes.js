@@ -14,7 +14,7 @@ module.exports = [
         }
     },
     // {
-    //     api: '/ml',
+    //     api: '/smart',
     //     controller: 'web',
     //     method: {
     //         get: 'serveWebApp'

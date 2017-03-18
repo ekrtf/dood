@@ -1,4 +1,5 @@
 import * as types from './action-types';
+import { getWeatherKeywords } from './keywords.actions';
 import http from '../utils/http';
 
 // "user click change location on smart search"
@@ -59,7 +60,10 @@ export function getUserLocation(browserCoords) {
     return (dispatch) => {
         dispatch(userLocationRequest(browserCoords));
         return http.get('/context/reverseloc', browserCoords.location)
-            .then(response => dispatch(userLocationSuccess(response)))
+            .then(response => {
+                dispatch(userLocationSuccess(response));
+                dispatch(getWeatherKeywords(response[0]));
+            })
             .catch(e => dispatch(userLocationFailure(e)));
     };
 }
@@ -73,7 +77,7 @@ function userLocationRequest() {
 function userLocationSuccess(location) {
     return {
         type: types.USER_LOCATION_SUCCESS,
-        userLocation: location[0].city
+        userLocation: location[0].city + ', ' + location[0].country
     };
 }
 
@@ -140,8 +144,6 @@ export function smartSearch(search, location) {
     return (dispatch, getState) => {
         // do not search twice at a time
         if (getState().search.isPosting) return;
-
-        console.log(search, location)
 
         dispatch(smartSearchRequest());
         return http.post('/smart-search', { search, location })

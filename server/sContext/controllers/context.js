@@ -54,3 +54,17 @@ ContextCtrl.prototype.disableOutdoors = function($input, $done, $error, $service
         .then($done)
         .catch($error);
 };
+
+ContextCtrl.prototype.getWeatherKeywords = function($input, $done, $error, $service) {
+    const location = $input.body.location;
+    $service.getWeatherKeywords(location)
+        .then($done)
+        .catch($error);
+};
+
+ContextCtrl.prototype.getDateKeywords = function($input, $done, $error, $service) {
+    const date = $input.body.date;
+    $service.getDateKeywords(date)
+        .then($done)
+        .catch($error);
+};
