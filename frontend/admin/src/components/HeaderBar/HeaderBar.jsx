@@ -8,6 +8,10 @@ class HeaderBar extends Component {
 		this._setVersion = this._setVersion.bind(this);
 	}
 
+	componentDidMount() {
+		this.props.fetchFeedback(this.props.version);
+	}
+
 	getSmartClass() {
 		if (this.props.version === 'smart') {
 			return 'headerbar__tab--selected';
