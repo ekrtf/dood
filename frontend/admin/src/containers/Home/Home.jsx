@@ -47,7 +47,7 @@ class Home extends Component {
                                         {moment.unix(f.createdAt).format('DD-MM-YYYY')}
                                     </td>
                                     <td className="home__feedback__item__comment">
-                                        {f.comment}
+                                        <div>{f.comment}</div>
                                     </td>
                                     <td className="home__feedback__item__rating">
                                         {f.rating}

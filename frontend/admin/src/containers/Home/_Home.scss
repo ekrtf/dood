@@ -3,6 +3,14 @@
 	color: $grape-purple;
 	table {
 		width: 100%;
+		table-layout: fixed;
+		td {
+			word-wrap: break-word;
+			div {
+				word-wrap: break-word;
+				
+			}
+		}
 	}
 }
 
@@ -20,11 +28,11 @@
 	width: 15%;
 }
 .home__feedback__item__comment {
-	width: 40%;
+	width: 55%;
 }
 .home__feedback__item__rating {
 	width: 10%;
 }
 .home__feedback__item__email {
-	width: 30%;
+	width: 20%;
 }
