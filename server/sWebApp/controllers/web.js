@@ -31,7 +31,7 @@ Web.prototype.adminLogin = function($input, $done, $service, $error) {
 	const username = $input.body.user;
 	const pw = $input.body.pw;
 
-	if (username === 'emile' && pw === 'd00d2017') {
+	if (username === 'emile' && pw === 'DOOD-ucl-carrots-9876') {
 		$done();
 	} else {
 		$error();

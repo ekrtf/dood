@@ -1,4 +1,4 @@
-import { assign, concat, cloneDeep } from 'lodash';
+import { assign, concat, cloneDeep, uniq } from 'lodash';
 import * as types from '../actions/action-types';
 
 const initialState = {
@@ -17,18 +17,18 @@ const product = function(state, action) {
         case types.GET_WEATHER_KEYWORDS_SUCCESS:
             return assign({}, state, {
                 weatherWasCalled: true,
-                words: concat(state.words, action.weatherKeywords)
+                words: uniq(concat(state.words, action.weatherKeywords))
             });
 
         case types.POST_USER_DATE_SUCCESS:
             return assign({}, state, {
                 dateWasCalled: true,
-                words: concat(state.words, action.dateKeywords)
+                words: uniq(concat(state.words, action.dateKeywords))
             });
 
         case types.SMART_SEARCH_SUCCESS:
             return assign({}, state, {
-                words: action.keywords
+                words: uniq(concat(state.words, action.keywords))
             });
 
         case types.REMOVE_KEYWORD:

@@ -64,7 +64,7 @@ class Feedback extends Component {
                         </div>
                     </div>
                     <textarea className="feedback__prompt__message"
-                        placeholder="Any additional comments?"
+                        placeholder="Please find something to say"
                         onChange={(e) => this._handleCommentChange(e)}
                     ></textarea>
                 </div>

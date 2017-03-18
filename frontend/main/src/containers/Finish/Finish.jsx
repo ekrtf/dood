@@ -16,12 +16,12 @@ class Finish extends Component {
             <div className="finish container">
                 <div className="finish__greet">Thank you for participating in the research!</div>
                 <div className="finish__info">
-                    You were randomly given the 
+                    You were randomly given the
                     <span className="finish__info__strong">{versionStr}</span> version.
                 </div>
                 <div className="finish__info">
-                    You can check out the 
-                    <span className="finish__info__strong">{other}</span> version&ensp;
+                    You can check out the
+                    <span className="finish__info__strong">{other}</span> {'version '}
                     <Link className="finish__info__link" to={otherLink}>here</Link>.
                 </div>
             </div>

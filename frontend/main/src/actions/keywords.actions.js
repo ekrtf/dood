@@ -8,7 +8,7 @@ export function postUserDate(userKeywords) {
         dispatch(postUserDateRequest());
         return http.post('/context/keywords/date', { date: new Date() })
             .then(response => {
-                dispatch(postUserDateSuccess(response))
+                dispatch(postUserDateSuccess(response));
                 const location = getState().search.userLocation;
                 if (getState().keywords.weatherWasCalled && location) {
                     dispatch(smartSearch(getState().keywords.words.toString(), location));
