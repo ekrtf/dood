@@ -54,7 +54,7 @@ AnalyticModel.prototype.logFeedback = function(searchId, feedback) {
 };
 
 AnalyticModel.prototype.getFeedback = co.wrap(function*(version) {
-    return this.db('Searches').where({ version });
+    return this.db.select('*').from('Feedback').where({ version });
 });
 
 /* * * * * * * * * *

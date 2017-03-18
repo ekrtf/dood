@@ -46,8 +46,6 @@ SearchCtrl.prototype.smartSearch = function($input, $error, $done, searchModel) 
     const text = $input.body.search;
     const location = $input.body.location;
 
-    console.log('smart search body', $input.body)
-
     searchModel.smartSearch(text, location)
         .then($done)
         .catch(function(e) {
