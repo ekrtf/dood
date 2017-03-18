@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-import Lightbox from 'react-images';
 import Spinner from 'react-spinner';
 import Rating from 'react-rating';
 import { Link } from 'react-router';

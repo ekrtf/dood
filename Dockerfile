@@ -13,10 +13,8 @@ COPY package.json /usr/src/app/
 RUN npm install
 
 # Install frontend dependencies
-COPY frontend/main/package.json /usr/src/app/main/frontend
-RUN cd frontend/main && npm install
-COPY frontend/admin/package.json /usr/src/app/admin/frontend
-RUN cd frontend/admin && npm install
+COPY frontend/package.json /usr/src/app/frontend
+RUN cd frontend && npm install
 
 # Install server dependencies
 COPY server/package.json /usr/src/app/server
@@ -28,7 +26,7 @@ COPY . /usr/src/app
 # Set ENV to production
 ENV ENV 'prod'
 
-# Build fronends
+# Build frontends
 RUN cd frontend/main && npm run build
 RUN cd frontend/admin && npm run build
 
