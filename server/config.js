@@ -7,7 +7,13 @@ const prodConfig = {
         user     : process.env.RDS_USERNAME,
         password : process.env.RDS_PASSWORD,
         port     : process.env.RDS_PORT,
+        database : process.env.RDS_DB_NAME,
         ssl      : true
+    },
+    pool: {
+        min: 2,
+        max: 10,
+        acquireTimeout: 60 * 1000
     }
 };
 

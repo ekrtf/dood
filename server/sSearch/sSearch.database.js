@@ -4,13 +4,7 @@ const co = require('co');
 const knex = require('knex');
 
 module.exports = function(config) {
-    let db = knex({
-        client: config.client,
-        connection: {
-            filename: config.connection.filename
-        },
-        useNullAsDefault: true
-    });
+    let db = knex(config);
 
     return co(function*() {
 
