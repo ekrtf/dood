@@ -55,8 +55,8 @@ AnalyticModel.prototype.logFeedback = function(searchId, feedback) {
 
 AnalyticModel.prototype.getAnalytics = co.wrap(function*(version) {
     return {
-        feedback: yield this.db.select('*').from('Feedback').where({ version }),
-        averageRating: yield this.db('Feedback').where({ version }).avg('rating'),
+        feedback: yield this.db.select('*').from('Feedback').where('version', version),
+        averageRating: yield this.db('Feedback').where('version', version).avg('rating'),
         numberOfSearches: yield this._getTotalSearches(version),
         numberOfSearchesWithChoice: yield this._getChoiceSearches(version)
     };
