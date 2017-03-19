@@ -12,21 +12,19 @@ module.exports = function(config) {
          * Reference each search operation executed on the site
          */
         yield db.schema.createTableIfNotExists('Searches', (search) => {
-            search.increments();
-            search.text('searchId').notNullable();
+            search.primary('searchId').notNullable();
             search.string('version').notNullable(); // clone or smart
             search.string('location').notNullable();
             search.string('term').notNullable(); // whatever was sent to sources
             search.string('choice');
-            search.timestamp('createdAt').notNullable();
+            search.bigInteger('createdAt').notNullable();
         });
 
         /**
          * This saves a normalized result from one of the sources
          */
         yield db.schema.createTableIfNotExists('Results', (result) => {
-            result.increments();
-            result.text('resultId').notNullable();
+            result.primary('resultId').notNullable();
             result.string('searchId').notNullable();
             result.string('idInSource').notNullable();
             result.string('sourceName').notNullable();
@@ -41,7 +39,7 @@ module.exports = function(config) {
             result.json('description');
             result.json('addressLine').notNullable();
             result.json('addressDisplay').notNullable();
-            result.timestamp('createdAt').notNullable();
+            result.bigInteger('createdAt').notNullable();
         });
 
         /**
@@ -50,11 +48,10 @@ module.exports = function(config) {
          * same query.
          */
         yield db.schema.createTableIfNotExists('Keywords', (key) => {
-            key.increments();
-            key.text('keywordId').notNullable();
+            key.primary('keywordId').notNullable();
             key.string('userInput').notNullable();
             key.string('keyword').notNullable(); // store several
-            key.timestamp('createdAt').notNullable();
+            key.bigInteger('createdAt').notNullable();
         });
 
         return db;
