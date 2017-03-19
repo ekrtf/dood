@@ -8,7 +8,8 @@ module.exports = function(config) {
 
     return co(function*() {
         yield db.schema.createTableIfNotExists('Feedback', (feedback) => {
-            feedback.text('feedbackId').primary().notNullable();
+            feedback.increments();
+            feedback.text('feedbackId').notNullable();
             feedback.string('searchId').notNullable();
             feedback.text('comment').notNullable();
             feedback.string('version').notNullable(); // 'smart' or 'clone'
