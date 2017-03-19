@@ -12,8 +12,7 @@ const prodConfig = {
     },
     pool: {
         min: 2,
-        max: 10,
-        acquireTimeout: 60 * 1000
+        max: 10
     }
 };
 
@@ -21,10 +20,13 @@ const devConfig = {
     "client": "sqlite",
     "connection": {
         "filename": "dood.sqlite"
-    }
+    },
+    "useNullAsDefault": true
 };
 
-const databaseConfig = process.env.ENV === 'prod' ? prodConfig : devConfig;
+// const databaseConfig = process.env.ENV === 'prod' ? prodConfig : devConfig;
+// HACK. unable to connect to real postgre
+const databaseConfig = devConfig;
 
 module.exports = {
     "token": "b350bbb9-0c95-4679-bbb9-1e4a7f524b0e",

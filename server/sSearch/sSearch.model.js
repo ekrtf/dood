@@ -28,7 +28,6 @@ function SearchModel($services, $config) {
  * * * * * * * * * */
 
 SearchModel.prototype.$init = co.wrap(function*() {
-    console.log('sSearch config', config)
     this.db = yield require('./sSearch.database.js')(config.database);
 });
 

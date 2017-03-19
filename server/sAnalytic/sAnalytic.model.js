@@ -27,7 +27,7 @@ function AnalyticModel($services, $config) {
  * * * * * * * * * */
 
 AnalyticModel.prototype.$init = co.wrap(function*() {
-    this.db = yield require('./sAnalytic.database.js')(config.database);
+    // this.db = yield require('./sAnalytic.database.js')(config.database);
 });
 
 /* * * * * * * * * *
