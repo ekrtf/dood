@@ -18,7 +18,7 @@ module.exports = function(config) {
             search.string('location').notNullable();
             search.string('term').notNullable(); // whatever was sent to sources
             search.string('choice');
-            search.bigInteger('createdAt').notNullable();
+            search.bigInteger('creationTimestamp').notNullable();
         });
 
         /**
@@ -41,7 +41,7 @@ module.exports = function(config) {
             result.json('description');
             result.json('addressLine').notNullable();
             result.json('addressDisplay').notNullable();
-            result.bigInteger('createdAt').notNullable();
+            result.bigInteger('creationTimestamp').notNullable();
         });
 
         /**
@@ -54,7 +54,7 @@ module.exports = function(config) {
             key.text('keywordId').notNullable();
             key.string('userInput').notNullable();
             key.string('keyword').notNullable(); // store several
-            key.bigInteger('createdAt').notNullable();
+            key.bigInteger('creationTimestamp').notNullable();
         });
 
         return db;

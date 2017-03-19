@@ -49,7 +49,7 @@ AnalyticModel.prototype.logFeedback = function(searchId, feedback) {
         version: feedback.version,
         email: feedback.email,
         rating: Number(feedback.rating),
-        createdAt: Date.now()
+        creationTimestamp: Date.now()
     });
 };
 

@@ -242,7 +242,7 @@ SearchModel.prototype._createSearch = function(searchId, searchParams, version) 
         version: version,
         location: searchParams.location,
         term: searchParams.term,
-        createdAt: Date.now()
+        creationTimestamp: Date.now()
     });
 };
 
@@ -254,7 +254,7 @@ SearchModel.prototype._createSearch = function(searchId, searchParams, version) 
 SearchModel.prototype._saveResults = function(searchId, results) {
     const resultsPromises = _.map(results, item => {
         return this.db('Results').insert(_.merge(item, {
-            createdAt: Date.now(),
+            creationTimestamp: Date.now(),
             searchId
         }));
     });
@@ -329,7 +329,7 @@ SearchModel.prototype._getKeywords = co.wrap(function*(userInput) {
 SearchModel.prototype._createKeyword = function(userInput, keyword) {
     return this.db('Keywords').insert({
         keywordId: uuid.v4(),
-        createdAt: Date.now(),
+        creationTimestamp: Date.now(),
         keyword,
         userInput
     });

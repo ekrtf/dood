@@ -15,7 +15,7 @@ module.exports = function(config) {
             feedback.string('version').notNullable(); // 'smart' or 'clone'
             feedback.integer('rating').notNullable();
             feedback.string('email')
-            feedback.bigInteger('createdAt').notNullable();
+            feedback.bigInteger('creationTimestamp').notNullable();
         });
 
         return db;
