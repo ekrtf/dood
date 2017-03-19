@@ -7,7 +7,7 @@
 
 const _ = require('lodash');
 const hyper = require('hyper.io');
-const config = require('./config.json');
+const config = require('./config');
 const helmet = require('helmet');
 
 module.exports = Server;

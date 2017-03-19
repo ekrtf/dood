@@ -1,4 +1,26 @@
-{
+'use strict';
+
+const prodConfig = {
+    client: 'pg',
+    connection: {
+        host     : process.env.RDS_HOSTNAME,
+        user     : process.env.RDS_USERNAME,
+        password : process.env.RDS_PASSWORD,
+        port     : process.env.RDS_PORT,
+        ssl      : true
+    }
+};
+
+const devConfig = {
+    "client": "sqlite",
+    "connection": {
+        "filename": "dood.sqlite"
+    }
+};
+
+const databaseConfig = process.env.ENV === 'prod' ? prodConfig : devConfig;
+
+module.exports = {
     "token": "b350bbb9-0c95-4679-bbb9-1e4a7f524b0e",
     "ports": {
         "server": 4000
@@ -9,20 +31,10 @@
         "appSecret": "QqZh3Xw2wYrpiXsOY4iiHXkiPxL7k7J6zWFsdiHOaMX1uDXd4CiEWfHovrrMggqb"
     },
     "sSearch": {
-        "database": {
-            "client": "sqlite",
-            "connection": {
-                "filename": "dood.sqlite"
-            }
-        }
+        "database": databaseConfig
     },
     "sAnalytic": {
-        "database": {
-            "client": "sqlite",
-            "connection": {
-                "filename": "dood.sqlite"
-            }
-        }
+        "database": databaseConfig
     },
     "sWatson": {
         "credentials": {
@@ -50,4 +62,4 @@
     "sGooglePlaces": {
         "apiKey": "AIzaSyBTUge9awC7NP_B488VOaiOeezbXC2Vlpo"
     }
-}
+};

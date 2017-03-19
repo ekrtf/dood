@@ -1,6 +1,6 @@
 'use strict';
 
-const config = require('./config.json');
+const config = require('./config.js');
 const authorizationHeader = `Bearer ${config.token}`;
 
 const checkAccessToken = function($rawRequest, $error) {
