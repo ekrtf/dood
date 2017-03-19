@@ -12,7 +12,8 @@ module.exports = function(config) {
          * Reference each search operation executed on the site
          */
         yield db.schema.createTableIfNotExists('Searches', (search) => {
-            search.primary('searchId').notNullable();
+            search.increments();
+            search.text('searchId').notNullable();
             search.string('version').notNullable(); // clone or smart
             search.string('location').notNullable();
             search.string('term').notNullable(); // whatever was sent to sources
@@ -24,7 +25,8 @@ module.exports = function(config) {
          * This saves a normalized result from one of the sources
          */
         yield db.schema.createTableIfNotExists('Results', (result) => {
-            result.primary('resultId').notNullable();
+            result.increments();
+            result.text('resultId').notNullable();
             result.string('searchId').notNullable();
             result.string('idInSource').notNullable();
             result.string('sourceName').notNullable();
@@ -48,7 +50,8 @@ module.exports = function(config) {
          * same query.
          */
         yield db.schema.createTableIfNotExists('Keywords', (key) => {
-            key.primary('keywordId').notNullable();
+            key.increments();
+            key.text('keywordId').notNullable();
             key.string('userInput').notNullable();
             key.string('keyword').notNullable(); // store several
             key.bigInteger('createdAt').notNullable();
