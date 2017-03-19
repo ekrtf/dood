@@ -299,7 +299,7 @@ SearchModel.prototype._getResults = function(searchId) {
  * @return {Promise}
  */
 SearchModel.prototype._getKeywords = co.wrap(function*(userInput) {
-    const dbQuery = yield this.db('keywords').where({ userInput }).select('keyword');
+    const dbQuery = yield this.db('Keywords').where({ userInput }).select('keyword');
 
     // if the keyword is in the db, return it
     if (!_.isEmpty(dbQuery)) {
