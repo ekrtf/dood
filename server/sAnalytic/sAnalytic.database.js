@@ -9,7 +9,7 @@ module.exports = function(config) {
     return co(function*() {
         yield db.schema.createTableIfNotExists('Feedback', (feedback) => {
             feedback.text('feedbackId').primary().notNullable();
-            feedback.string('searchId').references('searchId').inTable('Searches');
+            feedback.string('searchId').notNullable();
             feedback.text('comment').notNullable();
             feedback.string('version').notNullable(); // 'smart' or 'clone'
             feedback.integer('rating').notNullable();

@@ -13,10 +13,10 @@ module.exports = function(config) {
          */
         yield db.schema.createTableIfNotExists('Searches', (search) => {
             search.text('searchId').notNullable().primary();
-            search.string('version').notNullable(); // clone or ML
+            search.string('version').notNullable(); // clone or smart
             search.string('location').notNullable();
             search.string('term').notNullable(); // whatever was sent to sources
-            search.string('choice').references('resultId').inTable('Results');
+            search.string('choice');
             search.timestamp('createdAt').notNullable();
         });
 
@@ -25,7 +25,7 @@ module.exports = function(config) {
          */
         yield db.schema.createTableIfNotExists('Results', (result) => {
             result.text('resultId').notNullable().primary();
-            result.string('searchId').notNullable().references('searchId').inTable('Searches');
+            result.string('searchId').notNullable();
             result.string('idInSource').notNullable();
             result.string('sourceName').notNullable();
             result.string('imageUrl').notNullable();
