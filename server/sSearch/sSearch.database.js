@@ -8,6 +8,11 @@ module.exports = function(config) {
 
     return co(function*() {
 
+        // MASSIVE HACK. To make it to deadline, horrifying db architecture
+        // increments --> primary
+        // text --> json
+        // ...
+
         /**
          * Reference each search operation executed on the site
          */
@@ -33,7 +38,7 @@ module.exports = function(config) {
             result.string('imageUrl').notNullable();
             result.string('name').notNullable();
             result.string('price').notNullable();
-            result.integer('rating').notNullable();
+            result.decimal('rating').notNullable();
             result.text('coordinates');
             result.text('categories').notNullable();
             result.text('images');
