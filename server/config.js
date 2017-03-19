@@ -9,10 +9,6 @@ const prodConfig = {
         port     : process.env.RDS_PORT,
         database : process.env.RDS_DB_NAME,
         ssl      : true
-    },
-    pool: {
-        min: 2,
-        max: 10
     }
 };
 
@@ -24,9 +20,7 @@ const devConfig = {
     "useNullAsDefault": true
 };
 
-// const databaseConfig = process.env.ENV === 'prod' ? prodConfig : devConfig;
-// HACK. unable to connect to real postgre
-const databaseConfig = devConfig;
+const databaseConfig = process.env.ENV === 'prod' ? prodConfig : devConfig;
 
 module.exports = {
     "token": "b350bbb9-0c95-4679-bbb9-1e4a7f524b0e",
