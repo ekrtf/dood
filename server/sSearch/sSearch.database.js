@@ -34,13 +34,13 @@ module.exports = function(config) {
             result.string('name').notNullable();
             result.string('price').notNullable();
             result.integer('rating').notNullable();
-            result.json('coordinates');
-            result.json('categories').notNullable();
-            result.json('images');
-            result.json('reviews');
-            result.json('description');
-            result.json('addressLine').notNullable();
-            result.json('addressDisplay').notNullable();
+            result.text('coordinates');
+            result.text('categories').notNullable();
+            result.text('images');
+            result.text('reviews');
+            result.text('description');
+            result.text('addressLine').notNullable();
+            result.text('addressDisplay').notNullable();
             result.bigInteger('creationTimestamp').notNullable();
         });
 
