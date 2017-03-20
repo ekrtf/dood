@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 
-module.exports = {
-    devtool: 'source-map',
+let webpackConfig = {
     entry: [
         './src/index.jsx'
     ],
@@ -84,3 +83,9 @@ module.exports = {
         })
     ]
 };
+
+if (process.env.ENV !== 'prod') {
+    webpackConfig.devtool = 'source-map';
+}
+
+module.exports = webpackConfig;

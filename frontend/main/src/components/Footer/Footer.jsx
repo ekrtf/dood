@@ -18,7 +18,7 @@ class Footer extends Component {
                     <div className="footer__content__divider"></div>
                     <div className="footer__content__item">
                         <a href="mailto:emile@kratiroff.com?Subject=Dood%20feedback" target="_top">
-                            Say hi or report bug
+                            Report bug (opens email)
                         </a>
                     </div>
                     <div className="footer__content__divider"></div>
