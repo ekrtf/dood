@@ -159,11 +159,11 @@ SearchModel.prototype.saveChoice = function(searchId, resultId) {
 };
 
 SearchModel.prototype.getAllSearches = function(version) {
-    return this.db('Searches').where('version', version).count(version);
+    return this.db('Searches').where(version, 'version').count(version);
 };
 
 SearchModel.prototype.getChoiceSearches = co.wrap(function*(version) {
-    const versionSearches = yield this.db('Searches').where('version', version);
+    const versionSearches = yield this.db('Searches').where(version, 'version');
     const count = _.reject(versionSearches, s => !_.isString(s.choice)).length;
     return String(count);
 });
