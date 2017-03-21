@@ -9,6 +9,7 @@ class HeaderBar extends Component {
                 <div className="headerbar__logo">
                     <IndexLink to="/">Dissertation</IndexLink>
                 </div>
+                <div className="headerbar__beta">(beta)</div>
             </div>
         );
     }
