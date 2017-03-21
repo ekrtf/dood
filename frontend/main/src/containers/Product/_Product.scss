@@ -201,12 +201,8 @@
 .product__map {
     margin-top: $large-space;
     width: 100%;
-    min-height: 200px;
+    min-height: 300px;
     margin-bottom: $medium-space;
-    .leaflet-container {
-        height: 400px;
-        width: 100%;
-    }
 }
 
 .product__map__location {
