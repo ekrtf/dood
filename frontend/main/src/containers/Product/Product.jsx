@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import _ from 'lodash';
+import { isEmpty, isObject, isArray } from 'lodash';
 import { connect } from 'react-redux';
 import Spinner from 'react-spinner';
 import Rating from 'react-rating';
@@ -24,7 +24,7 @@ class Product extends Component {
 
     componentWillMount() {
         // fetch product if user navigates directly to this page
-        if (_.isEmpty(this.props.product) && !this.props.isFetching) {
+        if (isEmpty(this.props.product) && !this.props.isFetching) {
             this.props.fetchProduct(this.props.routeParams.resultId);
         }
     }
@@ -138,7 +138,7 @@ class Product extends Component {
         const { name, price, rating, coordinates, addressDisplay } = this.props.product;
 
         let position = [ 0, 0 ];
-        if (_.isObject(coordinates)) {
+        if (isObject(coordinates)) {
             position = [ coordinates.latitude, coordinates.longitude ];
         }
 
@@ -184,7 +184,7 @@ class Product extends Component {
                 </div>
 
                 <div className="product__info">
-                    <div>{ _.isArray(this.props.product.categories) && this._renderCategories() }</div>
+                    <div>{ isArray(this.props.product.categories) && this._renderCategories() }</div>
                     <div className="product__info__price">
                         <div>{ price }</div>
                     </div>
@@ -202,7 +202,7 @@ class Product extends Component {
                 <div className="product__reviews">
                     <h4 className="product__heading">Reviews</h4>
                     { isFetching && (<div className="product__spinner"><Spinner /></div>) }
-                    { !isFetching && _.isArray(this.props.product.reviews) && this._renderReviews() }
+                    { !isFetching && isArray(this.props.product.reviews) && this._renderReviews() }
                 </div>
 
                 <div className="product__map">
@@ -214,7 +214,7 @@ class Product extends Component {
                     </div>
 
                     <Map coords={position} />
-                    
+
                 </div>
 
             </div>

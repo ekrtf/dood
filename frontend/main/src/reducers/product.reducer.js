@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { assign } from 'lodash';
 import * as types from '../actions/action-types';
 
 const initialState = {
@@ -20,38 +20,38 @@ const product = function(state, action) {
     switch(action.type) {
 
         case types.POST_FEEDBACK_SUCCESS:
-            return _.assign({}, state, {
+            return assign({}, state, {
                 isSubmitted: true
             });
 
         case types.SET_COMMENT:
-            return _.assign({}, state, {
+            return assign({}, state, {
                 comment: action.comment
             });
 
         case types.SET_EMAIL:
-            return _.assign({}, state, {
+            return assign({}, state, {
                 email: action.email
             });
 
         case types.SET_RATING:
-            return _.assign({}, state, {
+            return assign({}, state, {
                 rating: action.rating,
                 disableFinish: false
             });
 
         case types.SET_CHOSEN_PRODUCT_REQUEST:
-            return _.assign({}, state, {
+            return assign({}, state, {
                 chosenProduct: action.product
             });
 
         case types.TOGGLE_IMAGES:
-            return _.assign({}, state, {
+            return assign({}, state, {
                 showImages: !state.showImages
             });
 
         case types.SELECT_IMAGE:
-            return _.assign({}, state, {
+            return assign({}, state, {
                 currentImage: action.imageIndex
             });
 
