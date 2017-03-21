@@ -231,7 +231,6 @@ function mapDispatchToProps(dispatch) {
         },
         setUserLocation: (location) => {
             dispatch(setUserLocation(location));
-            dispatch(getWeatherKeywords(location));
         },
         postUserDate: () => {
             dispatch(postUserDate());
