@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import request from 'request-promise';
 
 const TOKEN = 'b350bbb9-0c95-4679-bbb9-1e4a7f524b0e';
