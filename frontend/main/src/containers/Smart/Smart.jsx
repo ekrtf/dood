@@ -38,6 +38,11 @@ class Smart extends Component {
         this.props.postUserDate();
         if (!this.props.userLocation) {
             this.getUserLocation();
+            setTimeout(() => {
+                if (!this.props.userLocation) {
+                    this.props.toggleLocationForm();
+                }
+            }, 7000);
         }
         if (this.props.showLocationForm === true) {
             this.props.toggleLocationForm();
