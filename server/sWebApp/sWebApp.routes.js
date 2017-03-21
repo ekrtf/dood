@@ -59,7 +59,7 @@ module.exports = [
         static: [
             {
                 from: '../../frontend/main/dist',
-                to: '/main'
+                to: '/'
             },
             {
                 from: '../../frontend/admin/dist',
