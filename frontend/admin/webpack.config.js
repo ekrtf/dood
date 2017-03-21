@@ -1,5 +1,28 @@
 const webpack = require('webpack');
 
+const prodPlugins = [
+    new webpack.DefinePlugin({
+        '__ENV__': JSON.stringify(process.env.ENV || 'dev')
+    }),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.DefinePlugin({
+        'process.env': {
+            'NODE_ENV': JSON.stringify('production')
+        }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+        compressor: {
+            warnings: false
+        }
+    })
+];
+
+const devPlugins = [
+    new webpack.DefinePlugin({
+        '__ENV__': JSON.stringify(process.env.ENV || 'dev')
+    })
+];
+
 let webpackConfig = {
     entry: [
         './src/index.jsx'
@@ -77,11 +100,7 @@ let webpackConfig = {
             }
         }
     },
-    plugins: [
-        new webpack.DefinePlugin({
-            '__ENV__': JSON.stringify(process.env.ENV || 'dev')
-        })
-    ]
+    plugins: process.env.ENV !== 'prod' ? devPlugins : prodPlugins
 };
 
 if (process.env.ENV !== 'prod') {
