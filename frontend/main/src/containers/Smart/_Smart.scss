@@ -76,42 +76,6 @@
     pointer-events: none;
 }
 
-.smart__keywords {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.smart__keywords__button {
-    height: 47px;
-    border: 2px solid;
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding-left: 15px;
-    padding-right: 5%;
-    margin-right: $small-space;
-}
-
-.smart__keywords__button__content {
-    width: 80%;
-    display: flex;
-    white-space: nowrap;
-    align-items: center;
-}
-
-.smart__keywords__button__content__l {
-    text-transform: capitalize;
-}
-
-.smart__keywords__button__content__x {
-    margin-left: 20px;
-    font-size: 10px;
-    &:hover {
-        cursor: pointer;
-    }
-}
-
 .smart__output {
     margin-top: $medium-space;
 }

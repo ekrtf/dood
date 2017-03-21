@@ -72,8 +72,12 @@ SearchModel.prototype.cloneSearch = co.wrap(function*(location, term) {
  */
 SearchModel.prototype.smartSearch = co.wrap(function*(userInput, location) {
     const keywords = yield this._getKeywords(userInput);
-    const frontendKeywords = _.includes(keywords, ',') ? keywords.split(',') : keywords;
-    const searchParams = { term: keywords, location };
+    const searchParams = {
+        // HACK. when smart loads and has a location it requests the best in the city
+        // so no need to use watson for smart keywords
+        term: userInput === 'best' ? 'best' : keywords,
+        location
+    };
 
     // record search
     const searchId = uuid.v4();
@@ -85,8 +89,7 @@ SearchModel.prototype.smartSearch = co.wrap(function*(userInput, location) {
         const existingResults = yield this._getResults(existingSearchId);
         return {
             searchId: existingResults.searchId,
-            results: existingResults.results.slice(0, 6), // display top 6 only
-            keywords: frontendKeywords
+            results: existingResults.results.slice(0, 6) // display top 6 only
         };
     }
 
@@ -97,8 +100,7 @@ SearchModel.prototype.smartSearch = co.wrap(function*(userInput, location) {
     const response = yield this._getResults(searchId);
     return {
         searchId: response.searchId,
-        results: response.results.slice(0, 6), // display top 6 only
-        keywords: frontendKeywords
+        results: response.results.slice(0, 6) // display top 6 only
     };
 });
 

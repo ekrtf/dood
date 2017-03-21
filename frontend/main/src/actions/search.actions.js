@@ -1,5 +1,4 @@
 import * as types from './action-types';
-import { getWeatherKeywords } from './keywords.actions';
 import http from '../utils/http';
 
 // "user click change location on smart search"
@@ -57,14 +56,20 @@ function locationAutocompleteFailure(e) {
 
 // "server returns user location (i.e. user allowed browser to access location)"
 export function getUserLocation(browserCoords) {
-    return (dispatch) => {
+    return (dispatch, getState) => {
         dispatch(userLocationRequest(browserCoords));
         return http.get('/context/reverseloc', browserCoords.location)
             .then(response => {
                 dispatch(userLocationSuccess(response));
-                dispatch(getWeatherKeywords(response[0]));
+                dispatch(smartSearch('best', response[0].city));
             })
-            .catch(e => dispatch(userLocationFailure(e)));
+            .catch(e => {
+                dispatch(userLocationFailure(e));
+
+                if (getState().search.showLocationForm === false) {
+                    dispatch(toggleLocationForm());
+                }
+            });
     };
 }
 
@@ -162,7 +167,6 @@ function smartSearchSuccess(response) {
     return {
         type: types.SMART_SEARCH_SUCCESS,
         results: response.results,
-        keywords: response.keywords,
         searchId: response.searchId
     };
 }

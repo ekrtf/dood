@@ -7,11 +7,6 @@ import { Results } from '../.';
 import { ResultItem, LocationInput } from '../../components';
 import { setVersion } from '../../actions/results.actions';
 import {
-    removeKeyword,
-    postUserDate,
-    getWeatherKeywords
-} from '../../actions/keywords.actions';
-import {
     smartSearch,
     userInputChange,
     getUserLocation,
@@ -23,36 +18,22 @@ import {
 class Smart extends Component {
     constructor(props) {
         super(props);
-        this.autoSearch = debounce(this.autoSearch, 1000);
+        this._doSmartSearch = this._doSmartSearch.bind(this);
         this._toggleLocationForm = this._toggleLocationForm.bind(this);
         this._handleLocationChange = this._handleLocationChange.bind(this);
         this._getButtonClass = this._getButtonClass.bind(this);
         this._getLocationClass = this._getLocationClass.bind(this);
         this._selectLocation = this._selectLocation.bind(this);
         this._handleKeyPress = this._handleKeyPress.bind(this);
-        this._handleRemoveKeyword = this._handleRemoveKeyword.bind(this);
     }
 
     componentDidMount() {
         this.props.setVersion('smart');
-        this.props.postUserDate();
         if (!this.props.userLocation) {
             this.getUserLocation();
-            setTimeout(() => {
-                if (!this.props.userLocation) {
-                    this.props.toggleLocationForm();
-                }
-            }, 7000);
         }
         if (this.props.showLocationForm === true) {
             this.props.toggleLocationForm();
-        }
-    }
-
-    autoSearch() {
-        const { userInput, userLocation } = this.props;
-        if (!isEmpty(userLocation) && !isEmpty(userInput)) {
-            this.props.smartSearch(userInput, userLocation);
         }
     }
 
@@ -114,7 +95,6 @@ class Smart extends Component {
     _handleInputChange(e) {
         const input = e.target.value;
         this.props.userInputChange(input);
-        this.autoSearch();
     }
 
     _getButtonClass() {
@@ -132,47 +112,8 @@ class Smart extends Component {
         return 'smart__input__form__location'
     }
 
-    _handleRemoveKeyword(keywordId) {
-        this.props.removeKeyword(keywordId);
-
-        // HACK. wait for keywords state to be updated before posting new search
-        setTimeout(() => {
-            if (!isEmpty(this.props.userLocation)) {
-                this.props.smartSearch(this.props.keywords.toString(), this.props.userLocation);
-            }
-        }, 300);
-    }
-
-    _renderKeywords() {
-        if (!this.props.keywords) return;
-
-        let workingKeywords = this.props.keywords;
-        // make sure map runs if single keyword
-        if (typeof workingKeywords === 'string') {
-            workingKeywords = [ workingKeywords ];
-        }
-
-        const tooltip = (<Tooltip id="tooltip">Remove</Tooltip>);
-        const keywords = workingKeywords.map((k, i) => (
-            <div key={i} className="smart__keywords__button">
-                <div className="smart__keywords__button__content">
-                    <div className="smart__keywords__button__content__l">{k}</div>
-                    <div className="smart__keywords__button__content__x" onClick={(e) => this._handleRemoveKeyword(i)}>
-                        { workingKeywords.length > 1 &&
-                            <OverlayTrigger placement="top" overlay={tooltip}>
-                                <i className="em em-x"></i>
-                            </OverlayTrigger>
-                        }
-                    </div>
-                </div>
-            </div>
-        ));
-
-        return (
-            <div className="smart__keywords">
-                {keywords}
-            </div>
-        );
+    _doSmartSearch(e) {
+        this.props.smartSearch(this.props.userInput, this.props.userLocation);
     }
 
     render() {
@@ -211,7 +152,12 @@ class Smart extends Component {
                                 </div>
                             }
                         </div>
-                        {this._renderKeywords()}
+                        <button onClick={(e) => this._doSmartSearch(e)}
+                                className={this._getButtonClass()}
+                        >
+                            Save me some scrolling time
+                            <i className="em em-confetti_ball"></i>
+                        </button>
                     </div>
                 </div>
 
@@ -243,8 +189,7 @@ function mapStateToProps(state) {
         userLocation: state.search.userLocation,
         showLocationForm: state.search.showLocationForm,
         screen: state.screen,
-        locationPredictions: state.search.locationPredictions,
-        keywords: state.keywords.words
+        locationPredictions: state.search.locationPredictions
     };
 }
 
@@ -271,12 +216,6 @@ function mapDispatchToProps(dispatch) {
         setUserLocation: (location) => {
             dispatch(setUserLocation(location));
             dispatch(getWeatherKeywords(location));
-        },
-        removeKeyword: (keywordId) => {
-            dispatch(removeKeyword(keywordId));
-        },
-        postUserKeywords: () => {
-            dispatch(postUserKeywords());
         },
         postUserDate: () => {
             dispatch(postUserDate());
