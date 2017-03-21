@@ -39,10 +39,18 @@ class Smart extends Component {
 
     getUserLocation() {
         if (!navigator.geolocation) {
-            // TODO: display input for user
+            if (this.props.showLocationForm === false) {
+                this.props.toggleLocationForm();
+            }
         }
 
-        navigator.geolocation.getCurrentPosition((position) => {
+        const options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
+        };
+
+        const success = (position) => {
             this.props.getUserLocation({
                 timestamp: position.timestamp,
                 accuracy: position.coords.accuracy,
@@ -51,7 +59,15 @@ class Smart extends Component {
                     lng: position.coords.longitude
                 }
             });
-        });
+        };
+
+        const error = (err) => {
+            if (this.props.showLocationForm === false) {
+                this.props.toggleLocationForm();
+            }
+        };
+
+        navigator.geolocation.getCurrentPosition(success, error, options);
     }
 
     _handleKeyPress(e) {
