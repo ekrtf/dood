@@ -49,7 +49,7 @@ const main = function(state, action) {
     		return assign({}, state, {
     			feedback: action.feedback.feedback,
                 averageRating: action.feedback.averageRating[0]['avg("rating")'],
-                numberOfSearches: action.feedback.numberOfSearches[0][`count("${state.version}")`],
+                numberOfSearches: action.feedback.numberOfSearches,
                 numberOfSearchesWithChoice: action.feedback.numberOfSearchesWithChoice
     		});
 
